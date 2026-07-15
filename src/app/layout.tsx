@@ -43,6 +43,11 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: ["/og.png"],
   },
+  verification: {
+    other: {
+      "naver-site-verification": "843b87b1968ac7747692949c28ef32c47ed9feee",
+    },
+  },
 };
 
 export const viewport: Viewport = {
