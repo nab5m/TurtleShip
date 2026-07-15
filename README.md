@@ -41,12 +41,19 @@ npm run dev
 | `npm run validate:content` | 카드/퀴즈 무결성 검증 (id 중복, 정답 범위, 분량 등) |
 | `npm run resolve:images` | `imageSearch` 검색어를 Wikimedia Commons 이미지 URL로 변환해 `src/data/content/images.ts` 생성 |
 | `npm run gen:icons` | 거북선 PWA 아이콘(파비콘·192·512·마스커블·애플) 생성 |
+| `npm run gen:og` | 링크 미리보기용 OG 이미지 `public/og.png`(1200×630) 생성 |
 
 ## PWA
 
 - `app/manifest.ts` → `/manifest.webmanifest`, `public/sw.js`(서비스워커), `src/components/ServiceWorkerRegister.tsx`(등록)
 - 서비스워커는 **프로덕션에서만** 등록됩니다. 설치·오프라인 테스트는 `npm run build && npm start`로 확인하세요 (개발 모드 `npm run dev`에서는 등록 안 됨).
 - 아이콘 모티프를 바꾸려면 `scripts/gen-icons.mjs`의 SVG를 수정하고 `npm run gen:icons` 실행.
+
+## 링크 미리보기 (OG / 카카오톡)
+
+- `app/layout.tsx`의 `openGraph`/`twitter` 메타 + `public/og.png`(1200×630, 로고 카드).
+- **절대 URL이 필요**하므로 배포 시 `.env`에 `NEXT_PUBLIC_SITE_URL=https://<도메인>`을 설정하세요 (og:image가 `<도메인>/og.png`로 나감).
+- 카카오톡은 미리보기를 강하게 캐시합니다. 변경 후에도 옛 이미지가 보이면 [카카오 디버거](https://developers.kakao.com/tool/debugger/sharing)에서 URL을 입력해 캐시를 초기화하세요.
 
 콘텐츠 데이터는 `src/data/content/days-*.ts`, 90일 커리큘럼 설계는 `src/data/curriculum.ts`에 있습니다.
 작성 기준은 `docs/content-guide.md`를 참고하세요.
