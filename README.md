@@ -24,11 +24,15 @@ npm run dev
 
 1. [supabase.com](https://supabase.com)에서 프로젝트 생성
 2. **SQL Editor**에서 `supabase/schema.sql` 실행 (progress / favorites 테이블 + RLS)
-3. **Authentication → Providers → Google** 활성화
-   - Google Cloud Console에서 OAuth 클라이언트 생성 (승인된 리디렉션 URI에 `https://<project-ref>.supabase.co/auth/v1/callback` 추가)
-   - Client ID / Secret을 Supabase에 입력
-4. **Authentication → URL Configuration**: Site URL과 Redirect URL에 배포 주소(개발 시 `http://localhost:3000`) 추가
-5. `.env.local.example`을 `.env.local`로 복사하고 Project Settings → API의 URL / anon key 입력
+3. `.env.local.example`을 `.env.local`로 복사하고 Project Settings → API의 **URL / anon key** 입력
+4. **Google 로그인 활성화** — Google 자격증명은 앱 `.env`가 아니라 **Supabase 대시보드**에 넣습니다.
+   1. **Google Cloud Console** → 사용자 인증 정보 → **OAuth 2.0 클라이언트 ID**(웹 애플리케이션) 생성
+      - 승인된 리디렉션 URI: `https://<project-ref>.supabase.co/auth/v1/callback`
+   2. **Supabase → Authentication → Providers → Google** → **Enable** → 위 Client ID / Secret 입력 → Save
+   3. **Supabase → Authentication → URL Configuration** → Redirect URLs에 추가:
+      `http://localhost:3000/auth/callback`, `https://<배포도메인>/auth/callback`
+
+> **`Unsupported provider: provider is not enabled` 오류**는 위 4-2단계(Supabase에서 Google 프로바이더 Enable)가 안 된 것입니다. 앱에 추가할 환경변수는 없습니다.
 
 ## 콘텐츠 파이프라인
 
