@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { ProgressProvider } from "@/lib/progress-context";
 import AppShell from "@/components/AppShell";
@@ -73,6 +74,19 @@ export default function RootLayout({
           <AppShell>{children}</AppShell>
         </ProgressProvider>
         <ServiceWorkerRegister />
+        {/* Google Analytics (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-ZV35XQZF0Y"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-ZV35XQZF0Y');
+          `}
+        </Script>
       </body>
     </html>
   );
