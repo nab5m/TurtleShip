@@ -8,6 +8,7 @@ import {
   getCardEntryBySlug,
   getCardEntriesByDay,
 } from "@/lib/card-index";
+import { learnHref } from "@/lib/day-slug";
 
 // 미리 생성된 슬러그만 허용 (그 외 URL 은 404)
 export const dynamicParams = false;
@@ -114,7 +115,7 @@ export default async function CardPage({
             "@type": "ListItem",
             position: 3,
             name: `${day}일차 ${dayMeta.title}`,
-            item: `${SITE_URL}/learn/${day}`,
+            item: `${SITE_URL}${learnHref(day)}`,
           },
           { "@type": "ListItem", position: 4, name: card.title, item: canonical },
         ],
@@ -160,7 +161,7 @@ export default async function CardPage({
           한국사 키워드
         </Link>
         <span aria-hidden>›</span>
-        <Link href={`/learn/${day}`} className="hover:text-foreground">
+        <Link href={learnHref(day)} className="hover:text-foreground">
           {day}일차 · {dayMeta.title}
         </Link>
       </nav>
@@ -209,7 +210,7 @@ export default async function CardPage({
       </div>
 
       <Link
-        href={`/learn/${day}`}
+        href={learnHref(day)}
         className="mt-4 flex items-center justify-center rounded-xl bg-accent px-5 py-3 font-semibold text-white hover:opacity-90"
       >
         {day}일차 「{dayMeta.title}」 학습하기

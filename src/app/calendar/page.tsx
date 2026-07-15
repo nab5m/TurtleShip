@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import { DAY_MAP, ERA_MAP } from "@/data/curriculum";
 import { todayStr } from "@/lib/types";
 import { useProgress } from "@/lib/progress-context";
+import { learnHref } from "@/lib/day-slug";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/components/icons";
 
 interface DayEvent {
@@ -157,7 +158,7 @@ export default function CalendarPage() {
               return (
                 <li key={i}>
                   <Link
-                    href={`/learn/${ev.day}`}
+                    href={learnHref(ev.day)}
                     className="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 hover:bg-card-muted"
                   >
                     <span className="h-8 w-1.5 rounded-full" style={{ backgroundColor: era.color }} />

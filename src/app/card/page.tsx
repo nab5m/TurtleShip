@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ERAS } from "@/data/curriculum";
 import { cardEntries } from "@/lib/card-index";
+import { learnHref } from "@/lib/day-slug";
 
 const title = "한국사 키워드 전체 보기 · 90일 카드 | 거북선";
 const description =
@@ -76,7 +77,7 @@ export default function CardHubPage() {
                     <div key={day}>
                       <h2 className="text-sm font-semibold">
                         <Link
-                          href={`/learn/${day}`}
+                          href={learnHref(day)}
                           className="hover:text-accent"
                         >
                           {day}일차 · {dm.title}

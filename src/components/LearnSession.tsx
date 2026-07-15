@@ -6,6 +6,7 @@ import { getDayContent } from "@/data/content";
 import { DAY_MAP, ERA_MAP } from "@/data/curriculum";
 import { REVIEW_INTERVALS } from "@/lib/types";
 import { useProgress } from "@/lib/progress-context";
+import { learnHref } from "@/lib/day-slug";
 import CardView from "./CardView";
 import QuizRunner from "./QuizRunner";
 import { ChevronLeftIcon, ChevronRightIcon } from "./icons";
@@ -126,7 +127,7 @@ export default function LearnSession({ day }: { day: number }) {
             total={quizzes.length}
             wrongQuizzes={quizzes.filter((q) => result.wrongIds.includes(q.id))}
             nextReviewText={`내일 ${REVIEW_INTERVALS[0]}일차 복습이 홈 화면에 등록됩니다 (망각곡선 1·3·7·14·30일)`}
-            retryHref={`/learn/${day}`}
+            retryHref={learnHref(day)}
           />
         </>
       )}

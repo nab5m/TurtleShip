@@ -7,6 +7,7 @@ import { DAY_MAP, ERA_MAP } from "@/data/curriculum";
 import type { DayContent, DayRecord, Quiz } from "@/lib/types";
 import { REVIEW_INTERVALS } from "@/lib/types";
 import { useProgress } from "@/lib/progress-context";
+import { learnHref } from "@/lib/day-slug";
 import CardView from "./CardView";
 import QuizRunner from "./QuizRunner";
 import { ChevronLeftIcon, ChevronRightIcon } from "./icons";
@@ -33,7 +34,7 @@ export default function ReviewSession({ day }: { day: number }) {
         <p className="font-bold">아직 학습하지 않은 일차예요.</p>
         <p className="mt-1 text-sm text-muted">먼저 학습을 완료하면 복습이 등록됩니다.</p>
         <Link
-          href={`/learn/${day}`}
+          href={learnHref(day)}
           className="mt-4 inline-block rounded-xl bg-accent px-5 py-2.5 font-semibold text-white"
         >
           Day {day} 학습하기

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { DAYS, ERAS } from "@/data/curriculum";
 import { REVIEW_INTERVALS } from "@/lib/types";
 import { useProgress } from "@/lib/progress-context";
+import { learnHref } from "@/lib/day-slug";
 import { CheckIcon } from "@/components/icons";
 
 export default function CurriculumPage() {
@@ -46,7 +47,7 @@ export default function CurriculumPage() {
                     }`}
                   >
                     <Link
-                      href={`/learn/${d.day}`}
+                      href={learnHref(d.day)}
                       className="flex min-w-0 flex-1 items-center gap-3"
                     >
                       <span

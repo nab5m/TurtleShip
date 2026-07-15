@@ -6,6 +6,7 @@ import { getCard, getQuiz } from "@/data/content";
 import { DAY_MAP, ERA_MAP } from "@/data/curriculum";
 import { dayFromItemId } from "@/lib/types";
 import { useProgress } from "@/lib/progress-context";
+import { learnHref } from "@/lib/day-slug";
 import CardView from "@/components/CardView";
 import { StarIcon } from "@/components/icons";
 
@@ -67,7 +68,7 @@ export default function FavoritesPage() {
                 <li key={id} className="space-y-1">
                   {meta && era && (
                     <Link
-                      href={`/learn/${day}`}
+                      href={learnHref(day)}
                       className="inline-flex items-center gap-1.5 px-1 text-xs font-semibold hover:underline"
                       style={{ color: era.color }}
                     >
@@ -94,7 +95,7 @@ export default function FavoritesPage() {
                 <li key={id} className="rounded-2xl border border-border bg-card p-4">
                   {meta && era && (
                     <Link
-                      href={`/learn/${day}`}
+                      href={learnHref(day)}
                       className="text-xs font-semibold hover:underline"
                       style={{ color: era.color }}
                     >

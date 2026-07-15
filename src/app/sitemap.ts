@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
-import { TOTAL_DAYS } from "@/data/curriculum";
+import { DAYS } from "@/data/curriculum";
 import { cardEntries } from "@/lib/card-index";
+import { learnHref } from "@/lib/day-slug";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -13,15 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/calendar`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
   ];
 
-  const learn: MetadataRoute.Sitemap = Array.from(
-    { length: TOTAL_DAYS },
-    (_, i) => ({
-      url: `${SITE_URL}/learn/${i + 1}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })
-  );
+  const learn: MetadataRoute.Sitemap = DAYS.map((d) => ({
+    url: `${SITE_URL}${learnHref(d.day)}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
 
   const cards: MetadataRoute.Sitemap = cardEntries.map((e) => ({
     url: `${SITE_URL}/card/${encodeURIComponent(e.slug)}`,

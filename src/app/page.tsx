@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { DAYS, DAY_MAP, ERAS, ERA_MAP, TOTAL_DAYS } from "@/data/curriculum";
 import { useProgress } from "@/lib/progress-context";
+import { learnHref } from "@/lib/day-slug";
 import { CheckIcon, FlameIcon, RefreshIcon } from "@/components/icons";
 
 export default function HomePage() {
@@ -51,7 +52,7 @@ export default function HomePage() {
             ))}
           </div>
           <Link
-            href={`/learn/${nextMeta.day}`}
+            href={learnHref(nextMeta.day)}
             className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-accent px-5 py-3 font-semibold text-white hover:opacity-90 sm:w-auto"
           >
             오늘의 학습 시작하기
