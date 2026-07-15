@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useProgress } from "@/lib/progress-context";
 import { BookIcon, CalendarIcon, HomeIcon, MenuIcon, StarIcon, XIcon } from "./icons";
 import Logo from "./Logo";
+import InstallPrompt from "./InstallPrompt";
 
 const NAV = [
   { href: "/", label: "홈", Icon: HomeIcon },
@@ -21,6 +22,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-dvh flex flex-col">
+      {/* 모바일 웹 전용: 홈 화면에 추가(PWA 설치) 배너 — 헤더 위에 노출 */}
+      <InstallPrompt />
+
       {/* 헤더: 모든 화면(학습 세션 포함)에 항상 표시 */}
       <header className="sticky top-0 z-30 border-b border-border bg-background/90 backdrop-blur">
         <div className="mx-auto flex h-14 w-full max-w-3xl items-center justify-between px-4">
