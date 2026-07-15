@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+/* 테마: 먹과 한지 — 먹빛 본문 · 인장 붉은색(주 강조) · 청람(복습), 한지 배경 */
+:root {
+  --background: #faf9f5; /* 밝은 순지 */
+  --foreground: #22201c; /* 먹빛 */
+  --card: #ffffff;
+  --card-muted: #efede6;
+  --border: #e4e0d5;
+  --muted: #877e70;
+  --accent: #b5432f; /* 인장 붉은색 */
+  --accent-soft: #f6e6e0;
+  --bronze: #8a6d3f; /* 고서 갈피 (보조) */
+  --bronze-soft: #f0e7d5;
+  --good: #3f7d52; /* 묵록 */
+  --good-soft: #e8f0e6;
+  --bad: #b23b2e;
+  --bad-soft: #f9e8e4;
+  --review: #45607f; /* 청람 */
+  --review-soft: #e7ebf1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #14120e; /* 짙은 먹 */
+    --foreground: #ece7dc; /* 한지 */
+    --card: #201c16;
+    --card-muted: #2a251d;
+    --border: #39322a;
+    --muted: #a39a89;
+    --accent: #e0664e; /* 밝은 인장색 */
+    --accent-soft: #331a14;
+    --bronze: #cba867;
+    --bronze-soft: #2e2410;
+    --good: #5cb87f;
+    --good-soft: #14261a;
+    --bad: #ef6b56;
+    --bad-soft: #2c1613;
+    --review: #8299c2; /* 밝은 청람 */
+    --review-soft: #16202e;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-muted: var(--card-muted);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-bronze: var(--bronze);
+  --color-bronze-soft: var(--bronze-soft);
+  --color-good: var(--good);
+  --color-good-soft: var(--good-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+  --color-review: var(--review);
+  --color-review-soft: var(--review-soft);
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", "Malgun Gothic", sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 모바일 하단 탭바 safe area */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* details 마커 제거 (AuthButton 드롭다운) */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
