@@ -7,6 +7,7 @@ import { useProgress } from "@/lib/progress-context";
 import { BookIcon, CalendarIcon, HomeIcon, MenuIcon, StarIcon, XIcon } from "./icons";
 import Logo from "./Logo";
 import InstallPrompt from "./InstallPrompt";
+import Footer from "./Footer";
 
 const NAV = [
   { href: "/", label: "홈", Icon: HomeIcon },
@@ -102,6 +103,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       )}
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 pt-5 pb-16">{children}</main>
+
+      <Footer />
     </div>
   );
 }

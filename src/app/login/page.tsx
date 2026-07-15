@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useProgress } from "@/lib/progress-context";
 import Logo from "@/components/Logo";
 
 export default function LoginPage() {
   const { user, authAvailable, signInWithGoogle, signOut } = useProgress();
   const router = useRouter();
+  const [agreed, setAgreed] = useState(false);
 
   return (
     <div className="mx-auto max-w-md space-y-5 pt-6">
@@ -44,14 +46,39 @@ export default function LoginPage() {
         </div>
       ) : (
         <div className="space-y-3">
+          <label className="flex cursor-pointer items-start gap-2.5 rounded-xl border border-border bg-card p-3 text-left">
+            <input
+              type="checkbox"
+              checked={agreed}
+              onChange={(e) => setAgreed(e.target.checked)}
+              className="mt-0.5 h-4 w-4 shrink-0 accent-[color:var(--accent)]"
+            />
+            <span className="text-xs leading-relaxed text-muted">
+              <Link href="/terms" className="font-medium text-accent hover:underline">
+                이용약관
+              </Link>
+              {" 및 "}
+              <Link href="/privacy" className="font-medium text-accent hover:underline">
+                개인정보처리방침
+              </Link>
+              에 동의합니다. (필수)
+            </span>
+          </label>
+
           <button
             onClick={() => void signInWithGoogle()}
-            disabled={!authAvailable}
+            disabled={!authAvailable || !agreed}
             className="flex w-full items-center justify-center gap-3 rounded-xl border border-border bg-card px-5 py-3.5 font-semibold shadow-sm hover:bg-card-muted disabled:opacity-40"
           >
             <GoogleLogo />
             Google로 계속하기
           </button>
+
+          {!agreed && authAvailable && (
+            <p className="text-center text-[11px] text-muted">
+              가입·로그인하려면 약관에 동의해 주세요.
+            </p>
+          )}
 
           {!authAvailable && (
             <p className="rounded-xl bg-card-muted p-3 text-xs leading-relaxed text-muted">
