@@ -10,7 +10,8 @@
     "validate:content": "tsx scripts/validate-content.ts",
     "resolve:images": "node scripts/resolve-images.mjs",
     "gen:icons": "node scripts/gen-icons.mjs",
-    "gen:og": "node scripts/gen-og.mjs"
+    "gen:og": "node scripts/gen-og.mjs",
+    "gen:audio": "tsx scripts/gen-audio.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.1",

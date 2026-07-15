@@ -1,0 +1,25 @@
+// 자동 생성 파일 — scripts/gen-audio.ts 가 생성합니다. 직접 수정하지 마세요.
+// TTS 낭독 오디오가 준비된 카드 id 집합 (보이스: ko-KR-SunHiNeural).
+export const AUDIO_CARD_IDS: ReadonlySet<string> = new Set([
+  "d01-c01",
+  "d01-c02",
+  "d01-c03",
+  "d01-c04",
+  "d01-c05",
+  "d01-c06",
+  "d01-c07",
+  "d01-c08",
+  "d01-c09",
+  "d01-c10",
+  "d01-c11",
+  "d01-c12",
+  "d01-c13",
+  "d01-c14",
+  "d01-c15",
+  "d01-c16",
+  "d01-c17",
+  "d01-c18",
+  "d01-c19",
+  "d01-c20",
+  "d01-c21",
+]);
