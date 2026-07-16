@@ -9,6 +9,7 @@ import {
   getCardEntriesByDay,
 } from "@/lib/card-index";
 import { learnHref } from "@/lib/day-slug";
+import ExamStars from "@/components/ExamStars";
 
 // 미리 생성된 슬러그만 허용 (그 외 URL 은 404)
 export const dynamicParams = false;
@@ -185,6 +186,8 @@ export default async function CardPage({
             </span>
           ))}
         </div>
+
+        <ExamStars cardId={card.id} className="mt-4" />
 
         {card.image && (
           <figure className="mt-5">

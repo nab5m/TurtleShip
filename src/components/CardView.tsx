@@ -4,6 +4,7 @@ import Image from "next/image";
 import type { StudyCard } from "@/lib/types";
 import { useProgress } from "@/lib/progress-context";
 import { StarIcon } from "./icons";
+import ExamStars from "./ExamStars";
 
 interface Props {
   card: StudyCard;
@@ -46,6 +47,8 @@ export default function CardView({ card, eraColor, compact }: Props) {
           </span>
         ))}
       </div>
+
+      <ExamStars cardId={card.id} className="mt-3" />
 
       {card.image && !compact && (
         <figure className="mt-4">
