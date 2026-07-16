@@ -1,13 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site";
 import { ProgressProvider } from "@/lib/progress-context";
 import AppShell from "@/components/AppShell";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
-// 배포 도메인 (카카오톡 등 링크 미리보기의 og:image 절대 URL에 필요).
-// 배포 시 .env 에 NEXT_PUBLIC_SITE_URL 을 실제 도메인으로 설정하세요.
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+// 배포 도메인 (canonical·og:image 등 절대 URL). SITE_URL 은 NEXT_PUBLIC_SITE_URL →
+// Vercel 프로덕션 도메인 → localhost 순으로 해석된다. (src/lib/site.ts 참고)
+const siteUrl = SITE_URL;
 const siteTitle = "거북선 — 한능검 심화 대비 한국사 학습";
 const siteDescription =
   "하루 30분, 90일 완성 한국사능력검정시험 심화 대비 카드 학습. 망각곡선 복습과 즐겨찾기로 시대 흐름을 잡아 보세요.";
