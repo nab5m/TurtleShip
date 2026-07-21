@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useProgress } from "@/lib/progress-context";
-import { BookIcon, CalendarIcon, HomeIcon, MenuIcon, StarIcon, XIcon } from "./icons";
+import { BookIcon, CalendarIcon, HomeIcon, MenuIcon, StarIcon, TagIcon, XIcon } from "./icons";
 import Logo from "./Logo";
 import InstallPrompt from "./InstallPrompt";
 import Footer from "./Footer";
@@ -12,6 +12,7 @@ import Footer from "./Footer";
 const NAV = [
   { href: "/", label: "홈", Icon: HomeIcon },
   { href: "/curriculum", label: "커리큘럼", Icon: BookIcon },
+  { href: "/card", label: "키워드", Icon: TagIcon },
   { href: "/calendar", label: "캘린더", Icon: CalendarIcon },
   { href: "/favorites", label: "즐겨찾기", Icon: StarIcon },
 ];

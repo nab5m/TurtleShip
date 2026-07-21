@@ -91,6 +91,15 @@ export function MenuIcon({ className }: IconProps) {
   );
 }
 
+export function TagIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={base(className)}>
+      <path d="M11 3H5a2 2 0 0 0-2 2v6l9 9a2 2 0 0 0 2.8 0l5.2-5.2a2 2 0 0 0 0-2.8L11 3z" />
+      <path d="M7.5 7.5h.01" />
+    </svg>
+  );
+}
+
 export function FlameIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={base(className)}>

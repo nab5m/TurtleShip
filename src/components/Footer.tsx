@@ -6,6 +6,12 @@ export default function Footer() {
       <div className="mx-auto w-full max-w-3xl px-4 py-7 text-xs leading-relaxed text-muted">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <span className="font-bold text-foreground">거북선</span>
+          <Link href="/card" className="hover:text-foreground hover:underline">
+            한국사 키워드
+          </Link>
+          <Link href="/curriculum" className="hover:text-foreground hover:underline">
+            커리큘럼
+          </Link>
           <Link href="/terms" className="hover:text-foreground hover:underline">
             이용약관
           </Link>
