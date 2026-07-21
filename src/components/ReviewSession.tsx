@@ -9,6 +9,7 @@ import { REVIEW_INTERVALS } from "@/lib/types";
 import { useProgress } from "@/lib/progress-context";
 import { learnHref } from "@/lib/day-slug";
 import CardView from "./CardView";
+import CardAudioPlayer from "./CardAudioPlayer";
 import QuizRunner from "./QuizRunner";
 import { ChevronLeftIcon, ChevronRightIcon } from "./icons";
 import { ResultView, SessionHeader } from "./SessionUI";
@@ -134,6 +135,16 @@ function ReviewSessionInner({
           <p className="mb-2 text-center text-xs font-medium text-muted">
             카드 훑어보기 {cardIdx + 1} / {cards.length}
           </p>
+
+          <CardAudioPlayer
+            cards={cards}
+            cardIdx={cardIdx}
+            setCardIdx={setCardIdx}
+            day={day}
+            dayTitle={meta.title}
+            className="mb-3"
+          />
+
           <CardView card={cards[cardIdx]} eraColor={era.color} />
           <div className="mt-4 flex gap-2">
             <button

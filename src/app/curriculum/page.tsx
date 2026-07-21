@@ -5,6 +5,7 @@ import { DAYS, ERAS } from "@/data/curriculum";
 import { REVIEW_INTERVALS } from "@/lib/types";
 import { useProgress } from "@/lib/progress-context";
 import { learnHref } from "@/lib/day-slug";
+import { estimatedMinutes } from "@/data/day-time";
 import { CheckIcon } from "@/components/icons";
 
 export default function CurriculumPage() {
@@ -74,6 +75,9 @@ export default function CurriculumPage() {
                         </span>
                       )}
                     </Link>
+                    <span className="shrink-0 whitespace-nowrap text-[11px] font-medium text-muted">
+                      약 {estimatedMinutes(d.day)}분
+                    </span>
                     {rec && rec.reviewDates.length < REVIEW_INTERVALS.length && (
                       <Link
                         href={`/review/${d.day}`}
