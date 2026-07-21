@@ -63,67 +63,80 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     userRef.current = user;
   }, [user]);
 
-  // 초기 로드 + 인증 상태 구독
+  // 초기 로드 + 인증 상태 구독.
+  // onAuthStateChange 를 단일 진입점으로 사용한다. @supabase/ssr 는 로드 시
+  // INITIAL_SESSION 이벤트로 복원된 세션을 전달하므로 getSession 을 따로 호출하지 않는다
+  // (두 경로가 동시에 로드하며 생기던 레이스 제거).
+  // ⚠️ 콜백 안에서 supabase async 호출(DB/auth)을 직접 await 하면 auth 잠금과 맞물려
+  //    간헐적 데드락이 생길 수 있다 → 무거운 로드는 setTimeout 으로 콜백 밖에서 실행.
   useEffect(() => {
     const sb = supabaseBrowser();
-    let cancelled = false;
+    if (!sb) {
+      setProgress(loadLocal());
+      setReady(true);
+      return;
+    }
 
-    async function initForUser(u: AppUser) {
-      if (!sb) return;
+    let cancelled = false;
+    // 어떤 사용자의 원격 데이터를 이미 로드했는지 동기적으로 추적 (userRef 는 갱신이 지연되어 부적합)
+    let loadedUserId: string | null = null;
+
+    async function loadForUser(u: AppUser, attempt = 0): Promise<void> {
       try {
-        let remote = await loadRemote(sb, u.id);
-        // 게스트 시절 기록을 1회 병합
+        let remote = await loadRemote(sb!, u.id);
+        // 게스트 시절 기록을 최초 1회 병합
         if (!alreadyMerged(u.id)) {
-          const local = loadLocal();
-          await mergeLocalToRemote(sb, u.id, local, remote);
+          await mergeLocalToRemote(sb!, u.id, loadLocal(), remote);
           markMerged(u.id);
-          remote = await loadRemote(sb, u.id);
+          remote = await loadRemote(sb!, u.id);
         }
         if (!cancelled) setProgress(remote);
       } catch (e) {
-        console.error("Supabase 동기화 실패, 로컬 데이터로 동작합니다:", e);
-        if (!cancelled) setProgress(loadLocal());
+        console.error("Supabase 동기화 실패:", e);
+        // 네트워크 순단 등 일시적 오류는 1회 재시도 (조용히 빈 화면으로 남지 않도록)
+        if (attempt < 1 && !cancelled) {
+          await new Promise((r) => setTimeout(r, 1500));
+          if (!cancelled) {
+            await loadForUser(u, attempt + 1);
+            return;
+          }
+        }
+      } finally {
+        if (!cancelled) setReady(true);
       }
     }
 
-    async function init() {
-      await Promise.resolve(); // 효과 본문 동기 setState 방지 (외부 저장소 로드)
+    const { data: sub } = sb.auth.onAuthStateChange((event, session) => {
       if (cancelled) return;
-      if (!sb) {
+      // 로그아웃 / 세션 없음(비로그인 초기 로드) → 게스트 데이터
+      if (event === "SIGNED_OUT" || !session?.user) {
+        loadedUserId = null;
+        setUser(null);
         setProgress(loadLocal());
         setReady(true);
         return;
       }
-      const { data } = await sb.auth.getSession();
-      if (cancelled) return;
-      const session = data.session;
-      if (session?.user) {
-        const u = toAppUser(session.user);
-        setUser(u);
-        await initForUser(u);
-      } else {
-        setProgress(loadLocal());
+      // 세션 있음 (INITIAL_SESSION / SIGNED_IN / TOKEN_REFRESHED 등)
+      const u = toAppUser(session.user);
+      setUser(u);
+      if (loadedUserId === u.id) {
+        setReady(true); // 토큰 갱신 등 — 이미 로드함
+        return;
       }
-      if (!cancelled) setReady(true);
-    }
-    void init();
-
-    if (!sb) return;
-    const { data: sub } = sb.auth.onAuthStateChange(async (event, session) => {
-      if (cancelled) return;
-      if (event === "SIGNED_IN" && session?.user) {
-        const u = toAppUser(session.user);
-        if (userRef.current?.id === u.id) return; // 토큰 갱신 등은 무시
-        setUser(u);
-        await initForUser(u);
-      } else if (event === "SIGNED_OUT") {
-        setUser(null);
-        setProgress(loadLocal());
-      }
+      loadedUserId = u.id;
+      setTimeout(() => {
+        if (!cancelled) void loadForUser(u);
+      }, 0);
     });
+
+    // 안전장치: 인증 이벤트가 오지 않는 예외 상황에서도 스켈레톤이 무한 지속되지 않게
+    const safety = setTimeout(() => {
+      if (!cancelled) setReady(true);
+    }, 6000);
 
     return () => {
       cancelled = true;
+      clearTimeout(safety);
       sub.subscription.unsubscribe();
     };
   }, []);
