@@ -1,11 +1,12 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+// (Next.js 16: middleware → proxy 로 개편됨)
 // 홈(/) 서버 렌더 전에 Supabase 세션을 갱신해 쿠키에 반영한다.
-// 이게 없으면 만료된 액세스 토큰을 서버 컴포넌트가 갱신하지 못해(쿠키 쓰기 불가)
+// 이게 없으면 만료된 액세스 토큰을 서버 컴포넌트가 갱신하지 못해(RSC 는 쿠키 쓰기 불가)
 // getServerProgress 가 null 을 반환 → SSR 이 스켈레톤을 그리고 클라이언트에서 채워
 // 넣으며 깜빡임이 생긴다. 여기서 토큰을 미리 갱신하면 홈이 진도까지 담아 SSR 된다.
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;

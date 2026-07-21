@@ -25,11 +25,18 @@ export async function getServerProgress(): Promise<ProgressState | null> {
     });
 
     const { data, error } = await sb.auth.getUser();
-    if (error || !data.user) return null;
+    if (error) {
+      // 로그인 사용자인데 세션 검증/갱신 실패 → SSR 진도 없이 스켈레톤(깜빡임)의 주원인.
+      // (프록시가 토큰을 갱신하지 못했을 때 발생)
+      console.warn("[home-ssr] getUser 실패 → 클라이언트 폴백:", error.message);
+      return null;
+    }
+    if (!data.user) return null; // 비로그인(게스트) — 정상
 
-    return await loadRemote(sb, data.user.id);
+    const progress = await loadRemote(sb, data.user.id);
+    return progress;
   } catch (e) {
-    console.error("서버 진도 로드 실패 — 클라이언트 로드로 폴백:", e);
+    console.error("[home-ssr] 진도 로드 예외 → 클라이언트 폴백:", e);
     return null;
   }
 }
