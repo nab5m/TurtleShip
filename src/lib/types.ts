@@ -113,13 +113,16 @@ export function dayFromItemId(id: string): number {
   return m ? parseInt(m[1], 10) : 0;
 }
 
-// 로컬 기준 오늘 날짜 "YYYY-MM-DD"
+// 오늘 날짜 "YYYY-MM-DD" — 한국 표준시(KST) 고정.
+// 서버(UTC 등)와 클라이언트 렌더가 항상 같은 '오늘'을 쓰도록 타임존을 못박아
+// SSR 하이드레이션 불일치를 막고, 한국 시험 앱 특성상 기준일도 KST 가 맞다.
 export function todayStr(): string {
-  const d = new Date();
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, "0");
-  const dd = String(d.getDate()).padStart(2, "0");
-  return `${y}-${m}-${dd}`;
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Seoul",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
 }
 
 export function daysBetween(fromYmd: string, toYmd: string): number {
