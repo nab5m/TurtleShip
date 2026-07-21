@@ -19,9 +19,19 @@ export default function HomeView({
 }) {
   const ctx = useProgress();
 
-  // 서버가 진도를 줬으면 컨텍스트 준비 전에도 그 값으로 즉시 표시
+  // 서버가 진도를 줬으면 컨텍스트 준비 전에도 그 값으로 즉시 표시.
   const ready = ctx.ready || initialProgress != null;
-  const progress = ctx.ready ? ctx.progress : initialProgress ?? EMPTY_PROGRESS;
+  // 방어: 서버가 진도를 줬는데 컨텍스트가 준비 도중 '빈 진도'를 잠깐 보고하는 경우
+  // (INITIAL_SESSION 직후 재로드 등) 서버값을 유지해 content→empty→content 깜빡임을 막는다.
+  // 컨텍스트가 실제로 진도를 로드하면(ctxCount>0) 그때 라이브 값으로 전환.
+  const initialCount = initialProgress
+    ? Object.keys(initialProgress.completed).length
+    : 0;
+  const ctxCount = Object.keys(ctx.progress.completed).length;
+  const progress =
+    ctx.ready && (ctxCount > 0 || initialCount === 0)
+      ? ctx.progress
+      : initialProgress ?? EMPTY_PROGRESS;
   const due = useMemo(() => dueReviews(progress), [progress]);
   const streak = useMemo(() => studyStreak(progress), [progress]);
 

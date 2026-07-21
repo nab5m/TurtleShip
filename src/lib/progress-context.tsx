@@ -120,7 +120,9 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
       const u = toAppUser(session.user);
       setUser(u);
       if (loadedUserId === u.id) {
-        setReady(true); // 토큰 갱신 등 — 이미 로드함
+        // 토큰 갱신·중복 이벤트(SIGNED_IN/TOKEN_REFRESHED) — 이미 로드를 시작함.
+        // 여기서 ready 를 켜지 않는다: 첫 로드가 끝나기 전 켜면 빈 진도가 잠깐 보이며
+        // 깜빡인다(content→empty→content). ready 는 loadForUser 가 완료 시 켠다.
         return;
       }
       loadedUserId = u.id;
