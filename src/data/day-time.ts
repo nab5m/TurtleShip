@@ -1,6 +1,8 @@
-// 자동 생성 파일 — 각 일차 카드 낭독 음성(mp3)의 총 재생 시간(초).
+import { DAY_MAP } from "@/data/curriculum";
+
+// 자동 생성 파일 — 각 단원(1~90) 카드 낭독 음성(mp3)의 총 재생 시간(초).
 // public/audio/cards/<id>.mp3 크기 기반(48kbps CBR)으로 산출.
-export const DAY_AUDIO_SECONDS: Record<number, number> = {
+export const UNIT_AUDIO_SECONDS: Record<number, number> = {
   1: 404,
   2: 439,
   3: 439,
@@ -93,11 +95,15 @@ export const DAY_AUDIO_SECONDS: Record<number, number> = {
   90: 331
 };
 
-// 문제 풀이 예상 시간(초) — 대략 3분.
-export const QUIZ_SECONDS = 180;
+// 단원당 문제 풀이 예상 시간(초) — 12~14문항에 대략 3분.
+export const QUIZ_SECONDS_PER_UNIT = 180;
 
-// 한 일차의 예상 소요시간(분) = 음성 총 길이 + 문제 풀이(약 3분), 반올림.
+// 한 일차의 예상 소요시간(분) = 그날 묶인 단원들의 음성 총 길이 + 단원별 문제 풀이, 반올림.
 export function estimatedMinutes(day: number): number {
-  const audio = DAY_AUDIO_SECONDS[day] ?? 0;
-  return Math.max(1, Math.round((audio + QUIZ_SECONDS) / 60));
+  const units = DAY_MAP[day]?.units ?? [];
+  const seconds = units.reduce(
+    (sum, u) => sum + (UNIT_AUDIO_SECONDS[u] ?? 0) + QUIZ_SECONDS_PER_UNIT,
+    0
+  );
+  return Math.max(1, Math.round(seconds / 60));
 }

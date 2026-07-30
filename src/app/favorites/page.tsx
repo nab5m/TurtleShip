@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import { getCard, getQuiz } from "@/data/content";
-import { DAY_MAP, ERA_MAP } from "@/data/curriculum";
-import { dayFromItemId } from "@/lib/types";
+import { UNIT_MAP, dayOfUnit, eraOfUnit } from "@/data/curriculum";
+import { unitFromItemId } from "@/lib/types";
 import { useProgress } from "@/lib/progress-context";
 import { learnHref } from "@/lib/day-slug";
 import CardView from "@/components/CardView";
@@ -61,12 +61,13 @@ export default function FavoritesPage() {
         ) : (
           <ul className="space-y-3">
             {favCards.map(({ id, card }) => {
-              const day = dayFromItemId(id);
-              const meta = DAY_MAP[day];
-              const era = meta ? ERA_MAP[meta.eraId] : undefined;
+              const unit = unitFromItemId(id);
+              const meta = UNIT_MAP[unit];
+              const day = dayOfUnit(unit);
+              const era = meta ? eraOfUnit(unit) : undefined;
               return (
                 <li key={id} className="space-y-1">
-                  {meta && era && (
+                  {meta && era && day && (
                     <Link
                       href={learnHref(day)}
                       className="inline-flex items-center gap-1.5 px-1 text-xs font-semibold hover:underline"
@@ -88,12 +89,13 @@ export default function FavoritesPage() {
         ) : (
           <ul className="space-y-3">
             {favQuizzes.map(({ id, quiz }) => {
-              const day = dayFromItemId(id);
-              const meta = DAY_MAP[day];
-              const era = meta ? ERA_MAP[meta.eraId] : undefined;
+              const unit = unitFromItemId(id);
+              const meta = UNIT_MAP[unit];
+              const day = dayOfUnit(unit);
+              const era = meta ? eraOfUnit(unit) : undefined;
               return (
                 <li key={id} className="rounded-2xl border border-border bg-card p-4">
-                  {meta && era && (
+                  {meta && era && day && (
                     <Link
                       href={learnHref(day)}
                       className="text-xs font-semibold hover:underline"

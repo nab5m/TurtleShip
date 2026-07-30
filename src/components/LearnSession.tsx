@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getDayContent } from "@/data/content";
-import { DAY_MAP, ERA_MAP } from "@/data/curriculum";
-import { REVIEW_INTERVALS } from "@/lib/types";
+import { DAY_MAP, UNIT_MAP, eraOfUnit, stageOfDay } from "@/data/curriculum";
+import { REVIEW_INTERVALS, unitFromItemId } from "@/lib/types";
 import { useProgress } from "@/lib/progress-context";
 import { learnHref } from "@/lib/day-slug";
 import { estimatedMinutes } from "@/data/day-time";
@@ -18,7 +18,7 @@ type Phase = "cards" | "quiz" | "result";
 
 export default function LearnSession({ day }: { day: number }) {
   const meta = DAY_MAP[day];
-  const era = ERA_MAP[meta.eraId];
+  const stage = stageOfDay(day);
   const content = getDayContent(day);
   const { completeDay } = useProgress();
 
@@ -54,6 +54,12 @@ export default function LearnSession({ day }: { day: number }) {
 
   const isLastCard = cardIdx === cards.length - 1;
 
+  // 하루가 단원 2~4개로 이뤄지므로 지금 보고 있는 카드가 어느 단원인지 함께 보여 준다.
+  const currentUnit = unitFromItemId(cards[cardIdx].id);
+  const unitMeta = UNIT_MAP[currentUnit];
+  const unitStep = meta.units.indexOf(currentUnit) + 1;
+  const cardEra = unitMeta ? eraOfUnit(currentUnit) : undefined;
+
   return (
     <div className="mx-auto max-w-xl">
       {phase === "cards" && (
@@ -61,14 +67,19 @@ export default function LearnSession({ day }: { day: number }) {
           <SessionHeader
             day={day}
             title={meta.title}
-            eraName={era.name}
-            eraColor={era.color}
+            stageName={stage.name}
+            stageColor={stage.color}
             current={cardIdx + 1}
             total={cards.length}
           />
           <p className="mb-1 text-center text-xs text-muted">
             예상 소요시간 약 {estimatedMinutes(day)}분
           </p>
+          {unitMeta && (
+            <p className="mb-1 text-center text-xs font-semibold" style={{ color: cardEra?.color }}>
+              {unitStep}/{meta.units.length}단원 · {unitMeta.title}
+            </p>
+          )}
           <p className="mb-2 text-center text-xs font-medium text-muted">
             카드 {cardIdx + 1} / {cards.length}
           </p>
@@ -82,7 +93,7 @@ export default function LearnSession({ day }: { day: number }) {
             className="mb-3"
           />
 
-          <CardView card={cards[cardIdx]} eraColor={era.color} />
+          <CardView card={cards[cardIdx]} eraColor={cardEra?.color ?? stage.color} />
           <div className="mt-4 flex gap-2">
             <button
               onClick={() => setCardIdx((i) => Math.max(i - 1, 0))}
@@ -110,8 +121,8 @@ export default function LearnSession({ day }: { day: number }) {
           <SessionHeader
             day={day}
             title={meta.title}
-            eraName={era.name}
-            eraColor={era.color}
+            stageName={stage.name}
+            stageColor={stage.color}
             current={quizIdx + 1}
             total={quizzes.length}
           />
@@ -132,8 +143,8 @@ export default function LearnSession({ day }: { day: number }) {
           <SessionHeader
             day={day}
             title={meta.title}
-            eraName={era.name}
-            eraColor={era.color}
+            stageName={stage.name}
+            stageColor={stage.color}
             current={quizzes.length}
             total={quizzes.length}
           />

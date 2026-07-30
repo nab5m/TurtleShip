@@ -21,15 +21,48 @@ export interface Era {
   name: string;
   period: string; // 표시용 연대 (예: "918 ~ 1392")
   color: string; // 시대 구분 색상 (hex)
-  dayRange: [number, number]; // 이 시대에 배정된 학습일 범위 (1-90)
+  unitRange: [number, number]; // 이 시대에 배정된 단원 범위 (1-90)
 }
 
-// 90일 커리큘럼의 하루치 메타 정보
-export interface DayMeta {
-  day: number; // 1 ~ 90
+// 커리큘럼 단계 — 시대를 묶은 그룹. 하루가 여러 시대를 걸치므로(1일차 = 구석기~철기)
+// 커리큘럼/홈 화면의 그룹 단위는 시대가 아니라 이 단계다.
+export type StageId =
+  | "prehistory"
+  | "gojoseon-confederacy"
+  | "three-kingdoms"
+  | "north-south"
+  | "goryeo"
+  | "early-joseon"
+  | "late-joseon"
+  | "open-port"
+  | "colonial"
+  | "modern";
+
+export interface Stage {
+  id: StageId;
+  name: string; // 예: "후삼국과 고려"
+  period: string;
+  color: string;
+  eraIds: EraId[]; // 이 단계가 다루는 시대
+  dayRange: [number, number]; // 이 단계에 배정된 학습일 범위 (1-28)
+}
+
+// 학습 단원 — 콘텐츠(카드/퀴즈)의 최소 단위. 카드 id 의 dNN 이 이 번호다.
+export interface UnitMeta {
+  unit: number; // 1 ~ 90
   eraId: EraId;
   title: string; // 예: "광개토대왕과 장수왕"
-  topics: string[]; // 그날 다루는 핵심 주제/키워드 요약
+  topics: string[]; // 그 단원이 다루는 핵심 주제/키워드 요약
+}
+
+// 28일 커리큘럼의 하루치 메타 정보 — 단원 2~4개를 묶은 것
+export interface DayMeta {
+  day: number; // 1 ~ 28
+  stageId: StageId;
+  title: string; // 예: "고구려의 성장과 백제의 건국"
+  units: number[]; // 그날 학습하는 단원 번호 (순서 유지)
+  unitTitles: string[]; // units 의 제목 (표시용)
+  topics: string[]; // units 의 topics 전체 (메타데이터·키워드용)
 }
 
 // 카드/퀴즈에 첨부되는 이미지 (유물·문화재 등 시각자료가 중요한 경우)
@@ -62,7 +95,14 @@ export interface Quiz {
   image?: ItemImage;
 }
 
-// 하루치 학습 콘텐츠
+// 단원 하나의 학습 콘텐츠 (src/data/content/days-*.ts 의 원본 단위)
+export interface UnitContent {
+  unit: number;
+  cards: StudyCard[];
+  quizzes: Quiz[];
+}
+
+// 하루치 학습 콘텐츠 — 그날 묶인 단원들의 카드/퀴즈를 순서대로 이어 붙인 것
 export interface DayContent {
   day: number;
   cards: StudyCard[];
@@ -85,15 +125,16 @@ export interface DayRecord {
   reviewDates: string[]; // 완료한 복습 날짜 (단계 순서대로, 최대 5회)
 }
 
+// version 2 = 28일 커리큘럼 기준 (1 은 90일 커리큘럼 = 단원 번호 기준, progress-store 에서 변환)
 export interface ProgressState {
-  version: 1;
-  completed: Record<number, DayRecord>; // day 번호 -> 완료 기록
+  version: 2;
+  completed: Record<number, DayRecord>; // day 번호(1~28) -> 완료 기록
   favoriteCards: string[]; // 즐겨찾기한 카드 id
   favoriteQuizzes: string[]; // 즐겨찾기한 퀴즈 id
 }
 
 export const EMPTY_PROGRESS: ProgressState = {
-  version: 1,
+  version: 2,
   completed: {},
   favoriteCards: [],
   favoriteQuizzes: [],
@@ -107,8 +148,8 @@ export interface DueReview {
   overdueDays: number; // 예정일 대비 며칠 지났는지
 }
 
-// 카드/퀴즈 id에서 day 번호 추출 ("d09-c01" -> 9)
-export function dayFromItemId(id: string): number {
+// 카드/퀴즈 id에서 단원 번호 추출 ("d09-c01" -> 9)
+export function unitFromItemId(id: string): number {
   const m = /^d(\d+)-/.exec(id);
   return m ? parseInt(m[1], 10) : 0;
 }

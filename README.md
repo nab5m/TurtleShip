@@ -1,9 +1,10 @@
 # 거북선 — 한능검 심화 대비 한국사 학습 앱
 
-하루 30분씩 90일 동안 한국사능력검정시험 **심화**를 대비하는 카드 학습 앱입니다.
+하루 30분씩 28일(4주) 동안 한국사능력검정시험 **심화**를 대비하는 카드 학습 앱입니다.
 
-- **90일 커리큘럼**: 구석기 → 신석기 → 청동기 → 철기 → 고조선 → 연맹왕국 → 삼국 → 남북국 → 후삼국 → 고려 → 조선전기 → 조선후기 → 개항기 → 일제강점기 → 현대
-- **1일 학습 세트**: 키워드 카드 20~25장 + 4지선다 퀴즈 12~15문항
+- **28일 커리큘럼**: 구석기 → 신석기 → 청동기 → 철기 → 고조선 → 연맹왕국 → 삼국 → 남북국 → 후삼국 → 고려 → 조선전기 → 조선후기 → 개항기 → 일제강점기 → 현대
+- **단원 90개 → 28일**: 콘텐츠 최소 단위는 소주제(단원) 90개이고, 하루에 단원 2~4개를 묶어 28일에 한 바퀴 돈다 (`DAY_PLAN`)
+- **1일 학습 세트**: 키워드 카드 40~90장 + 4지선다 퀴즈 25~55문항 (일차별 예상 16~41분, 평균 31분)
 - **망각곡선 복습**: 학습 완료 후 1·3·7·14·30일 간격으로 복습 세트 자동 등록 (틀린 문제 우선 출제)
 - **학습 캘린더**: 학습/복습 이력을 달력으로 확인
 - **즐겨찾기**: 카드/퀴즈 별표 후 모아보기
@@ -24,6 +25,7 @@ npm run dev
 
 1. [supabase.com](https://supabase.com)에서 프로젝트 생성
 2. **SQL Editor**에서 `supabase/schema.sql` 실행 (progress / favorites 테이블 + RLS)
+   - 이미 90일 커리큘럼으로 운영 중이던 프로젝트라면 `supabase/migrations/2026-07-30-28day-curriculum.sql` 을 한 번 실행해 기존 진도를 28일 기준으로 변환하세요
 3. `.env.local.example`을 `.env.local`로 복사하고 Project Settings → API의 **URL / anon key** 입력
 4. **Google 로그인 활성화** — Google 자격증명은 앱 `.env`가 아니라 **Supabase 대시보드**에 넣습니다.
    1. **Google Cloud Console** → 사용자 인증 정보 → **OAuth 2.0 클라이언트 ID**(웹 애플리케이션) 생성
@@ -55,7 +57,7 @@ npm run dev
 - **절대 URL이 필요**하므로 배포 시 `.env`에 `NEXT_PUBLIC_SITE_URL=https://<도메인>`을 설정하세요 (og:image가 `<도메인>/og.png`로 나감).
 - 카카오톡은 미리보기를 강하게 캐시합니다. 변경 후에도 옛 이미지가 보이면 [카카오 디버거](https://developers.kakao.com/tool/debugger/sharing)에서 URL을 입력해 캐시를 초기화하세요.
 
-콘텐츠 데이터는 `src/data/content/days-*.ts`, 90일 커리큘럼 설계는 `src/data/curriculum.ts`에 있습니다.
+콘텐츠 데이터는 `src/data/content/days-*.ts`(단원 단위), 28일 커리큘럼 설계는 `src/data/curriculum.ts`(UNITS·STAGES·DAY_PLAN)에 있습니다.
 작성 기준은 `docs/content-guide.md`를 참고하세요.
 
 ## 구조
@@ -65,13 +67,15 @@ src/
   app/                # 라우트 (홈, learn/[day], review/[day], curriculum, calendar, favorites, login)
   components/         # AppShell, CardView, QuizRunner, 세션 UI
   data/
-    curriculum.ts     # 15개 시대 × 90일 학습 설계
-    content/          # 일차별 카드/퀴즈 데이터 + 이미지 맵
+    curriculum.ts     # 15개 시대 · 단원 90개 → 28일 학습 설계
+    content/          # 단원별 카드/퀴즈 데이터 + 이미지 맵
   lib/
     types.ts          # 도메인 타입 + 망각곡선 계산
     progress-store.ts # localStorage / Supabase 저장소
     progress-context.tsx # 학습 상태 컨텍스트 (게스트↔회원 동기화)
     supabase/         # Supabase 클라이언트
-supabase/schema.sql   # DB 스키마 + RLS
+supabase/
+  schema.sql          # DB 스키마 + RLS
+  migrations/         # 스키마 변경 스크립트(90일→28일 진도 변환 등)
 scripts/              # 콘텐츠 검증·이미지 resolve
 ```

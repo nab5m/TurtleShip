@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import LearnSession from "@/components/LearnSession";
-import { DAY_MAP, ERA_MAP } from "@/data/curriculum";
+import { DAY_MAP, stageOfDay } from "@/data/curriculum";
 import { allDaySlugs, dayFromSlug, learnHref } from "@/lib/day-slug";
 
 export function generateStaticParams() {
@@ -23,17 +23,18 @@ export async function generateMetadata({
   if (!day) return {};
 
   const meta = DAY_MAP[day];
-  const era = ERA_MAP[meta.eraId];
-  const title = `${meta.title} (${day}일차) · ${era.name} | 한능검 한국사 - 거북선`;
+  const stage = stageOfDay(day);
+  const title = `${meta.title} (${day}일차) · ${stage.name} | 한능검 한국사 - 거북선`;
   const description = clip(
-    `${era.name} 「${meta.title}」 핵심 정리 — ${meta.topics.join(", ")}`,
+    `${stage.name} 「${meta.title}」 핵심 정리 — ${meta.unitTitles.join(", ")}, ${meta.topics.join(", ")}`,
     155
   );
   const path = learnHref(day);
   const keywords = Array.from(
     new Set([
       meta.title,
-      era.name,
+      stage.name,
+      ...meta.unitTitles,
       ...meta.topics,
       "한국사",
       "한국사능력검정시험",

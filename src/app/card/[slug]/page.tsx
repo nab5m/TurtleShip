@@ -6,7 +6,7 @@ import { SITE_URL } from "@/lib/site";
 import {
   cardEntries,
   getCardEntryBySlug,
-  getCardEntriesByDay,
+  getCardEntriesByUnit,
 } from "@/lib/card-index";
 import { learnHref } from "@/lib/day-slug";
 import ExamStars from "@/components/ExamStars";
@@ -41,7 +41,7 @@ export async function generateMetadata({
   const entry = getCardEntryBySlug(safeDecode(slug));
   if (!entry) return {};
 
-  const { card, era, dayMeta } = entry;
+  const { card, era, unitMeta } = entry;
   const title = `${card.title} · ${era.name} | 한능검 한국사 - 거북선`;
   const description = clip(card.content, 155);
   const path = `/card/${encodeURIComponent(entry.slug)}`;
@@ -50,7 +50,7 @@ export async function generateMetadata({
       card.title,
       ...card.keywords,
       era.name,
-      dayMeta.title,
+      unitMeta.title,
       "한국사",
       "한국사능력검정시험",
       "한능검",
@@ -92,10 +92,10 @@ export default async function CardPage({
   const entry = getCardEntryBySlug(safeDecode(slug));
   if (!entry) notFound();
 
-  const { card, era, day, dayMeta, indexInDay } = entry;
-  const siblings = getCardEntriesByDay(day);
-  const prev = siblings[indexInDay - 1];
-  const next = siblings[indexInDay + 1];
+  const { card, era, unit, unitMeta, day, dayMeta, indexInUnit } = entry;
+  const siblings = getCardEntriesByUnit(unit);
+  const prev = siblings[indexInUnit - 1];
+  const next = siblings[indexInUnit + 1];
   const others = siblings.filter((s) => s.slug !== entry.slug);
   const canonical = `${SITE_URL}/card/${encodeURIComponent(entry.slug)}`;
 
@@ -115,7 +115,7 @@ export default async function CardPage({
           {
             "@type": "ListItem",
             position: 3,
-            name: `${day}일차 ${dayMeta.title}`,
+            name: unitMeta.title,
             item: `${SITE_URL}${learnHref(day)}`,
           },
           { "@type": "ListItem", position: 4, name: card.title, item: canonical },
@@ -134,7 +134,7 @@ export default async function CardPage({
         about: { "@type": "Thing", name: card.title },
         isPartOf: {
           "@type": "Course",
-          name: "거북선 — 90일 한국사",
+          name: "거북선 — 28일 한국사",
           url: `${SITE_URL}/`,
         },
         url: canonical,
@@ -163,7 +163,7 @@ export default async function CardPage({
         </Link>
         <span aria-hidden>›</span>
         <Link href={learnHref(day)} className="hover:text-foreground">
-          {day}일차 · {dayMeta.title}
+          {unitMeta.title}
         </Link>
       </nav>
 
@@ -249,7 +249,7 @@ export default async function CardPage({
       {others.length > 0 && (
         <section className="mt-8">
           <h2 className="mb-3 text-sm font-bold text-muted">
-            {day}일차 · {dayMeta.title} 의 다른 키워드
+            「{unitMeta.title}」 의 다른 키워드
           </h2>
           <ul className="flex flex-wrap gap-2">
             {others.map((s) => (

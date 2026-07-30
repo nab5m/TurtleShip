@@ -1,9 +1,9 @@
-import type { DayContent } from "@/lib/types";
+import type { UnitContent } from "@/lib/types";
 
-export const days: DayContent[] = [
+export const units: UnitContent[] = [
   // ==================== DAY 65: 흥선대원군의 정치 ====================
   {
-    day: 65,
+    unit: 65,
     cards: [
       {
         id: "d65-c01",
@@ -295,7 +295,7 @@ export const days: DayContent[] = [
 
   // ==================== DAY 66: 통상 수교 거부 정책과 양요 ====================
   {
-    day: 66,
+    unit: 66,
     cards: [
       {
         id: "d66-c01",
@@ -566,7 +566,7 @@ export const days: DayContent[] = [
 
   // ==================== DAY 67: 개항과 불평등 조약 체제 ====================
   {
-    day: 67,
+    unit: 67,
     cards: [
       {
         id: "d67-c01",
@@ -850,7 +850,7 @@ export const days: DayContent[] = [
 
   // ==================== DAY 68: 개화 정책의 추진과 반발 ====================
   {
-    day: 68,
+    unit: 68,
     cards: [
       {
         id: "d68-c01",
@@ -1159,7 +1159,7 @@ export const days: DayContent[] = [
 
   // ==================== DAY 69: 갑신정변과 이후 정세 ====================
   {
-    day: 69,
+    unit: 69,
     cards: [
       {
         id: "d69-c01",

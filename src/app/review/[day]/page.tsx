@@ -3,7 +3,7 @@ import ReviewSession from "@/components/ReviewSession";
 import { TOTAL_DAYS } from "@/data/curriculum";
 
 export function generateStaticParams() {
-  return Array.from({ length: TOTAL_DAYS }, (_, i) => ({ day: String(i + 1) }));
+  return Array.from({ length: TOTAL_DAYS }, (_, i) => ({ day: String(i + 1) })); // 1~28일차
 }
 
 export default async function ReviewPage({

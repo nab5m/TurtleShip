@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { DAY_MAP, ERA_MAP } from "@/data/curriculum";
+import { DAY_MAP, STAGE_MAP } from "@/data/curriculum";
 import { todayStr } from "@/lib/types";
 import { useProgress } from "@/lib/progress-context";
 import { learnHref } from "@/lib/day-slug";
@@ -154,19 +154,20 @@ export default function CalendarPage() {
           <ul className="space-y-2">
             {selectedEvents.map((ev, i) => {
               const meta = DAY_MAP[ev.day];
-              const era = ERA_MAP[meta.eraId];
+              const stage = meta ? STAGE_MAP[meta.stageId] : undefined;
+              if (!meta || !stage) return null; // 커리큘럼에 없는 일차(이전 90일 기록 잔여)
               return (
                 <li key={i}>
                   <Link
                     href={learnHref(ev.day)}
                     className="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 hover:bg-card-muted"
                   >
-                    <span className="h-8 w-1.5 rounded-full" style={{ backgroundColor: era.color }} />
+                    <span className="h-8 w-1.5 rounded-full" style={{ backgroundColor: stage.color }} />
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-sm font-semibold">
                         Day {ev.day} · {meta.title}
                       </span>
-                      <span className="text-xs text-muted">{era.name}</span>
+                      <span className="text-xs text-muted">{stage.name}</span>
                     </span>
                     <span
                       className={`shrink-0 rounded-full px-2.5 py-1 text-[11px] font-bold ${

@@ -45,7 +45,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" v
   <text x="470" y="308" font-family="${FONT}" font-size="150" font-weight="800" fill="${RED}">거북선</text>
   <rect x="476" y="336" width="168" height="9" rx="4.5" fill="${RED}"/>
   <text x="476" y="418" font-family="${FONT}" font-size="48" font-weight="700" fill="${INK}">한국사능력검정시험 심화 대비</text>
-  <text x="476" y="480" font-family="${FONT}" font-size="37" font-weight="500" fill="${MUTED}">하루 30분 · 90일 완성 · 오프라인 학습</text>
+  <text x="476" y="480" font-family="${FONT}" font-size="37" font-weight="500" fill="${MUTED}">하루 30분 · 28일 완성 · 오프라인 학습</text>
 </svg>`;
 
 await sharp(Buffer.from(svg)).png().toFile(join(root, "public/og.png"));

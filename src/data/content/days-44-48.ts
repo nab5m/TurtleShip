@@ -1,11 +1,11 @@
-import type { DayContent } from "@/lib/types";
+import type { UnitContent } from "@/lib/types";
 
-export const days: DayContent[] = [
+export const units: UnitContent[] = [
   // ================================================================
   // Day 44. 조선의 건국과 국가 기틀 마련
   // ================================================================
   {
-    day: 44,
+    unit: 44,
     cards: [
       {
         id: "d44-c01",
@@ -369,7 +369,7 @@ export const days: DayContent[] = [
   // Day 45. 세종의 업적
   // ================================================================
   {
-    day: 45,
+    unit: 45,
     cards: [
       {
         id: "d45-c01",
@@ -735,7 +735,7 @@ export const days: DayContent[] = [
   // Day 46. 세조와 성종의 통치
   // ================================================================
   {
-    day: 46,
+    unit: 46,
     cards: [
       {
         id: "d46-c01",
@@ -1083,7 +1083,7 @@ export const days: DayContent[] = [
   // Day 47. 조선의 중앙·지방 통치 체제
   // ================================================================
   {
-    day: 47,
+    unit: 47,
     cards: [
       {
         id: "d47-c01",
@@ -1416,7 +1416,7 @@ export const days: DayContent[] = [
   // Day 48. 조선의 관리 등용과 교육 제도
   // ================================================================
   {
-    day: 48,
+    unit: 48,
     cards: [
       {
         id: "d48-c01",

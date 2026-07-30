@@ -1,40 +1,60 @@
-import type { DayContent } from "@/lib/types";
-import { days as g01 } from "./days-01-04";
-import { days as g02 } from "./days-05-08";
-import { days as g03 } from "./days-09-14";
-import { days as g04 } from "./days-15-20";
-import { days as g05 } from "./days-21-24";
-import { days as g06 } from "./days-25-29";
-import { days as g07 } from "./days-30-34";
-import { days as g08 } from "./days-35-39";
-import { days as g09 } from "./days-40-43";
-import { days as g10 } from "./days-44-48";
-import { days as g11 } from "./days-49-54";
-import { days as g12 } from "./days-55-59";
-import { days as g13 } from "./days-60-64";
-import { days as g14 } from "./days-65-69";
-import { days as g15 } from "./days-70-73";
-import { days as g16 } from "./days-74-78";
-import { days as g17 } from "./days-79-83";
-import { days as g18 } from "./days-84-90";
+import type { DayContent, UnitContent } from "@/lib/types";
+import { DAYS } from "@/data/curriculum";
+import { units as g01 } from "./days-01-04";
+import { units as g02 } from "./days-05-08";
+import { units as g03 } from "./days-09-14";
+import { units as g04 } from "./days-15-20";
+import { units as g05 } from "./days-21-24";
+import { units as g06 } from "./days-25-29";
+import { units as g07 } from "./days-30-34";
+import { units as g08 } from "./days-35-39";
+import { units as g09 } from "./days-40-43";
+import { units as g10 } from "./days-44-48";
+import { units as g11 } from "./days-49-54";
+import { units as g12 } from "./days-55-59";
+import { units as g13 } from "./days-60-64";
+import { units as g14 } from "./days-65-69";
+import { units as g15 } from "./days-70-73";
+import { units as g16 } from "./days-74-78";
+import { units as g17 } from "./days-79-83";
+import { units as g18 } from "./days-84-90";
 import { IMAGE_MAP } from "./images";
 
-const ALL_DAYS: DayContent[] = [
+const ALL_UNITS: UnitContent[] = [
   ...g01, ...g02, ...g03, ...g04, ...g05, ...g06, ...g07, ...g08, ...g09,
   ...g10, ...g11, ...g12, ...g13, ...g14, ...g15, ...g16, ...g17, ...g18,
 ];
 
 // imageSearch가 resolve된 항목에 이미지 URL을 주입
-for (const day of ALL_DAYS) {
-  for (const item of [...day.cards, ...day.quizzes]) {
+for (const unit of ALL_UNITS) {
+  for (const item of [...unit.cards, ...unit.quizzes]) {
     if (item.imageSearch && IMAGE_MAP[item.id]) {
       item.image = IMAGE_MAP[item.id];
     }
   }
 }
 
+export const UNIT_CONTENT_MAP: Record<number, UnitContent> = Object.fromEntries(
+  ALL_UNITS.map((u) => [u.unit, u])
+);
+
+export function getUnitContent(unit: number): UnitContent | undefined {
+  return UNIT_CONTENT_MAP[unit];
+}
+
+// 하루치 콘텐츠 = 그날 묶인 단원들의 카드/퀴즈를 단원 순서대로 이어 붙인 것
 export const CONTENT_MAP: Record<number, DayContent> = Object.fromEntries(
-  ALL_DAYS.map((d) => [d.day, d])
+  DAYS.map((d) => {
+    const units = d.units.map((u) => UNIT_CONTENT_MAP[u]).filter(Boolean);
+    return [
+      d.day,
+      {
+        day: d.day,
+        cards: units.flatMap((u) => u.cards),
+        quizzes: units.flatMap((u) => u.quizzes),
+      } satisfies DayContent,
+    ];
+  })
 );
 
 export function getDayContent(day: number): DayContent | undefined {
@@ -46,9 +66,9 @@ import type { StudyCard, Quiz } from "@/lib/types";
 
 const cardIndex = new Map<string, StudyCard>();
 const quizIndex = new Map<string, Quiz>();
-for (const day of ALL_DAYS) {
-  for (const c of day.cards) cardIndex.set(c.id, c);
-  for (const q of day.quizzes) quizIndex.set(q.id, q);
+for (const unit of ALL_UNITS) {
+  for (const c of unit.cards) cardIndex.set(c.id, c);
+  for (const q of unit.quizzes) quizIndex.set(q.id, q);
 }
 
 export function getCard(id: string): StudyCard | undefined {

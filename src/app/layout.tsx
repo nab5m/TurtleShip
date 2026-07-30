@@ -11,7 +11,7 @@ import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 const siteUrl = SITE_URL;
 const siteTitle = "거북선 — 한능검 심화 대비 한국사 학습";
 const siteDescription =
-  "하루 30분, 90일 완성 한국사능력검정시험 심화 대비 카드 학습. 망각곡선 복습과 즐겨찾기로 시대 흐름을 잡아 보세요.";
+  "하루 30분, 28일 완성 한국사능력검정시험 심화 대비 카드 학습. 망각곡선 복습과 즐겨찾기로 시대 흐름을 잡아 보세요.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

@@ -1,8 +1,17 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { DAYS } from "@/data/curriculum";
 import type { DayRecord, ProgressState } from "./types";
 import { EMPTY_PROGRESS } from "./types";
 
 const LS_KEY = "kh-progress-v1";
+
+// 저장된 원본(버전이 섞여 있을 수 있다)
+interface StoredProgress {
+  version?: number;
+  completed?: Record<number, DayRecord>;
+  favoriteCards?: string[];
+  favoriteQuizzes?: string[];
+}
 
 // ---------- 게스트: localStorage ----------
 
@@ -11,10 +20,11 @@ export function loadLocal(): ProgressState {
   try {
     const raw = window.localStorage.getItem(LS_KEY);
     if (!raw) return EMPTY_PROGRESS;
-    const parsed = JSON.parse(raw) as ProgressState;
-    if (parsed.version !== 1) return EMPTY_PROGRESS;
+    const parsed = JSON.parse(raw) as StoredProgress;
+    if (parsed.version === 1) return migrateV1(parsed); // 90일 커리큘럼 기록
+    if (parsed.version !== 2) return EMPTY_PROGRESS;
     return {
-      version: 1,
+      version: 2,
       completed: parsed.completed ?? {},
       favoriteCards: parsed.favoriteCards ?? [],
       favoriteQuizzes: parsed.favoriteQuizzes ?? [],
@@ -22,6 +32,40 @@ export function loadLocal(): ProgressState {
   } catch {
     return EMPTY_PROGRESS;
   }
+}
+
+// 90일 커리큘럼(v1) 기록 → 28일 커리큘럼(v2) 변환.
+// v1 의 completed 키는 단원 번호(1~90)였다. 새 일차는 단원 2~4개를 묶으므로,
+// 묶인 단원을 '모두' 학습했을 때만 그 일차를 완료로 본다(부분 학습은 다시 학습하게 둔다).
+// 점수는 합산, 최초 학습일은 가장 늦은 날, 복습 단계는 가장 적게 복습한 단원 기준(보수적).
+function migrateV1(old: StoredProgress): ProgressState {
+  const unitRecords = old.completed ?? {};
+  const completed: Record<number, DayRecord> = {};
+
+  for (const d of DAYS) {
+    const recs = d.units.map((u) => unitRecords[u]);
+    if (recs.some((r) => !r)) continue; // 한 단원이라도 미완료면 그 일차는 미완료
+    const done = recs as DayRecord[];
+    const fewestReviews = done.reduce((a, b) =>
+      a.reviewDates.length <= b.reviewDates.length ? a : b
+    );
+    completed[d.day] = {
+      date: done.map((r) => r.date).sort().slice(-1)[0],
+      score: done.reduce((s, r) => s + r.score, 0),
+      total: done.reduce((s, r) => s + r.total, 0),
+      wrongQuizIds: done.flatMap((r) => r.wrongQuizIds),
+      reviewDates: fewestReviews.reviewDates,
+    };
+  }
+
+  const migrated: ProgressState = {
+    version: 2,
+    completed,
+    favoriteCards: old.favoriteCards ?? [],
+    favoriteQuizzes: old.favoriteQuizzes ?? [],
+  };
+  saveLocal(migrated);
+  return migrated;
 }
 
 export function saveLocal(p: ProgressState): void {
@@ -72,7 +116,7 @@ export async function loadRemote(
   }
   const favs = (favRes.data ?? []) as FavoriteRow[];
   return {
-    version: 1,
+    version: 2,
     completed,
     favoriteCards: favs.filter((f) => f.item_type === "card").map((f) => f.item_id),
     favoriteQuizzes: favs.filter((f) => f.item_type === "quiz").map((f) => f.item_id),

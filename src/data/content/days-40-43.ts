@@ -1,8 +1,8 @@
-import type { DayContent } from "@/lib/types";
+import type { UnitContent } from "@/lib/types";
 
-export const days: DayContent[] = [
+export const units: UnitContent[] = [
   {
-    day: 40,
+    unit: 40,
     cards: [
       {
         id: "d40-c01",
@@ -271,7 +271,7 @@ export const days: DayContent[] = [
     ],
   },
   {
-    day: 41,
+    unit: 41,
     cards: [
       {
         id: "d41-c01",
@@ -531,7 +531,7 @@ export const days: DayContent[] = [
     ],
   },
   {
-    day: 42,
+    unit: 42,
     cards: [
       {
         id: "d42-c01",
@@ -784,7 +784,7 @@ export const days: DayContent[] = [
     ],
   },
   {
-    day: 43,
+    unit: 43,
     cards: [
       {
         id: "d43-c01",

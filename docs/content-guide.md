@@ -3,19 +3,19 @@
 이 문서는 한국사능력검정시험 **심화(1~3급)** 대비 학습 앱의 콘텐츠 데이터 파일을 작성하는 기준이다.
 
 ## 먼저 읽을 파일
-1. `src/lib/types.ts` — `DayContent`, `StudyCard`, `Quiz` 타입 정의
-2. `src/data/curriculum.ts` — 담당 일차(day)의 `title`과 `topics` (반드시 이 브리프를 기준으로 작성)
+1. `src/lib/types.ts` — `UnitContent`, `StudyCard`, `Quiz` 타입 정의
+2. `src/data/curriculum.ts` — 담당 단원(unit)의 `title`과 `topics` (반드시 이 브리프를 기준으로 작성). 단원 90개를 28일로 묶는 배분은 같은 파일의 `DAY_PLAN` 에 있다
 
 ## 출력 파일 형식
 
 지정받은 경로에 아래 형식의 **유효한 TypeScript 파일**을 작성한다:
 
 ```ts
-import type { DayContent } from "@/lib/types";
+import type { UnitContent } from "@/lib/types";
 
-export const days: DayContent[] = [
+export const units: UnitContent[] = [
   {
-    day: 10,
+    unit: 10,
     cards: [
       {
         id: "d10-c01",
@@ -48,7 +48,7 @@ export const days: DayContent[] = [
       // ... 12~15문항
     ],
   },
-  // ... 담당한 나머지 일차
+  // ... 담당한 나머지 단원
 ];
 ```
 
@@ -88,8 +88,8 @@ export const days: DayContent[] = [
 - 퀴즈에도 자료 제시형 문제에 한해 `imageSearch`를 붙일 수 있다
 
 ## ID 규칙
-- 카드: `d{일차 2자리}-c{순번 2자리}` — 예: day 9의 3번째 카드 → `"d09-c03"`
-- 퀴즈: `d{일차 2자리}-q{순번 2자리}` — 예: `"d09-q11"`
+- 카드: `d{단원 2자리}-c{순번 2자리}` — 예: 9단원의 3번째 카드 → `"d09-c03"`
+- 퀴즈: `d{단원 2자리}-q{순번 2자리}` — 예: `"d09-q11"`
 
 ## 문법 주의
 - 문자열은 큰따옴표(`"`)로 감싸고, 내용 안의 큰따옴표는 `\"`로 이스케이프하거나 작은따옴표/낫표(『』, ')를 사용
@@ -97,4 +97,4 @@ export const days: DayContent[] = [
 - 파일은 반드시 문법 오류 없는 TypeScript여야 한다
 
 ## 완료 보고
-파일 작성 후, 일차별 카드/퀴즈 개수만 한 줄씩 요약해서 보고한다 (내용 전문은 보고하지 말 것).
+파일 작성 후, 단원별 카드/퀴즈 개수만 한 줄씩 요약해서 보고한다 (내용 전문은 보고하지 말 것).

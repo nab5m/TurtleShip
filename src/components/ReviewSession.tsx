@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { getDayContent } from "@/data/content";
-import { DAY_MAP, ERA_MAP } from "@/data/curriculum";
+import { DAY_MAP, UNIT_MAP, eraOfUnit, stageOfDay } from "@/data/curriculum";
 import type { DayContent, DayRecord, Quiz } from "@/lib/types";
-import { REVIEW_INTERVALS } from "@/lib/types";
+import { REVIEW_INTERVALS, unitFromItemId } from "@/lib/types";
 import { useProgress } from "@/lib/progress-context";
 import { learnHref } from "@/lib/day-slug";
 import CardView from "./CardView";
@@ -16,7 +16,7 @@ import { ResultView, SessionHeader } from "./SessionUI";
 
 type Phase = "cards" | "quiz" | "result";
 
-const REVIEW_QUIZ_COUNT = 8;
+const REVIEW_QUIZ_COUNT = 12;
 
 // 로더: 데이터가 준비되면 내부 세션을 마운트한다.
 // (준비 시점의 rec를 prop으로 넘겨 내부에서 1회만 고정 → setState/ref-in-render 회피)
@@ -68,7 +68,7 @@ function ReviewSessionInner({
   initialRec: DayRecord;
 }) {
   const meta = DAY_MAP[day];
-  const era = ERA_MAP[meta.eraId];
+  const stageMeta = stageOfDay(day); // 커리큘럼 단계(시대 묶음) — 아래 복습 단계(snapshot.stage)와 다른 개념
   const { completeReview } = useProgress();
 
   const [phase, setPhase] = useState<Phase>("cards");
@@ -113,6 +113,13 @@ function ReviewSessionInner({
       ? `${REVIEW_INTERVALS[snapshot.stage]}일차 복습`
       : "자유 복습";
   const isLastCard = cardIdx === cards.length - 1;
+
+  // 지금 보고 있는 카드가 그날 묶인 단원 중 어느 단원인지
+  const currentUnit = unitFromItemId(cards[cardIdx].id);
+  const unitMeta = UNIT_MAP[currentUnit];
+  const unitStep = meta.units.indexOf(currentUnit) + 1;
+  const cardEra = unitMeta ? eraOfUnit(currentUnit) : undefined;
+
   const nextStage = snapshot.stage + 1;
   const nextReviewText =
     nextStage < REVIEW_INTERVALS.length
@@ -126,12 +133,17 @@ function ReviewSessionInner({
           <SessionHeader
             day={day}
             title={meta.title}
-            eraName={era.name}
-            eraColor={era.color}
+            stageName={stageMeta.name}
+            stageColor={stageMeta.color}
             badge={stageLabel}
             current={cardIdx + 1}
             total={cards.length}
           />
+          {unitMeta && (
+            <p className="mb-1 text-center text-xs font-semibold" style={{ color: cardEra?.color }}>
+              {unitStep}/{meta.units.length}단원 · {unitMeta.title}
+            </p>
+          )}
           <p className="mb-2 text-center text-xs font-medium text-muted">
             카드 훑어보기 {cardIdx + 1} / {cards.length}
           </p>
@@ -145,7 +157,7 @@ function ReviewSessionInner({
             className="mb-3"
           />
 
-          <CardView card={cards[cardIdx]} eraColor={era.color} />
+          <CardView card={cards[cardIdx]} eraColor={cardEra?.color ?? stageMeta.color} />
           <div className="mt-4 flex gap-2">
             <button
               onClick={() => setCardIdx((i) => Math.max(i - 1, 0))}
@@ -179,8 +191,8 @@ function ReviewSessionInner({
           <SessionHeader
             day={day}
             title={meta.title}
-            eraName={era.name}
-            eraColor={era.color}
+            stageName={stageMeta.name}
+            stageColor={stageMeta.color}
             badge={stageLabel}
             current={quizIdx + 1}
             total={quizzes.length}
@@ -202,8 +214,8 @@ function ReviewSessionInner({
           <SessionHeader
             day={day}
             title={meta.title}
-            eraName={era.name}
-            eraColor={era.color}
+            stageName={stageMeta.name}
+            stageColor={stageMeta.color}
             badge={stageLabel}
             current={quizzes.length}
             total={quizzes.length}

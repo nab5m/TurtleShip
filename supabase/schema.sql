@@ -1,10 +1,11 @@
--- 한국사 90일 학습 앱 스키마
+-- 한국사 28일 학습 앱 스키마
 -- Supabase SQL Editor에서 실행하세요.
+-- 이미 90일 커리큘럼으로 운영 중인 프로젝트라면 supabase/migrations/2026-07-30-28day-curriculum.sql 를 먼저 실행하세요.
 
--- 학습 완료 기록 (사용자 × 학습일차)
+-- 학습 완료 기록 (사용자 × 학습일차, 1~28)
 create table if not exists public.progress (
   user_id uuid not null references auth.users (id) on delete cascade,
-  day int not null check (day between 1 and 90),
+  day int not null check (day between 1 and 28),
   date text not null, -- 최초 학습 완료일 "YYYY-MM-DD"
   score int not null default 0,
   total int not null default 0,

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo } from "react";
-import { DAYS, DAY_MAP, ERAS, ERA_MAP, TOTAL_DAYS } from "@/data/curriculum";
+import { DAYS, DAY_MAP, STAGES, STAGE_MAP, TOTAL_DAYS } from "@/data/curriculum";
 import type { ProgressState } from "@/lib/types";
 import { EMPTY_PROGRESS, dueReviews, studyStreak } from "@/lib/types";
 import { useProgress } from "@/lib/progress-context";
@@ -32,7 +32,11 @@ export default function HomeView({
     ctx.ready && (ctxCount > 0 || initialCount === 0)
       ? ctx.progress
       : initialProgress ?? EMPTY_PROGRESS;
-  const due = useMemo(() => dueReviews(progress), [progress]);
+  // 커리큘럼에 없는 일차(이전 90일 커리큘럼의 잔여 기록 등)는 복습 목록에서 제외
+  const due = useMemo(
+    () => dueReviews(progress).filter((r) => DAY_MAP[r.day]),
+    [progress]
+  );
   const streak = useMemo(() => studyStreak(progress), [progress]);
 
   if (!ready) {
@@ -45,13 +49,17 @@ export default function HomeView({
     );
   }
 
-  const completedCount = Object.keys(progress.completed).length;
+  // 커리큘럼에 없는 일차(이전 90일 커리큘럼의 잔여 기록 등)는 세지 않는다
+  const completedDays = Object.keys(progress.completed)
+    .map(Number)
+    .filter((d) => DAY_MAP[d]);
+  const completedCount = completedDays.length;
   const nextDay = DAYS.find((d) => !progress.completed[d.day])?.day;
   const nextMeta = nextDay ? DAY_MAP[nextDay] : undefined;
-  const nextEra = nextMeta ? ERA_MAP[nextMeta.eraId] : undefined;
+  const nextStage = nextMeta ? STAGE_MAP[nextMeta.stageId] : undefined;
 
   // 평균 정답률
-  const records = Object.values(progress.completed);
+  const records = completedDays.map((d) => progress.completed[d]);
   const totalQ = records.reduce((s, r) => s + r.total, 0);
   const totalCorrect = records.reduce((s, r) => s + r.score, 0);
   const accuracy = totalQ > 0 ? Math.round((totalCorrect / totalQ) * 100) : null;
@@ -59,19 +67,19 @@ export default function HomeView({
   return (
     <div className="space-y-6">
       {/* 오늘의 학습 */}
-      {nextMeta && nextEra ? (
+      {nextMeta && nextStage ? (
         <section
           className="relative overflow-hidden rounded-2xl border border-border bg-card p-6"
-          style={{ borderTopWidth: 4, borderTopColor: nextEra.color }}
+          style={{ borderTopWidth: 4, borderTopColor: nextStage.color }}
         >
-          <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: nextEra.color }}>
+          <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: nextStage.color }}>
             <span>Day {nextMeta.day}</span>
             <span className="text-muted">·</span>
-            <span>{nextEra.name}</span>
+            <span>{nextStage.name}</span>
           </div>
           <h1 className="mt-1 text-2xl font-bold">{nextMeta.title}</h1>
           <div className="mt-3 flex flex-wrap gap-1.5">
-            {nextMeta.topics.slice(0, 4).map((t) => (
+            {nextMeta.unitTitles.map((t) => (
               <span key={t} className="rounded-full bg-card-muted px-2.5 py-1 text-xs text-muted">
                 {shortTopic(t)}
               </span>
@@ -87,7 +95,7 @@ export default function HomeView({
       ) : (
         <section className="rounded-2xl border border-border bg-card p-6 text-center">
           <p className="text-3xl">🎉</p>
-          <h1 className="mt-2 text-xl font-bold">90일 커리큘럼을 모두 완료했어요!</h1>
+          <h1 className="mt-2 text-xl font-bold">{TOTAL_DAYS}일 커리큘럼을 모두 완료했어요!</h1>
           <p className="mt-1 text-sm text-muted">복습과 즐겨찾기로 마무리 정리를 해 보세요.</p>
         </section>
       )}
@@ -114,19 +122,19 @@ export default function HomeView({
           <ul className="space-y-2">
             {due.slice(0, 5).map((r) => {
               const meta = DAY_MAP[r.day];
-              const era = ERA_MAP[meta.eraId];
+              const stage = STAGE_MAP[meta.stageId];
               return (
                 <li key={r.day}>
                   <Link
                     href={`/review/${r.day}`}
                     className="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 hover:bg-card-muted"
                   >
-                    <span className="h-8 w-1.5 rounded-full" style={{ backgroundColor: era.color }} />
+                    <span className="h-8 w-1.5 rounded-full" style={{ backgroundColor: stage.color }} />
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-sm font-semibold">
                         Day {r.day} · {meta.title}
                       </span>
-                      <span className="text-xs text-muted">{era.name}</span>
+                      <span className="text-xs text-muted">{stage.name}</span>
                     </span>
                     <span className="shrink-0 rounded-full bg-review-soft px-2.5 py-1 text-xs font-semibold text-review">
                       {r.intervalLabel}
@@ -170,21 +178,21 @@ export default function HomeView({
       <section>
         <h2 className="mb-2 font-bold">시대별 진행</h2>
         <div className="space-y-1.5 rounded-2xl border border-border bg-card p-4">
-          {ERAS.map((era) => {
-            const [start, end] = era.dayRange;
+          {STAGES.map((stage) => {
+            const [start, end] = stage.dayRange;
             const total = end - start + 1;
             const done = Array.from({ length: total }, (_, i) => start + i).filter(
               (d) => progress.completed[d]
             ).length;
             return (
-              <Link key={era.id} href="/curriculum" className="flex items-center gap-3 py-0.5">
-                <span className="w-20 shrink-0 text-xs font-medium sm:w-24">{era.name}</span>
+              <Link key={stage.id} href="/curriculum" className="flex items-center gap-3 py-0.5">
+                <span className="w-20 shrink-0 text-xs font-medium sm:w-24">{stage.name}</span>
                 <span className="h-2 flex-1 overflow-hidden rounded-full bg-card-muted">
                   <span
                     className="block h-full rounded-full transition-all"
                     style={{
                       width: `${(done / total) * 100}%`,
-                      backgroundColor: era.color,
+                      backgroundColor: stage.color,
                     }}
                   />
                 </span>

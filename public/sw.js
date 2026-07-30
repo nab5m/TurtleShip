@@ -1,7 +1,7 @@
 // 거북선 서비스워커 — 오프라인 학습 지원.
 // 전략: 정적 자산은 cache-first, 페이지 이동(navigate)은 network-first + 캐시 폴백.
 // 외부(위키미디어) 이미지 등 cross-origin 요청은 건드리지 않는다.
-const CACHE = "geobukseon-v1";
+const CACHE = "geobukseon-v2"; // v2: 28일 커리큘럼 개편 — 옛 90일 화면 캐시 폐기
 const PRECACHE = ["/", "/curriculum", "/calendar", "/favorites", "/login", "/manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {

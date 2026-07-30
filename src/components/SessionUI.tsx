@@ -8,16 +8,16 @@ import { XIcon } from "./icons";
 export function SessionHeader({
   day,
   title,
-  eraName,
-  eraColor,
+  stageName,
+  stageColor,
   badge,
   current,
   total,
 }: {
   day: number;
   title: string;
-  eraName: string;
-  eraColor: string;
+  stageName: string;
+  stageColor: string;
   badge?: string;
   current: number; // 진행 중인 항목 (1-base)
   total: number;
@@ -26,8 +26,8 @@ export function SessionHeader({
     <div className="mb-4">
       <div className="flex items-center justify-between gap-2">
         <div className="min-w-0">
-          <p className="flex items-center gap-1.5 text-xs font-semibold" style={{ color: eraColor }}>
-            Day {day} · {eraName}
+          <p className="flex items-center gap-1.5 text-xs font-semibold" style={{ color: stageColor }}>
+            Day {day} · {stageName}
             {badge && (
               <span className="rounded-full bg-review-soft px-2 py-0.5 text-[11px] font-bold text-review">
                 {badge}
@@ -49,7 +49,7 @@ export function SessionHeader({
           className="h-full rounded-full transition-all duration-300"
           style={{
             width: `${Math.min(100, (current / Math.max(total, 1)) * 100)}%`,
-            backgroundColor: eraColor,
+            backgroundColor: stageColor,
           }}
         />
       </div>

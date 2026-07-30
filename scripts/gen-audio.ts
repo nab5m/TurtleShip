@@ -6,8 +6,8 @@
 // 사전 준비(1회):
 //   python3 -m venv .venv-tts && .venv-tts/bin/pip install edge-tts
 // 실행:
-//   EDGE_TTS=.venv-tts/bin/edge-tts npx tsx scripts/gen-audio.ts          # 전체(1~90일)
-//   EDGE_TTS=.venv-tts/bin/edge-tts npx tsx scripts/gen-audio.ts 1 2 3    # 특정 일차만
+//   EDGE_TTS=.venv-tts/bin/edge-tts npx tsx scripts/gen-audio.ts          # 전체(1~90단원)
+//   EDGE_TTS=.venv-tts/bin/edge-tts npx tsx scripts/gen-audio.ts 1 2 3    # 특정 단원만
 // 옵션(환경변수): CONCURRENCY(기본 5), FORCE=1(기존 파일 덮어쓰기), TTS_VOICE, TTS_RATE
 //
 // 이미 생성된 파일은 건너뛰므로(FORCE=1 제외) 중단 후 재실행하면 이어서 진행된다.
@@ -17,7 +17,8 @@ import { promisify } from "node:util";
 import { mkdirSync, writeFileSync, readdirSync, existsSync, unlinkSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
-import { getDayContent } from "@/data/content";
+import { getUnitContent } from "@/data/content";
+import { TOTAL_UNITS } from "@/data/curriculum";
 
 const execFileP = promisify(execFile);
 const EDGE_TTS = process.env.EDGE_TTS ?? "edge-tts";
@@ -27,11 +28,13 @@ const CONCURRENCY = Math.max(1, Number(process.env.CONCURRENCY ?? "5"));
 const FORCE = process.env.FORCE === "1";
 const MAX_RETRY = 4;
 
-const argDays = process.argv
+const argUnits = process.argv
   .slice(2)
   .map(Number)
-  .filter((n) => Number.isInteger(n) && n >= 1 && n <= 90);
-const targetDays = argDays.length ? argDays : Array.from({ length: 90 }, (_, i) => i + 1);
+  .filter((n) => Number.isInteger(n) && n >= 1 && n <= TOTAL_UNITS);
+const targetUnits = argUnits.length
+  ? argUnits
+  : Array.from({ length: TOTAL_UNITS }, (_, i) => i + 1);
 
 const OUT_DIR = join(process.cwd(), "public", "audio", "cards");
 mkdirSync(OUT_DIR, { recursive: true });
@@ -43,10 +46,10 @@ function ttsText(title: string, content: string): string {
 
 type Task = { id: string; text: string; out: string };
 const tasks: Task[] = [];
-for (const day of targetDays) {
-  const dc = getDayContent(day);
-  if (!dc) continue;
-  for (const card of dc.cards) {
+for (const unit of targetUnits) {
+  const uc = getUnitContent(unit);
+  if (!uc) continue;
+  for (const card of uc.cards) {
     tasks.push({
       id: card.id,
       text: ttsText(card.title, card.content),

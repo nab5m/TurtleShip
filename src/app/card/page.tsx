@@ -4,9 +4,9 @@ import { ERAS } from "@/data/curriculum";
 import { cardEntries } from "@/lib/card-index";
 import { learnHref } from "@/lib/day-slug";
 
-const title = "한국사 키워드 전체 보기 · 90일 카드 | 거북선";
+const title = "한국사 키워드 전체 보기 · 28일 카드 | 거북선";
 const description =
-  "구석기부터 현대까지 한국사능력검정시험 심화 핵심 키워드를 시대·일차별로 정리했습니다. 원하는 개념을 골라 바로 학습하세요.";
+  "구석기부터 현대까지 한국사능력검정시험 심화 핵심 키워드를 시대·주제별로 정리했습니다. 원하는 개념을 골라 바로 학습하세요.";
 
 export const metadata: Metadata = {
   title,
@@ -44,7 +44,7 @@ export default function CardHubPage() {
       <h1 className="text-2xl font-bold sm:text-3xl">한국사 키워드 전체 보기</h1>
       <p className="mt-2 text-sm leading-relaxed text-muted">
         선사시대부터 현대까지, 한국사능력검정시험 심화 대비 핵심 키워드{" "}
-        {cardEntries.length.toLocaleString()}개를 시대·일차별로 정리했습니다.
+        {cardEntries.length.toLocaleString()}개를 시대·주제별로 정리했습니다.
         궁금한 개념을 눌러 자세한 설명을 확인하세요.
       </p>
 
@@ -52,8 +52,8 @@ export default function CardHubPage() {
         {ERAS.map((era) => {
           const eraEntries = cardEntries.filter((e) => e.era.id === era.id);
           if (eraEntries.length === 0) return null;
-          const days = Array.from(
-            new Set(eraEntries.map((e) => e.day))
+          const units = Array.from(
+            new Set(eraEntries.map((e) => e.unit))
           ).sort((a, b) => a - b);
 
           return (
@@ -70,21 +70,24 @@ export default function CardHubPage() {
               </summary>
 
               <div className="mt-3 space-y-4">
-                {days.map((day) => {
-                  const dayEntries = eraEntries.filter((e) => e.day === day);
-                  const dm = dayEntries[0].dayMeta;
+                {units.map((unit) => {
+                  const unitEntries = eraEntries.filter((e) => e.unit === unit);
+                  const first = unitEntries[0];
                   return (
-                    <div key={day}>
+                    <div key={unit}>
                       <h2 className="text-sm font-semibold">
                         <Link
-                          href={learnHref(day)}
+                          href={learnHref(first.day)}
                           className="hover:text-accent"
                         >
-                          {day}일차 · {dm.title}
+                          {first.unitMeta.title}
+                          <span className="ml-1.5 text-xs font-normal text-muted">
+                            {first.day}일차
+                          </span>
                         </Link>
                       </h2>
                       <ul className="mt-1.5 flex flex-wrap gap-1.5">
-                        {dayEntries.map((e) => (
+                        {unitEntries.map((e) => (
                           <li key={e.slug}>
                             <Link
                               href={`/card/${encodeURIComponent(e.slug)}`}
