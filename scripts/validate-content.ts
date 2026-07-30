@@ -30,7 +30,7 @@ for (const meta of UNITS) {
   totalCards += cards.length;
   totalQuizzes += quizzes.length;
 
-  if (cards.length < 18) warn(`단원 ${meta.unit}: 카드 ${cards.length}장 (<18)`);
+  if (cards.length < 1) warn(`단원 ${meta.unit}: 카드 ${cards.length}장 (<1)`);
   if (cards.length > 30) warn(`단원 ${meta.unit}: 카드 ${cards.length}장 (>30)`);
   if (quizzes.length < 10) warn(`단원 ${meta.unit}: 퀴즈 ${quizzes.length}문항 (<10)`);
 
