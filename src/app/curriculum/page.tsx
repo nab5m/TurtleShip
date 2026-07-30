@@ -8,6 +8,7 @@ import { useProgress } from "@/lib/progress-context";
 import { learnHref } from "@/lib/day-slug";
 import { estimatedMinutes } from "@/data/day-time";
 import { CheckIcon, ChevronRightIcon } from "@/components/icons";
+import ExamShareSummary from "@/components/ExamShareSummary";
 
 export default function CurriculumPage() {
   const { ready, progress } = useProgress();
@@ -24,6 +25,8 @@ export default function CurriculumPage() {
           묶어 4주 만에 한 바퀴 돌립니다.
         </p>
       </div>
+
+      <ExamShareSummary />
 
       {STAGES.map((stage) => {
         const daysInStage = DAYS.filter(

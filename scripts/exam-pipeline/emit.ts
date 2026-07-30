@@ -6,7 +6,7 @@
 // ⚠️ 두 파일에는 집계 수치만 들어간다. 문항 지문·선택지 원문은 절대 넣지 않는다.
 import { writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { ERAS, STAGES, UNITS, UNIT_MAP } from "../../src/data/curriculum";
+import { ERAS, STAGES, UNITS } from "../../src/data/curriculum";
 import { UNIT_CONTENT_MAP } from "../../src/data/content";
 import type { EraId, StageId } from "../../src/lib/types";
 import type { ClassifiedRound } from "./classify";
@@ -186,7 +186,7 @@ function writeDistribution(rounds: ClassifiedRound[]) {
     "//      문항은 분류되지 않을 수 있다(unclassified).",
     "//",
     PROVENANCE,
-    "import type { EraId, StageId } from '@/lib/types';",
+    "import type { EraId, StageId } from \"@/lib/types\";",
     "",
     "export interface ExamEraShare { eraId: EraId; name: string; questions: number; percent: number }",
     "export interface ExamStageShare { stageId: StageId; name: string; questions: number; percent: number }",

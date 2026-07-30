@@ -54,3 +54,6 @@ next-env.d.ts
 
 # 기출 PDF 텍스트 추출용 로컬 venv (scripts/exam-pipeline/extract.ts 가 사용)
 .venv-exam/
+
+# 파이썬 추출 스크립트 캐시
+__pycache__/

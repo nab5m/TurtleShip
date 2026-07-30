@@ -19,7 +19,7 @@
 //   - 통합·비교형 문항(여러 시대를 한 문항에서 묻는 유형)은 어느 한쪽으로 배정된다.
 //   - OCR 오독·자료(사진/지도)만으로 성립하는 문항은 점수가 낮거나 0이 될 수 있다.
 //   - 앱이 다루지 않는 주제는 신호가 없어 엉뚱한 시대로 갈 수 있다(위 6문항이 그 경우다).
-import { UNITS, UNIT_MAP, ERA_MAP, STAGES } from "../../src/data/curriculum";
+import { UNITS, UNIT_MAP, STAGES } from "../../src/data/curriculum";
 import { UNIT_CONTENT_MAP } from "../../src/data/content";
 import type { EraId, StageId } from "../../src/lib/types";
 import type { ExtractedRound } from "./extract";

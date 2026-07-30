@@ -2,2871 +2,483 @@
 // 한국사능력검정시험 '심화' 기출의 '정답 선택지'에 각 학습 카드 주제가 출제된 횟수.
 // stars = 총 출제횟수(최대 5). rounds 는 최신순. (정답이 아닌 오답 선택지는 제외)
 //
-// ⚠️ 커버리지: 아래 8개 회차만 반영 (문제지가 텍스트로 추출 가능한 회차).
-//    제77회(26년 1회), 제76회(25년 4회), 제75회(25년 3회), 제72회(24년 4회), 제71회(24년 3회), 제70회(24년 2회), 제62회(22년 6회), 제58회(22년 2회)
-//    스캔 이미지로만 제공되는 회차(2022~2023 다수 등)는 OCR 도입 시 추가 예정.
+// 커버리지: 자료실이 공개 중인 심화 22개 회차 전부 (57~78회).
+// 문제지 텍스트는 회차별 형식 차이를 없애기 위해 전 회차를 OCR(macOS Vision, ko-KR)로 읽는다.
+//
+// 출처: 국사편찬위원회 한국사능력검정시험 시험 자료실(historyexam.go.kr) '심화' 기출.
+// 문항 저작권은 국사편찬위원회, 사진 저작권은 원저작자에게 있다. 개인적인 학습 목적 외의
+// 영리 목적(출판·온라인 이용 등) 이용은 사단법인 한국복제전송저작권협회와 협의가 필요하다.
+// → 그래서 원본 PDF·문항 지문·선택지 텍스트는 저장소에 두지 않고(data/exams-raw/ 는 gitignore),
+//   이 파일처럼 횟수·비율만 남긴 집계 데이터만 커밋한다.
 export interface ExamFreq { stars: number; total: number; rounds: { label: string; hoe: number; count: number }[] }
-export const EXAM_COVERAGE = {"examCount": 8, "rounds": ["26년 1회", "25년 4회", "25년 3회", "24년 4회", "24년 3회", "24년 2회", "22년 6회", "22년 2회"], "hoe": [77, 76, 75, 72, 71, 70, 62, 58], "note": "한국사능력검정시험 심화 기출 중 텍스트 추출이 가능한 회차만 반영(스캔 이미지 회차는 추후 OCR 예정)."} as const;
+export const EXAM_COVERAGE = {"examCount":22,"rounds":["26년 2회","26년 1회","25년 4회","25년 3회","25년 2회","25년 1회","24년 4회","24년 3회","24년 2회","24년 1회","23년 6회","23년 5회","23년 4회","23년 3회","23년 2회","23년 1회","22년 6회","22년 5회","22년 4회","22년 3회","22년 2회","22년 1회"],"hoe":[78,77,76,75,74,73,72,71,70,69,68,67,66,65,64,63,62,61,60,59,58,57],"note":"57~78회 문제지를 macOS Vision OCR 로 읽어 정답표와 맞춘 결과입니다."} as const;
 export const EXAM_FREQUENCY: Record<string, ExamFreq> = {
-"d03-c05": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d05-c16": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d05-c20": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d12-c20": {
-"stars": 5,
-"total": 6,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 2
-},
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 2
-},
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d24-c08": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d31-c09": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d31-c13": {
-"stars": 3,
-"total": 3,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-},
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-},
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d33-c05": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d41-c09": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d41-c10": {
-"stars": 4,
-"total": 4,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-},
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-},
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-},
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d45-c22": {
-"stars": 3,
-"total": 3,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-},
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-},
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d48-c06": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d49-c10": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d50-c05": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-},
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d53-c15": {
-"stars": 3,
-"total": 3,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-},
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-},
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d55-c07": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d60-c13": {
-"stars": 5,
-"total": 5,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 2
-},
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-},
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-},
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d67-c18": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d67-c19": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d73-c11": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d75-c08": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-},
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d78-c21": {
-"stars": 3,
-"total": 3,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-},
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-},
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d79-c03": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-},
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d81-c21": {
-"stars": 3,
-"total": 3,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-},
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-},
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d88-c08": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d89-c10": {
-"stars": 4,
-"total": 4,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-},
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-},
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-},
-{
-"label": "22년 2회",
-"hoe": 58,
-"count": 1
-}
-]
-},
-"d08-c11": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d13-c20": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d15-c06": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d16-c05": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d19-c05": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d21-c14": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d21-c15": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d22-c12": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-},
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d23-c07": {
-"stars": 3,
-"total": 3,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 2
-},
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d30-c04": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d31-c20": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-},
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d32-c04": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-},
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d33-c11": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d37-c12": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d43-c19": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d44-c20": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d47-c14": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-},
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d48-c11": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-},
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d48-c14": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-},
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d48-c19": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d53-c06": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d54-c16": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d66-c17": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-},
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d68-c09": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d70-c06": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d74-c04": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-},
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d81-c19": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d84-c12": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-},
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d85-c13": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-},
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d86-c05": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d88-c20": {
-"stars": 5,
-"total": 6,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 2
-},
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-},
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-},
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-},
-{
-"label": "22년 6회",
-"hoe": 62,
-"count": 1
-}
-]
-},
-"d03-c12": {
-"stars": 3,
-"total": 3,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-},
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d07-c18": {
-"stars": 3,
-"total": 3,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-},
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d08-c07": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d13-c05": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-},
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d23-c18": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d29-c18": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d34-c19": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d35-c05": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d42-c06": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d46-c24": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d47-c05": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-},
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d51-c12": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d52-c03": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d52-c06": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-},
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d53-c16": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d56-c04": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-},
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d56-c09": {
-"stars": 5,
-"total": 5,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-},
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-},
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-},
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 2
-}
-]
-},
-"d57-c15": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d57-c16": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d62-c08": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d65-c06": {
-"stars": 3,
-"total": 3,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-},
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-},
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d69-c13": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d74-c07": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d74-c21": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d82-c14": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d84-c01": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d84-c07": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d84-c09": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d85-c05": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-},
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d85-c10": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 2회",
-"hoe": 70,
-"count": 1
-}
-]
-},
-"d01-c09": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-},
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d07-c03": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d08-c12": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d12-c04": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d12-c17": {
-"stars": 3,
-"total": 3,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 2
-},
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d14-c16": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d14-c17": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-},
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d16-c16": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d18-c20": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d28-c13": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d29-c09": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d33-c12": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d36-c16": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d38-c19": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d40-c11": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d41-c01": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d42-c14": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d44-c06": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d45-c17": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-},
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d55-c14": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d56-c13": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d57-c18": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d63-c05": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d65-c01": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d66-c18": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d68-c03": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d68-c22": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d70-c23": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d71-c10": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d71-c12": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d73-c07": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d73-c22": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d73-c23": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d74-c03": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d74-c10": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d74-c11": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d74-c20": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d74-c22": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d75-c09": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d75-c18": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d75-c23": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d80-c07": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-},
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d83-c03": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d83-c05": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d87-c02": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 3회",
-"hoe": 71,
-"count": 1
-}
-]
-},
-"d09-c09": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d24-c19": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d26-c02": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d35-c15": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d35-c18": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d44-c18": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d45-c05": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d46-c01": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d46-c19": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d50-c02": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d52-c05": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d56-c21": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d57-c12": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d59-c06": {
-"stars": 3,
-"total": 3,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-},
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d59-c10": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d60-c07": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d66-c16": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d67-c15": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d71-c09": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d73-c15": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d74-c09": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d80-c09": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d80-c10": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d80-c18": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d88-c15": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "24년 4회",
-"hoe": 72,
-"count": 1
-}
-]
-},
-"d07-c17": {
-"stars": 3,
-"total": 3,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-},
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-}
-]
-},
-"d10-c22": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-}
-]
-},
-"d26-c06": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-}
-]
-},
-"d35-c06": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-}
-]
-},
-"d36-c05": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-}
-]
-},
-"d39-c08": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-}
-]
-},
-"d43-c04": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-}
-]
-},
-"d44-c11": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-}
-]
-},
-"d56-c06": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-}
-]
-},
-"d60-c17": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-}
-]
-},
-"d69-c14": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-}
-]
-},
-"d73-c06": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-}
-]
-},
-"d75-c14": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-}
-]
-},
-"d85-c04": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-}
-]
-},
-"d86-c14": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-}
-]
-},
-"d88-c16": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 3회",
-"hoe": 75,
-"count": 1
-}
-]
-},
-"d02-c11": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d23-c09": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d25-c17": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d29-c19": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d35-c04": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d36-c11": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d38-c12": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d47-c03": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d47-c04": {
-"stars": 2,
-"total": 2,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-},
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d48-c09": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d49-c05": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d49-c07": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d50-c07": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d50-c11": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d50-c13": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d59-c08": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d66-c08": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d68-c08": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d75-c04": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d81-c17": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d88-c11": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "25년 4회",
-"hoe": 76,
-"count": 1
-}
-]
-},
-"d05-c13": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d07-c01": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d07-c20": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d08-c08": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d17-c08": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d18-c10": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d18-c11": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d34-c07": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d35-c11": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d35-c12": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d36-c08": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d36-c13": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d37-c06": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d42-c18": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d44-c03": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d45-c13": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d46-c08": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d47-c06": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d52-c08": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d52-c09": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d58-c18": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d58-c22": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d60-c09": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d61-c05": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d61-c14": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d63-c01": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d68-c20": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d75-c10": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d80-c20": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d81-c04": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d88-c19": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-},
-"d89-c01": {
-"stars": 1,
-"total": 1,
-"rounds": [
-{
-"label": "26년 1회",
-"hoe": 77,
-"count": 1
-}
-]
-}
+  "d02-c01": {"stars":2,"total":2,"rounds":[{"label":"25년 2회","hoe":74,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d02-c08": {"stars":3,"total":3,"rounds":[{"label":"24년 1회","hoe":69,"count":1},{"label":"23년 2회","hoe":64,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d02-c09": {"stars":2,"total":2,"rounds":[{"label":"24년 1회","hoe":69,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d03-c03": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d03-c04": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d03-c06": {"stars":5,"total":5,"rounds":[{"label":"25년 1회","hoe":73,"count":1},{"label":"23년 6회","hoe":68,"count":1},{"label":"22년 6회","hoe":62,"count":1},{"label":"22년 4회","hoe":60,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d03-c12": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"23년 3회","hoe":65,"count":1}]},
+  "d03-c22": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d03-c23": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"23년 3회","hoe":65,"count":1}]},
+  "d05-c07": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d05-c08": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d05-c09": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d07-c03": {"stars":3,"total":3,"rounds":[{"label":"23년 6회","hoe":68,"count":1},{"label":"22년 6회","hoe":62,"count":1},{"label":"22년 4회","hoe":60,"count":1}]},
+  "d07-c18": {"stars":1,"total":1,"rounds":[{"label":"26년 1회","hoe":77,"count":1}]},
+  "d07-c20": {"stars":4,"total":4,"rounds":[{"label":"25년 4회","hoe":76,"count":1},{"label":"24년 2회","hoe":70,"count":1},{"label":"23년 2회","hoe":64,"count":1},{"label":"23년 1회","hoe":63,"count":1}]},
+  "d08-c04": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d08-c15": {"stars":2,"total":2,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d08-c19": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d09-c04": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d09-c07": {"stars":1,"total":1,"rounds":[{"label":"23년 2회","hoe":64,"count":1}]},
+  "d09-c09": {"stars":3,"total":3,"rounds":[{"label":"23년 2회","hoe":64,"count":1},{"label":"22년 6회","hoe":62,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d09-c14": {"stars":1,"total":1,"rounds":[{"label":"25년 1회","hoe":73,"count":1}]},
+  "d09-c20": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d09-c21": {"stars":2,"total":2,"rounds":[{"label":"23년 3회","hoe":65,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d10-c08": {"stars":2,"total":2,"rounds":[{"label":"24년 4회","hoe":72,"count":1},{"label":"22년 4회","hoe":60,"count":1}]},
+  "d10-c11": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d11-c02": {"stars":1,"total":1,"rounds":[{"label":"24년 1회","hoe":69,"count":1}]},
+  "d12-c04": {"stars":4,"total":4,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 3회","hoe":65,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d12-c05": {"stars":1,"total":1,"rounds":[{"label":"24년 3회","hoe":71,"count":1}]},
+  "d12-c06": {"stars":1,"total":1,"rounds":[{"label":"24년 3회","hoe":71,"count":1}]},
+  "d12-c07": {"stars":1,"total":1,"rounds":[{"label":"22년 3회","hoe":59,"count":1}]},
+  "d12-c15": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d12-c19": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d13-c07": {"stars":1,"total":1,"rounds":[{"label":"24년 3회","hoe":71,"count":1}]},
+  "d13-c13": {"stars":1,"total":1,"rounds":[{"label":"22년 4회","hoe":60,"count":1}]},
+  "d13-c15": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d13-c16": {"stars":1,"total":1,"rounds":[{"label":"24년 3회","hoe":71,"count":1}]},
+  "d13-c17": {"stars":2,"total":2,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"22년 4회","hoe":60,"count":1}]},
+  "d14-c02": {"stars":5,"total":7,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"25년 1회","hoe":73,"count":1},{"label":"24년 3회","hoe":71,"count":1},{"label":"24년 1회","hoe":69,"count":1},{"label":"23년 2회","hoe":64,"count":2},{"label":"23년 1회","hoe":63,"count":1}]},
+  "d14-c06": {"stars":2,"total":2,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 1회","hoe":63,"count":1}]},
+  "d14-c08": {"stars":1,"total":1,"rounds":[{"label":"24년 1회","hoe":69,"count":1}]},
+  "d14-c12": {"stars":5,"total":5,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"25년 1회","hoe":73,"count":1},{"label":"24년 3회","hoe":71,"count":1},{"label":"24년 1회","hoe":69,"count":1},{"label":"23년 1회","hoe":63,"count":1}]},
+  "d14-c13": {"stars":5,"total":5,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"25년 1회","hoe":73,"count":1},{"label":"24년 3회","hoe":71,"count":1},{"label":"24년 1회","hoe":69,"count":1},{"label":"23년 1회","hoe":63,"count":1}]},
+  "d14-c16": {"stars":1,"total":1,"rounds":[{"label":"24년 3회","hoe":71,"count":1}]},
+  "d15-c06": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d15-c07": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d15-c16": {"stars":5,"total":6,"rounds":[{"label":"25년 2회","hoe":74,"count":1},{"label":"24년 2회","hoe":70,"count":1},{"label":"23년 6회","hoe":68,"count":1},{"label":"22년 6회","hoe":62,"count":1},{"label":"22년 5회","hoe":61,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d15-c17": {"stars":5,"total":5,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"25년 1회","hoe":73,"count":1},{"label":"24년 3회","hoe":71,"count":1},{"label":"24년 1회","hoe":69,"count":1},{"label":"23년 1회","hoe":63,"count":1}]},
+  "d15-c19": {"stars":1,"total":1,"rounds":[{"label":"22년 4회","hoe":60,"count":1}]},
+  "d15-c21": {"stars":5,"total":6,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"25년 1회","hoe":73,"count":1},{"label":"24년 3회","hoe":71,"count":2},{"label":"24년 1회","hoe":69,"count":1},{"label":"23년 1회","hoe":63,"count":1}]},
+  "d16-c01": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d16-c02": {"stars":3,"total":3,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"24년 4회","hoe":72,"count":1},{"label":"23년 4회","hoe":66,"count":1}]},
+  "d16-c05": {"stars":1,"total":1,"rounds":[{"label":"22년 4회","hoe":60,"count":1}]},
+  "d16-c15": {"stars":5,"total":6,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"25년 1회","hoe":73,"count":1},{"label":"24년 3회","hoe":71,"count":1},{"label":"24년 1회","hoe":69,"count":1},{"label":"23년 1회","hoe":63,"count":2}]},
+  "d16-c19": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d18-c02": {"stars":2,"total":2,"rounds":[{"label":"25년 1회","hoe":73,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d18-c10": {"stars":2,"total":2,"rounds":[{"label":"22년 6회","hoe":62,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d18-c11": {"stars":2,"total":2,"rounds":[{"label":"22년 6회","hoe":62,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d18-c13": {"stars":1,"total":1,"rounds":[{"label":"22년 3회","hoe":59,"count":1}]},
+  "d18-c15": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"24년 3회","hoe":71,"count":1}]},
+  "d18-c16": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"24년 3회","hoe":71,"count":1}]},
+  "d18-c17": {"stars":1,"total":1,"rounds":[{"label":"22년 3회","hoe":59,"count":1}]},
+  "d19-c03": {"stars":2,"total":2,"rounds":[{"label":"23년 5회","hoe":67,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d19-c08": {"stars":3,"total":3,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 5회","hoe":67,"count":1},{"label":"22년 4회","hoe":60,"count":1}]},
+  "d19-c12": {"stars":2,"total":2,"rounds":[{"label":"23년 5회","hoe":67,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d19-c14": {"stars":2,"total":2,"rounds":[{"label":"23년 5회","hoe":67,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d20-c04": {"stars":3,"total":3,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"24년 4회","hoe":72,"count":1},{"label":"23년 4회","hoe":66,"count":1}]},
+  "d20-c05": {"stars":3,"total":3,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"24년 4회","hoe":72,"count":1},{"label":"23년 4회","hoe":66,"count":1}]},
+  "d20-c08": {"stars":1,"total":1,"rounds":[{"label":"24년 3회","hoe":71,"count":1}]},
+  "d20-c13": {"stars":3,"total":3,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"24년 4회","hoe":72,"count":1},{"label":"23년 4회","hoe":66,"count":1}]},
+  "d21-c02": {"stars":2,"total":2,"rounds":[{"label":"25년 1회","hoe":73,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d21-c04": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d21-c05": {"stars":2,"total":2,"rounds":[{"label":"23년 5회","hoe":67,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d21-c06": {"stars":2,"total":2,"rounds":[{"label":"23년 5회","hoe":67,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d21-c09": {"stars":1,"total":1,"rounds":[{"label":"24년 1회","hoe":69,"count":1}]},
+  "d22-c01": {"stars":4,"total":4,"rounds":[{"label":"25년 4회","hoe":76,"count":1},{"label":"22년 6회","hoe":62,"count":1},{"label":"22년 4회","hoe":60,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d22-c08": {"stars":1,"total":1,"rounds":[{"label":"25년 2회","hoe":74,"count":1}]},
+  "d22-c10": {"stars":3,"total":3,"rounds":[{"label":"25년 1회","hoe":73,"count":1},{"label":"24년 4회","hoe":72,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d22-c11": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d22-c12": {"stars":2,"total":2,"rounds":[{"label":"23년 3회","hoe":65,"count":1},{"label":"22년 6회","hoe":62,"count":1}]},
+  "d22-c13": {"stars":2,"total":2,"rounds":[{"label":"25년 2회","hoe":74,"count":1},{"label":"23년 5회","hoe":67,"count":1}]},
+  "d23-c01": {"stars":1,"total":1,"rounds":[{"label":"24년 2회","hoe":70,"count":1}]},
+  "d23-c02": {"stars":1,"total":1,"rounds":[{"label":"24년 2회","hoe":70,"count":1}]},
+  "d23-c03": {"stars":1,"total":1,"rounds":[{"label":"22년 5회","hoe":61,"count":1}]},
+  "d23-c04": {"stars":1,"total":1,"rounds":[{"label":"24년 2회","hoe":70,"count":1}]},
+  "d23-c05": {"stars":1,"total":1,"rounds":[{"label":"24년 2회","hoe":70,"count":1}]},
+  "d23-c08": {"stars":1,"total":1,"rounds":[{"label":"22년 4회","hoe":60,"count":1}]},
+  "d23-c09": {"stars":1,"total":1,"rounds":[{"label":"22년 4회","hoe":60,"count":1}]},
+  "d23-c10": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d23-c11": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d23-c18": {"stars":1,"total":1,"rounds":[{"label":"24년 2회","hoe":70,"count":1}]},
+  "d23-c22": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d23-c24": {"stars":1,"total":1,"rounds":[{"label":"23년 2회","hoe":64,"count":1}]},
+  "d24-c05": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d24-c08": {"stars":1,"total":1,"rounds":[{"label":"23년 6회","hoe":68,"count":1}]},
+  "d24-c14": {"stars":1,"total":1,"rounds":[{"label":"23년 2회","hoe":64,"count":1}]},
+  "d24-c15": {"stars":3,"total":3,"rounds":[{"label":"25년 4회","hoe":76,"count":1},{"label":"23년 2회","hoe":64,"count":1},{"label":"23년 1회","hoe":63,"count":1}]},
+  "d25-c07": {"stars":1,"total":1,"rounds":[{"label":"25년 2회","hoe":74,"count":1}]},
+  "d25-c11": {"stars":5,"total":5,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"25년 3회","hoe":75,"count":1},{"label":"23년 5회","hoe":67,"count":1},{"label":"22년 2회","hoe":58,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d25-c17": {"stars":2,"total":2,"rounds":[{"label":"25년 4회","hoe":76,"count":1},{"label":"24년 2회","hoe":70,"count":1}]},
+  "d26-c05": {"stars":1,"total":1,"rounds":[{"label":"22년 4회","hoe":60,"count":1}]},
+  "d26-c06": {"stars":5,"total":5,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"25년 3회","hoe":75,"count":1},{"label":"23년 5회","hoe":67,"count":1},{"label":"22년 2회","hoe":58,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d26-c07": {"stars":1,"total":1,"rounds":[{"label":"25년 2회","hoe":74,"count":1}]},
+  "d26-c09": {"stars":3,"total":3,"rounds":[{"label":"25년 2회","hoe":74,"count":1},{"label":"25년 1회","hoe":73,"count":1},{"label":"22년 4회","hoe":60,"count":1}]},
+  "d26-c10": {"stars":2,"total":2,"rounds":[{"label":"25년 4회","hoe":76,"count":1},{"label":"24년 2회","hoe":70,"count":1}]},
+  "d26-c16": {"stars":1,"total":1,"rounds":[{"label":"23년 2회","hoe":64,"count":1}]},
+  "d26-c18": {"stars":1,"total":1,"rounds":[{"label":"23년 2회","hoe":64,"count":1}]},
+  "d26-c22": {"stars":2,"total":2,"rounds":[{"label":"25년 4회","hoe":76,"count":1},{"label":"24년 2회","hoe":70,"count":1}]},
+  "d27-c10": {"stars":1,"total":1,"rounds":[{"label":"24년 3회","hoe":71,"count":1}]},
+  "d28-c01": {"stars":1,"total":1,"rounds":[{"label":"23년 1회","hoe":63,"count":1}]},
+  "d28-c04": {"stars":1,"total":1,"rounds":[{"label":"24년 4회","hoe":72,"count":1}]},
+  "d28-c13": {"stars":3,"total":3,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d29-c07": {"stars":1,"total":1,"rounds":[{"label":"22년 1회","hoe":57,"count":1}]},
+  "d29-c08": {"stars":1,"total":1,"rounds":[{"label":"22년 1회","hoe":57,"count":1}]},
+  "d29-c09": {"stars":1,"total":1,"rounds":[{"label":"24년 3회","hoe":71,"count":1}]},
+  "d29-c11": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d29-c17": {"stars":1,"total":1,"rounds":[{"label":"22년 2회","hoe":58,"count":1}]},
+  "d29-c19": {"stars":2,"total":2,"rounds":[{"label":"25년 4회","hoe":76,"count":1},{"label":"23년 5회","hoe":67,"count":1}]},
+  "d30-c02": {"stars":2,"total":2,"rounds":[{"label":"25년 4회","hoe":76,"count":1},{"label":"23년 5회","hoe":67,"count":1}]},
+  "d30-c04": {"stars":2,"total":2,"rounds":[{"label":"22년 6회","hoe":62,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d30-c05": {"stars":1,"total":1,"rounds":[{"label":"24년 3회","hoe":71,"count":1}]},
+  "d30-c07": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d30-c09": {"stars":1,"total":1,"rounds":[{"label":"22년 2회","hoe":58,"count":1}]},
+  "d30-c19": {"stars":1,"total":1,"rounds":[{"label":"26년 1회","hoe":77,"count":1}]},
+  "d31-c03": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d31-c07": {"stars":1,"total":1,"rounds":[{"label":"26년 1회","hoe":77,"count":1}]},
+  "d31-c08": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d31-c09": {"stars":5,"total":5,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"25년 1회","hoe":73,"count":1},{"label":"22년 6회","hoe":62,"count":1},{"label":"22년 5회","hoe":61,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d31-c13": {"stars":1,"total":1,"rounds":[{"label":"22년 2회","hoe":58,"count":1}]},
+  "d31-c18": {"stars":2,"total":2,"rounds":[{"label":"22년 6회","hoe":62,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d31-c23": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d32-c04": {"stars":3,"total":3,"rounds":[{"label":"23년 3회","hoe":65,"count":1},{"label":"22년 6회","hoe":62,"count":1},{"label":"22년 4회","hoe":60,"count":1}]},
+  "d32-c09": {"stars":1,"total":1,"rounds":[{"label":"25년 4회","hoe":76,"count":1}]},
+  "d32-c13": {"stars":1,"total":1,"rounds":[{"label":"25년 4회","hoe":76,"count":1}]},
+  "d32-c17": {"stars":1,"total":1,"rounds":[{"label":"23년 6회","hoe":68,"count":1}]},
+  "d33-c11": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"22년 6회","hoe":62,"count":1}]},
+  "d34-c06": {"stars":1,"total":1,"rounds":[{"label":"25년 2회","hoe":74,"count":1}]},
+  "d34-c14": {"stars":1,"total":1,"rounds":[{"label":"25년 4회","hoe":76,"count":1}]},
+  "d34-c15": {"stars":1,"total":1,"rounds":[{"label":"25년 4회","hoe":76,"count":1}]},
+  "d34-c19": {"stars":2,"total":2,"rounds":[{"label":"24년 2회","hoe":70,"count":1},{"label":"23년 5회","hoe":67,"count":1}]},
+  "d35-c16": {"stars":2,"total":2,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"23년 5회","hoe":67,"count":1}]},
+  "d35-c18": {"stars":1,"total":1,"rounds":[{"label":"24년 4회","hoe":72,"count":1}]},
+  "d35-c21": {"stars":2,"total":2,"rounds":[{"label":"23년 4회","hoe":66,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d35-c22": {"stars":1,"total":1,"rounds":[{"label":"24년 4회","hoe":72,"count":1}]},
+  "d36-c08": {"stars":3,"total":3,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"25년 4회","hoe":76,"count":1},{"label":"23년 4회","hoe":66,"count":1}]},
+  "d36-c09": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d36-c13": {"stars":3,"total":3,"rounds":[{"label":"24년 1회","hoe":69,"count":1},{"label":"22년 4회","hoe":60,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d36-c21": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"24년 3회","hoe":71,"count":1}]},
+  "d37-c05": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d37-c06": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d37-c10": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d37-c12": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d37-c16": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d37-c18": {"stars":3,"total":3,"rounds":[{"label":"24년 1회","hoe":69,"count":1},{"label":"22년 4회","hoe":60,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d37-c21": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d37-c22": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d38-c04": {"stars":3,"total":3,"rounds":[{"label":"23년 5회","hoe":67,"count":1},{"label":"22년 5회","hoe":61,"count":1},{"label":"22년 4회","hoe":60,"count":1}]},
+  "d38-c05": {"stars":1,"total":1,"rounds":[{"label":"22년 2회","hoe":58,"count":1}]},
+  "d38-c07": {"stars":1,"total":1,"rounds":[{"label":"23년 2회","hoe":64,"count":1}]},
+  "d38-c19": {"stars":1,"total":1,"rounds":[{"label":"24년 3회","hoe":71,"count":1}]},
+  "d39-c09": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d39-c10": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d39-c11": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d39-c14": {"stars":1,"total":1,"rounds":[{"label":"25년 3회","hoe":75,"count":1}]},
+  "d39-c16": {"stars":1,"total":1,"rounds":[{"label":"23년 2회","hoe":64,"count":1}]},
+  "d40-c01": {"stars":1,"total":1,"rounds":[{"label":"23년 2회","hoe":64,"count":1}]},
+  "d40-c08": {"stars":1,"total":1,"rounds":[{"label":"25년 3회","hoe":75,"count":1}]},
+  "d40-c10": {"stars":1,"total":1,"rounds":[{"label":"23년 2회","hoe":64,"count":1}]},
+  "d40-c11": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"23년 3회","hoe":65,"count":1}]},
+  "d40-c12": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"23년 3회","hoe":65,"count":1}]},
+  "d40-c16": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"23년 3회","hoe":65,"count":1}]},
+  "d40-c19": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"23년 3회","hoe":65,"count":1}]},
+  "d40-c21": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d41-c10": {"stars":4,"total":4,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"25년 1회","hoe":73,"count":1},{"label":"23년 6회","hoe":68,"count":1},{"label":"22년 6회","hoe":62,"count":1}]},
+  "d41-c15": {"stars":2,"total":2,"rounds":[{"label":"22년 6회","hoe":62,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d41-c17": {"stars":3,"total":3,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"25년 1회","hoe":73,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d41-c19": {"stars":3,"total":3,"rounds":[{"label":"23년 2회","hoe":64,"count":1},{"label":"22년 4회","hoe":60,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d42-c02": {"stars":2,"total":2,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"23년 3회","hoe":65,"count":1}]},
+  "d42-c03": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d42-c11": {"stars":2,"total":2,"rounds":[{"label":"24년 2회","hoe":70,"count":1},{"label":"23년 5회","hoe":67,"count":1}]},
+  "d42-c16": {"stars":1,"total":1,"rounds":[{"label":"22년 3회","hoe":59,"count":1}]},
+  "d42-c18": {"stars":1,"total":1,"rounds":[{"label":"26년 1회","hoe":77,"count":1}]},
+  "d43-c03": {"stars":3,"total":3,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"23년 6회","hoe":68,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d43-c04": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d43-c06": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d43-c07": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d43-c08": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d43-c13": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d43-c21": {"stars":2,"total":2,"rounds":[{"label":"24년 2회","hoe":70,"count":1},{"label":"23년 5회","hoe":67,"count":1}]},
+  "d44-c01": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"23년 3회","hoe":65,"count":1}]},
+  "d44-c02": {"stars":2,"total":2,"rounds":[{"label":"22년 4회","hoe":60,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d44-c03": {"stars":3,"total":3,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"23년 5회","hoe":67,"count":1},{"label":"23년 3회","hoe":65,"count":1}]},
+  "d44-c04": {"stars":1,"total":1,"rounds":[{"label":"25년 3회","hoe":75,"count":1}]},
+  "d44-c06": {"stars":3,"total":3,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 5회","hoe":67,"count":1},{"label":"22년 4회","hoe":60,"count":1}]},
+  "d44-c07": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d44-c08": {"stars":1,"total":1,"rounds":[{"label":"23년 6회","hoe":68,"count":1}]},
+  "d44-c09": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"25년 1회","hoe":73,"count":1}]},
+  "d44-c12": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d44-c14": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d44-c19": {"stars":2,"total":2,"rounds":[{"label":"25년 4회","hoe":76,"count":1},{"label":"24년 2회","hoe":70,"count":1}]},
+  "d44-c20": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d45-c06": {"stars":1,"total":1,"rounds":[{"label":"26년 2회","hoe":78,"count":1}]},
+  "d45-c09": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"24년 2회","hoe":70,"count":1}]},
+  "d45-c13": {"stars":1,"total":1,"rounds":[{"label":"26년 1회","hoe":77,"count":1}]},
+  "d45-c17": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d45-c18": {"stars":1,"total":1,"rounds":[{"label":"23년 2회","hoe":64,"count":1}]},
+  "d45-c19": {"stars":2,"total":2,"rounds":[{"label":"23년 6회","hoe":68,"count":1},{"label":"23년 4회","hoe":66,"count":1}]},
+  "d45-c22": {"stars":3,"total":3,"rounds":[{"label":"25년 4회","hoe":76,"count":1},{"label":"22년 6회","hoe":62,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d46-c03": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d46-c04": {"stars":1,"total":1,"rounds":[{"label":"22년 3회","hoe":59,"count":1}]},
+  "d46-c06": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d46-c08": {"stars":2,"total":2,"rounds":[{"label":"23년 6회","hoe":68,"count":1},{"label":"23년 1회","hoe":63,"count":1}]},
+  "d46-c13": {"stars":1,"total":1,"rounds":[{"label":"24년 1회","hoe":69,"count":1}]},
+  "d46-c19": {"stars":1,"total":1,"rounds":[{"label":"22년 4회","hoe":60,"count":1}]},
+  "d46-c22": {"stars":1,"total":1,"rounds":[{"label":"22년 5회","hoe":61,"count":1}]},
+  "d46-c24": {"stars":1,"total":1,"rounds":[{"label":"23년 2회","hoe":64,"count":1}]},
+  "d47-c03": {"stars":3,"total":3,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"24년 2회","hoe":70,"count":1},{"label":"23년 3회","hoe":65,"count":1}]},
+  "d47-c04": {"stars":1,"total":1,"rounds":[{"label":"26년 1회","hoe":77,"count":1}]},
+  "d47-c05": {"stars":1,"total":1,"rounds":[{"label":"24년 2회","hoe":70,"count":1}]},
+  "d47-c06": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"23년 3회","hoe":65,"count":1}]},
+  "d47-c07": {"stars":1,"total":1,"rounds":[{"label":"22년 5회","hoe":61,"count":1}]},
+  "d47-c08": {"stars":1,"total":1,"rounds":[{"label":"22년 4회","hoe":60,"count":1}]},
+  "d47-c14": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"22년 6회","hoe":62,"count":1}]},
+  "d47-c20": {"stars":1,"total":1,"rounds":[{"label":"25년 1회","hoe":73,"count":1}]},
+  "d48-c02": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d48-c11": {"stars":2,"total":2,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d48-c13": {"stars":1,"total":1,"rounds":[{"label":"22년 5회","hoe":61,"count":1}]},
+  "d48-c14": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"22년 6회","hoe":62,"count":1}]},
+  "d49-c03": {"stars":1,"total":1,"rounds":[{"label":"22년 1회","hoe":57,"count":1}]},
+  "d49-c05": {"stars":1,"total":1,"rounds":[{"label":"22년 1회","hoe":57,"count":1}]},
+  "d49-c06": {"stars":1,"total":1,"rounds":[{"label":"22년 5회","hoe":61,"count":1}]},
+  "d49-c08": {"stars":1,"total":1,"rounds":[{"label":"22년 2회","hoe":58,"count":1}]},
+  "d49-c09": {"stars":3,"total":3,"rounds":[{"label":"23년 4회","hoe":66,"count":1},{"label":"22년 5회","hoe":61,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d49-c10": {"stars":2,"total":2,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d49-c11": {"stars":2,"total":2,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d49-c12": {"stars":2,"total":2,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d49-c13": {"stars":2,"total":2,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d49-c14": {"stars":2,"total":2,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d49-c15": {"stars":2,"total":2,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d49-c16": {"stars":4,"total":4,"rounds":[{"label":"25년 4회","hoe":76,"count":1},{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 2회","hoe":64,"count":1},{"label":"22년 6회","hoe":62,"count":1}]},
+  "d49-c18": {"stars":1,"total":1,"rounds":[{"label":"24년 3회","hoe":71,"count":1}]},
+  "d50-c10": {"stars":1,"total":1,"rounds":[{"label":"25년 2회","hoe":74,"count":1}]},
+  "d50-c13": {"stars":1,"total":1,"rounds":[{"label":"23년 1회","hoe":63,"count":1}]},
+  "d50-c14": {"stars":1,"total":1,"rounds":[{"label":"23년 1회","hoe":63,"count":1}]},
+  "d51-c10": {"stars":3,"total":3,"rounds":[{"label":"24년 1회","hoe":69,"count":1},{"label":"23년 3회","hoe":65,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d51-c11": {"stars":1,"total":1,"rounds":[{"label":"22년 5회","hoe":61,"count":1}]},
+  "d51-c12": {"stars":3,"total":3,"rounds":[{"label":"23년 2회","hoe":64,"count":1},{"label":"22년 4회","hoe":60,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d51-c15": {"stars":2,"total":2,"rounds":[{"label":"23년 6회","hoe":68,"count":1},{"label":"23년 4회","hoe":66,"count":1}]},
+  "d52-c19": {"stars":1,"total":1,"rounds":[{"label":"22년 4회","hoe":60,"count":1}]},
+  "d53-c06": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d53-c08": {"stars":1,"total":1,"rounds":[{"label":"22년 5회","hoe":61,"count":1}]},
+  "d53-c15": {"stars":3,"total":3,"rounds":[{"label":"25년 4회","hoe":76,"count":1},{"label":"22년 6회","hoe":62,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d53-c16": {"stars":1,"total":1,"rounds":[{"label":"23년 2회","hoe":64,"count":1}]},
+  "d54-c02": {"stars":1,"total":1,"rounds":[{"label":"23년 2회","hoe":64,"count":1}]},
+  "d54-c09": {"stars":2,"total":2,"rounds":[{"label":"23년 6회","hoe":68,"count":1},{"label":"22년 4회","hoe":60,"count":1}]},
+  "d54-c11": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d54-c14": {"stars":3,"total":3,"rounds":[{"label":"24년 2회","hoe":70,"count":1},{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d54-c16": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d55-c01": {"stars":1,"total":1,"rounds":[{"label":"22년 3회","hoe":59,"count":1}]},
+  "d55-c05": {"stars":2,"total":2,"rounds":[{"label":"24년 1회","hoe":69,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d55-c08": {"stars":1,"total":1,"rounds":[{"label":"23년 1회","hoe":63,"count":1}]},
+  "d55-c20": {"stars":2,"total":2,"rounds":[{"label":"23년 2회","hoe":64,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d56-c03": {"stars":4,"total":4,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"24년 1회","hoe":69,"count":1},{"label":"23년 1회","hoe":63,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d56-c04": {"stars":3,"total":3,"rounds":[{"label":"24년 2회","hoe":70,"count":1},{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d56-c05": {"stars":3,"total":3,"rounds":[{"label":"23년 4회","hoe":66,"count":1},{"label":"23년 1회","hoe":63,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d56-c06": {"stars":1,"total":1,"rounds":[{"label":"26년 1회","hoe":77,"count":1}]},
+  "d56-c09": {"stars":1,"total":1,"rounds":[{"label":"24년 4회","hoe":72,"count":1}]},
+  "d56-c14": {"stars":2,"total":2,"rounds":[{"label":"24년 1회","hoe":69,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d56-c22": {"stars":3,"total":3,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"24년 2회","hoe":70,"count":1},{"label":"23년 3회","hoe":65,"count":1}]},
+  "d57-c03": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"22년 6회","hoe":62,"count":1}]},
+  "d57-c04": {"stars":2,"total":2,"rounds":[{"label":"25년 1회","hoe":73,"count":1},{"label":"23년 6회","hoe":68,"count":1}]},
+  "d57-c06": {"stars":3,"total":3,"rounds":[{"label":"23년 4회","hoe":66,"count":1},{"label":"23년 1회","hoe":63,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d57-c07": {"stars":2,"total":2,"rounds":[{"label":"24년 1회","hoe":69,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d57-c11": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d57-c12": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d57-c13": {"stars":2,"total":2,"rounds":[{"label":"23년 5회","hoe":67,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d57-c14": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d57-c15": {"stars":1,"total":1,"rounds":[{"label":"24년 2회","hoe":70,"count":1}]},
+  "d57-c16": {"stars":2,"total":2,"rounds":[{"label":"24년 2회","hoe":70,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d57-c17": {"stars":1,"total":1,"rounds":[{"label":"24년 2회","hoe":70,"count":1}]},
+  "d57-c18": {"stars":3,"total":3,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"24년 1회","hoe":69,"count":1},{"label":"23년 3회","hoe":65,"count":1}]},
+  "d57-c19": {"stars":1,"total":1,"rounds":[{"label":"24년 3회","hoe":71,"count":1}]},
+  "d57-c20": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d57-c22": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d58-c13": {"stars":2,"total":2,"rounds":[{"label":"25년 1회","hoe":73,"count":1},{"label":"23년 6회","hoe":68,"count":1}]},
+  "d58-c15": {"stars":1,"total":1,"rounds":[{"label":"24년 1회","hoe":69,"count":1}]},
+  "d58-c22": {"stars":3,"total":3,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"22년 5회","hoe":61,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d59-c07": {"stars":3,"total":3,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"24년 1회","hoe":69,"count":1},{"label":"23년 3회","hoe":65,"count":1}]},
+  "d59-c20": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d60-c03": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d60-c09": {"stars":1,"total":1,"rounds":[{"label":"26년 1회","hoe":77,"count":1}]},
+  "d61-c01": {"stars":1,"total":1,"rounds":[{"label":"24년 1회","hoe":69,"count":1}]},
+  "d61-c02": {"stars":1,"total":1,"rounds":[{"label":"24년 1회","hoe":69,"count":1}]},
+  "d61-c04": {"stars":1,"total":1,"rounds":[{"label":"24년 1회","hoe":69,"count":1}]},
+  "d61-c05": {"stars":2,"total":2,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d61-c13": {"stars":2,"total":2,"rounds":[{"label":"24년 4회","hoe":72,"count":1},{"label":"23년 6회","hoe":68,"count":1}]},
+  "d61-c14": {"stars":3,"total":3,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"22년 5회","hoe":61,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d62-c04": {"stars":1,"total":1,"rounds":[{"label":"25년 4회","hoe":76,"count":1}]},
+  "d62-c06": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d62-c08": {"stars":1,"total":1,"rounds":[{"label":"24년 2회","hoe":70,"count":1}]},
+  "d62-c11": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d63-c01": {"stars":1,"total":1,"rounds":[{"label":"26년 1회","hoe":77,"count":1}]},
+  "d63-c11": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d63-c14": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d64-c02": {"stars":1,"total":1,"rounds":[{"label":"22년 3회","hoe":59,"count":1}]},
+  "d64-c04": {"stars":1,"total":1,"rounds":[{"label":"22년 3회","hoe":59,"count":1}]},
+  "d64-c08": {"stars":1,"total":1,"rounds":[{"label":"25년 3회","hoe":75,"count":1}]},
+  "d64-c14": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d64-c18": {"stars":2,"total":2,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 1회","hoe":63,"count":1}]},
+  "d65-c01": {"stars":3,"total":3,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 1회","hoe":63,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d65-c04": {"stars":3,"total":3,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"24년 1회","hoe":69,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d65-c07": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d65-c08": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d65-c10": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d65-c19": {"stars":1,"total":1,"rounds":[{"label":"22년 3회","hoe":59,"count":1}]},
+  "d65-c23": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d66-c01": {"stars":3,"total":3,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 1회","hoe":63,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d66-c03": {"stars":1,"total":1,"rounds":[{"label":"26년 1회","hoe":77,"count":1}]},
+  "d66-c04": {"stars":2,"total":2,"rounds":[{"label":"23년 1회","hoe":63,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d66-c10": {"stars":5,"total":5,"rounds":[{"label":"25년 4회","hoe":76,"count":1},{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 4회","hoe":66,"count":1},{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d66-c12": {"stars":2,"total":2,"rounds":[{"label":"24년 2회","hoe":70,"count":1},{"label":"23년 3회","hoe":65,"count":1}]},
+  "d66-c14": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d66-c18": {"stars":1,"total":1,"rounds":[{"label":"22년 5회","hoe":61,"count":1}]},
+  "d67-c08": {"stars":2,"total":2,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"23년 6회","hoe":68,"count":1}]},
+  "d67-c09": {"stars":1,"total":1,"rounds":[{"label":"22년 3회","hoe":59,"count":1}]},
+  "d67-c12": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d67-c15": {"stars":2,"total":2,"rounds":[{"label":"25년 2회","hoe":74,"count":1},{"label":"24년 4회","hoe":72,"count":1}]},
+  "d67-c16": {"stars":1,"total":1,"rounds":[{"label":"22년 1회","hoe":57,"count":1}]},
+  "d67-c17": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d67-c20": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d68-c01": {"stars":1,"total":1,"rounds":[{"label":"22년 5회","hoe":61,"count":1}]},
+  "d68-c03": {"stars":1,"total":1,"rounds":[{"label":"24년 3회","hoe":71,"count":1}]},
+  "d68-c09": {"stars":3,"total":3,"rounds":[{"label":"23년 6회","hoe":68,"count":1},{"label":"23년 2회","hoe":64,"count":1},{"label":"22년 6회","hoe":62,"count":1}]},
+  "d68-c20": {"stars":1,"total":1,"rounds":[{"label":"26년 1회","hoe":77,"count":1}]},
+  "d68-c22": {"stars":2,"total":2,"rounds":[{"label":"25년 1회","hoe":73,"count":1},{"label":"24년 3회","hoe":71,"count":1}]},
+  "d69-c05": {"stars":1,"total":1,"rounds":[{"label":"23년 6회","hoe":68,"count":1}]},
+  "d69-c13": {"stars":3,"total":3,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"23년 4회","hoe":66,"count":1},{"label":"23년 1회","hoe":63,"count":1}]},
+  "d69-c14": {"stars":1,"total":1,"rounds":[{"label":"22년 4회","hoe":60,"count":1}]},
+  "d70-c09": {"stars":1,"total":1,"rounds":[{"label":"25년 1회","hoe":73,"count":1}]},
+  "d70-c11": {"stars":1,"total":1,"rounds":[{"label":"22년 4회","hoe":60,"count":1}]},
+  "d70-c13": {"stars":1,"total":1,"rounds":[{"label":"25년 4회","hoe":76,"count":1}]},
+  "d70-c18": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d71-c04": {"stars":1,"total":1,"rounds":[{"label":"23년 1회","hoe":63,"count":1}]},
+  "d71-c09": {"stars":1,"total":1,"rounds":[{"label":"24년 2회","hoe":70,"count":1}]},
+  "d71-c12": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d71-c14": {"stars":1,"total":1,"rounds":[{"label":"23년 1회","hoe":63,"count":1}]},
+  "d71-c17": {"stars":1,"total":1,"rounds":[{"label":"22년 1회","hoe":57,"count":1}]},
+  "d72-c05": {"stars":1,"total":1,"rounds":[{"label":"22년 1회","hoe":57,"count":1}]},
+  "d72-c07": {"stars":1,"total":1,"rounds":[{"label":"23년 1회","hoe":63,"count":1}]},
+  "d72-c08": {"stars":1,"total":1,"rounds":[{"label":"23년 1회","hoe":63,"count":1}]},
+  "d72-c16": {"stars":2,"total":2,"rounds":[{"label":"23년 3회","hoe":65,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d72-c17": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d72-c18": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d73-c03": {"stars":4,"total":4,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 1회","hoe":63,"count":1},{"label":"22년 4회","hoe":60,"count":1}]},
+  "d73-c04": {"stars":1,"total":1,"rounds":[{"label":"25년 1회","hoe":73,"count":1}]},
+  "d73-c06": {"stars":3,"total":3,"rounds":[{"label":"23년 3회","hoe":65,"count":1},{"label":"23년 2회","hoe":64,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d73-c09": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d73-c10": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d73-c12": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d73-c13": {"stars":1,"total":1,"rounds":[{"label":"22년 3회","hoe":59,"count":1}]},
+  "d73-c15": {"stars":2,"total":2,"rounds":[{"label":"25년 2회","hoe":74,"count":1},{"label":"24년 2회","hoe":70,"count":1}]},
+  "d73-c18": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d73-c20": {"stars":3,"total":3,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"23년 4회","hoe":66,"count":1},{"label":"22년 6회","hoe":62,"count":1}]},
+  "d73-c22": {"stars":1,"total":1,"rounds":[{"label":"23년 6회","hoe":68,"count":1}]},
+  "d73-c23": {"stars":2,"total":2,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d73-c24": {"stars":3,"total":3,"rounds":[{"label":"25년 2회","hoe":74,"count":1},{"label":"23년 4회","hoe":66,"count":1},{"label":"22년 4회","hoe":60,"count":1}]},
+  "d74-c01": {"stars":4,"total":4,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"23년 3회","hoe":65,"count":1},{"label":"23년 1회","hoe":63,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d74-c02": {"stars":2,"total":2,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 5회","hoe":67,"count":1}]},
+  "d74-c04": {"stars":2,"total":2,"rounds":[{"label":"23년 3회","hoe":65,"count":1},{"label":"22년 6회","hoe":62,"count":1}]},
+  "d74-c06": {"stars":4,"total":4,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"23년 3회","hoe":65,"count":1},{"label":"23년 1회","hoe":63,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d74-c09": {"stars":4,"total":4,"rounds":[{"label":"25년 2회","hoe":74,"count":1},{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 4회","hoe":66,"count":1},{"label":"22년 4회","hoe":60,"count":1}]},
+  "d74-c10": {"stars":1,"total":1,"rounds":[{"label":"23년 6회","hoe":68,"count":1}]},
+  "d74-c13": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d74-c16": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d74-c17": {"stars":4,"total":4,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"25년 1회","hoe":73,"count":1},{"label":"23년 2회","hoe":64,"count":1},{"label":"22년 4회","hoe":60,"count":1}]},
+  "d74-c19": {"stars":1,"total":1,"rounds":[{"label":"25년 1회","hoe":73,"count":1}]},
+  "d74-c22": {"stars":2,"total":2,"rounds":[{"label":"24년 3회","hoe":71,"count":1},{"label":"23년 5회","hoe":67,"count":1}]},
+  "d75-c01": {"stars":4,"total":4,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"23년 4회","hoe":66,"count":1},{"label":"22년 6회","hoe":62,"count":2}]},
+  "d75-c02": {"stars":2,"total":2,"rounds":[{"label":"23년 1회","hoe":63,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d75-c03": {"stars":1,"total":1,"rounds":[{"label":"22년 5회","hoe":61,"count":1}]},
+  "d75-c08": {"stars":2,"total":2,"rounds":[{"label":"23년 6회","hoe":68,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d75-c10": {"stars":1,"total":1,"rounds":[{"label":"25년 4회","hoe":76,"count":1}]},
+  "d75-c11": {"stars":2,"total":2,"rounds":[{"label":"23년 3회","hoe":65,"count":1},{"label":"22년 6회","hoe":62,"count":1}]},
+  "d75-c12": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d75-c13": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d75-c16": {"stars":2,"total":2,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"23년 4회","hoe":66,"count":1}]},
+  "d75-c18": {"stars":2,"total":2,"rounds":[{"label":"23년 5회","hoe":67,"count":1},{"label":"23년 4회","hoe":66,"count":1}]},
+  "d75-c22": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d75-c24": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d76-c11": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d76-c13": {"stars":2,"total":2,"rounds":[{"label":"22년 6회","hoe":62,"count":2}]},
+  "d76-c14": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d76-c15": {"stars":2,"total":2,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"23년 4회","hoe":66,"count":1}]},
+  "d76-c18": {"stars":3,"total":3,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"23년 6회","hoe":68,"count":1},{"label":"22년 6회","hoe":62,"count":1}]},
+  "d77-c08": {"stars":1,"total":1,"rounds":[{"label":"25년 2회","hoe":74,"count":1}]},
+  "d78-c02": {"stars":4,"total":4,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"23년 2회","hoe":64,"count":1},{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d78-c13": {"stars":4,"total":4,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"23년 2회","hoe":64,"count":1},{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d78-c15": {"stars":1,"total":1,"rounds":[{"label":"25년 2회","hoe":74,"count":1}]},
+  "d78-c18": {"stars":1,"total":1,"rounds":[{"label":"22년 1회","hoe":57,"count":1}]},
+  "d78-c19": {"stars":1,"total":1,"rounds":[{"label":"25년 2회","hoe":74,"count":1}]},
+  "d78-c21": {"stars":4,"total":4,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"23년 2회","hoe":64,"count":1},{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d79-c01": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d79-c02": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d79-c03": {"stars":5,"total":5,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"25년 4회","hoe":76,"count":1},{"label":"23년 4회","hoe":66,"count":1},{"label":"22년 4회","hoe":60,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d79-c07": {"stars":1,"total":1,"rounds":[{"label":"25년 2회","hoe":74,"count":1}]},
+  "d79-c08": {"stars":1,"total":1,"rounds":[{"label":"25년 2회","hoe":74,"count":1}]},
+  "d79-c10": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d79-c11": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d79-c12": {"stars":1,"total":1,"rounds":[{"label":"26년 1회","hoe":77,"count":1}]},
+  "d79-c13": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d79-c14": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d80-c03": {"stars":1,"total":1,"rounds":[{"label":"22년 4회","hoe":60,"count":1}]},
+  "d80-c06": {"stars":2,"total":2,"rounds":[{"label":"25년 4회","hoe":76,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d80-c07": {"stars":1,"total":1,"rounds":[{"label":"25년 3회","hoe":75,"count":1}]},
+  "d80-c12": {"stars":1,"total":1,"rounds":[{"label":"22년 1회","hoe":57,"count":1}]},
+  "d80-c14": {"stars":1,"total":1,"rounds":[{"label":"22년 1회","hoe":57,"count":1}]},
+  "d80-c18": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d80-c21": {"stars":2,"total":2,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"23년 6회","hoe":68,"count":1}]},
+  "d80-c23": {"stars":2,"total":2,"rounds":[{"label":"25년 4회","hoe":76,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d81-c06": {"stars":5,"total":5,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"26년 1회","hoe":77,"count":1},{"label":"25년 2회","hoe":74,"count":1},{"label":"24년 1회","hoe":69,"count":1},{"label":"23년 5회","hoe":67,"count":1}]},
+  "d81-c12": {"stars":1,"total":1,"rounds":[{"label":"23년 6회","hoe":68,"count":1}]},
+  "d81-c17": {"stars":3,"total":3,"rounds":[{"label":"25년 1회","hoe":73,"count":1},{"label":"23년 4회","hoe":66,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d81-c18": {"stars":2,"total":2,"rounds":[{"label":"25년 1회","hoe":73,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d81-c19": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d81-c21": {"stars":3,"total":3,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"24년 4회","hoe":72,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d81-c22": {"stars":2,"total":2,"rounds":[{"label":"24년 2회","hoe":70,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d82-c03": {"stars":1,"total":1,"rounds":[{"label":"25년 2회","hoe":74,"count":1}]},
+  "d82-c04": {"stars":1,"total":1,"rounds":[{"label":"26년 1회","hoe":77,"count":1}]},
+  "d82-c05": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"22년 5회","hoe":61,"count":1}]},
+  "d82-c11": {"stars":1,"total":1,"rounds":[{"label":"22년 4회","hoe":60,"count":1}]},
+  "d82-c12": {"stars":1,"total":1,"rounds":[{"label":"22년 4회","hoe":60,"count":1}]},
+  "d82-c13": {"stars":2,"total":2,"rounds":[{"label":"24년 4회","hoe":72,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d82-c14": {"stars":2,"total":2,"rounds":[{"label":"24년 2회","hoe":70,"count":1},{"label":"22년 6회","hoe":62,"count":1}]},
+  "d82-c16": {"stars":2,"total":2,"rounds":[{"label":"23년 5회","hoe":67,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d82-c19": {"stars":3,"total":3,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"23년 3회","hoe":65,"count":1},{"label":"22년 4회","hoe":60,"count":1}]},
+  "d82-c20": {"stars":4,"total":4,"rounds":[{"label":"24년 4회","hoe":72,"count":1},{"label":"23년 5회","hoe":67,"count":1},{"label":"22년 4회","hoe":60,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d83-c03": {"stars":3,"total":3,"rounds":[{"label":"23년 3회","hoe":65,"count":1},{"label":"23년 2회","hoe":64,"count":1},{"label":"23년 1회","hoe":63,"count":1}]},
+  "d83-c04": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d83-c05": {"stars":1,"total":1,"rounds":[{"label":"23년 3회","hoe":65,"count":1}]},
+  "d83-c09": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d83-c15": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d83-c18": {"stars":2,"total":2,"rounds":[{"label":"26년 1회","hoe":77,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d84-c12": {"stars":1,"total":1,"rounds":[{"label":"22년 4회","hoe":60,"count":1}]},
+  "d84-c20": {"stars":1,"total":1,"rounds":[{"label":"24년 2회","hoe":70,"count":1}]},
+  "d86-c01": {"stars":1,"total":1,"rounds":[{"label":"22년 5회","hoe":61,"count":1}]},
+  "d86-c05": {"stars":2,"total":2,"rounds":[{"label":"23년 6회","hoe":68,"count":1},{"label":"22년 6회","hoe":62,"count":1}]},
+  "d86-c14": {"stars":2,"total":2,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"23년 2회","hoe":64,"count":1}]},
+  "d86-c15": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d86-c18": {"stars":2,"total":2,"rounds":[{"label":"25년 2회","hoe":74,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d87-c02": {"stars":5,"total":5,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"25년 2회","hoe":74,"count":1},{"label":"23년 3회","hoe":65,"count":1},{"label":"23년 1회","hoe":63,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
+  "d87-c04": {"stars":1,"total":1,"rounds":[{"label":"23년 1회","hoe":63,"count":1}]},
+  "d87-c11": {"stars":2,"total":2,"rounds":[{"label":"22년 3회","hoe":59,"count":1},{"label":"22년 2회","hoe":58,"count":1}]},
+  "d87-c12": {"stars":1,"total":1,"rounds":[{"label":"25년 2회","hoe":74,"count":1}]},
+  "d87-c14": {"stars":3,"total":3,"rounds":[{"label":"26년 2회","hoe":78,"count":1},{"label":"23년 6회","hoe":68,"count":1},{"label":"22년 4회","hoe":60,"count":1}]},
+  "d88-c08": {"stars":1,"total":1,"rounds":[{"label":"23년 4회","hoe":66,"count":1}]},
+  "d88-c11": {"stars":5,"total":5,"rounds":[{"label":"25년 4회","hoe":76,"count":1},{"label":"25년 2회","hoe":74,"count":1},{"label":"24년 3회","hoe":71,"count":1},{"label":"22년 4회","hoe":60,"count":1},{"label":"22년 1회","hoe":57,"count":1}]},
+  "d88-c14": {"stars":1,"total":1,"rounds":[{"label":"22년 5회","hoe":61,"count":1}]},
+  "d88-c15": {"stars":1,"total":1,"rounds":[{"label":"24년 4회","hoe":72,"count":1}]},
+  "d88-c16": {"stars":1,"total":1,"rounds":[{"label":"25년 3회","hoe":75,"count":1}]},
+  "d88-c18": {"stars":1,"total":1,"rounds":[{"label":"24년 1회","hoe":69,"count":1}]},
+  "d89-c01": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d89-c09": {"stars":1,"total":1,"rounds":[{"label":"22년 6회","hoe":62,"count":1}]},
+  "d89-c12": {"stars":1,"total":1,"rounds":[{"label":"26년 1회","hoe":77,"count":1}]},
+  "d89-c17": {"stars":3,"total":3,"rounds":[{"label":"25년 3회","hoe":75,"count":1},{"label":"23년 3회","hoe":65,"count":1},{"label":"23년 1회","hoe":63,"count":1}]},
+  "d90-c07": {"stars":1,"total":1,"rounds":[{"label":"22년 5회","hoe":61,"count":1}]},
+  "d90-c14": {"stars":1,"total":1,"rounds":[{"label":"22년 3회","hoe":59,"count":1}]},
+  "d90-c15": {"stars":1,"total":1,"rounds":[{"label":"23년 5회","hoe":67,"count":1}]},
+  "d90-c20": {"stars":2,"total":2,"rounds":[{"label":"23년 2회","hoe":64,"count":1},{"label":"22년 3회","hoe":59,"count":1}]},
 };
