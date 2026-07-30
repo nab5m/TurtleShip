@@ -42,3 +42,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# TTS 생성용 로컬 venv (scripts/gen-audio.ts 의 EDGE_TTS 로 지정해 사용)
+.venv-tts/
