@@ -152,7 +152,7 @@ export default function LearnSession({ day }: { day: number }) {
             score={result.score}
             total={quizzes.length}
             wrongQuizzes={quizzes.filter((q) => result.wrongIds.includes(q.id))}
-            nextReviewText={`내일 ${REVIEW_INTERVALS[0]}일차 복습이 홈 화면에 등록됩니다 (망각곡선 1·3·7·14·30일)`}
+            nextReviewText={`내일 ${REVIEW_INTERVALS[0]}일차 복습이 홈 화면에 등록됩니다 (망각곡선 1·3·7·14일)`}
             retryHref={learnHref(day)}
           />
         </>

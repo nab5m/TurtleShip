@@ -112,17 +112,18 @@ export interface DayContent {
 // ---------- 학습 상태 (게스트: localStorage / 회원: Supabase) ----------
 
 // 망각곡선 복습 시점 (최초 학습일 기준 누적 일수) — 표시용
-export const REVIEW_INTERVALS = [1, 3, 7, 14, 30] as const;
-// 직전 학습/복습 이벤트 기준 간격 (누적 1,3,7,14,30일과 동일한 스케줄)
+// 커리큘럼이 28일이므로 마지막 30일차 복습은 커리큘럼을 벗어나 등록되지 않는다 → 14일차까지만 둔다
+export const REVIEW_INTERVALS = [1, 3, 7, 14] as const;
+// 직전 학습/복습 이벤트 기준 간격 (누적 1,3,7,14일과 동일한 스케줄)
 // 복습이 밀렸을 때 다음 단계가 연쇄로 즉시 도래하는 것을 막기 위해 직전 이벤트 기준으로 계산한다
-const REVIEW_GAPS = [1, 2, 4, 7, 16] as const;
+const REVIEW_GAPS = [1, 2, 4, 7] as const;
 
 export interface DayRecord {
   date: string; // 최초 학습 완료일 "YYYY-MM-DD"
   score: number; // 퀴즈 정답 수
   total: number; // 퀴즈 문항 수
   wrongQuizIds: string[]; // 최근 학습/복습에서 틀린 퀴즈 id
-  reviewDates: string[]; // 완료한 복습 날짜 (단계 순서대로, 최대 5회)
+  reviewDates: string[]; // 완료한 복습 날짜 (단계 순서대로, 최대 4회)
 }
 
 // version 2 = 28일 커리큘럼 기준 (1 은 90일 커리큘럼 = 단원 번호 기준, progress-store 에서 변환)

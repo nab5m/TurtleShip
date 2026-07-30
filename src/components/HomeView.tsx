@@ -115,7 +115,7 @@ export default function HomeView({
         </div>
         {due.length === 0 ? (
           <p className="rounded-2xl border border-dashed border-border p-4 text-sm text-muted">
-            오늘 복습할 항목이 없어요. 학습을 완료하면 망각곡선(1·3·7·14·30일)에 맞춰 복습이
+            오늘 복습할 항목이 없어요. 학습을 완료하면 망각곡선(1·3·7·14일)에 맞춰 복습이
             등록됩니다.
           </p>
         ) : (
