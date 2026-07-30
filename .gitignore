@@ -45,3 +45,12 @@ next-env.d.ts
 
 # TTS 생성용 로컬 venv (scripts/gen-audio.ts 의 EDGE_TTS 로 지정해 사용)
 .venv-tts/
+
+# 기출 원본(문제지·정답표 PDF)과 추출 텍스트 — 저작권상 커밋 금지.
+# 문항 저작권: 국사편찬위원회 / 사진 저작권: 원저작자. 개인 학습 목적 외 이용은
+# 한국복제전송저작권협회와 협의 필요 → 로컬 분석 산출물로만 둔다.
+# 커밋하는 것은 scripts/gen-exam-frequency.ts 가 만드는 집계 데이터뿐이다.
+/data/exams-raw/
+
+# 기출 PDF 텍스트 추출용 로컬 venv (scripts/exam-pipeline/extract.ts 가 사용)
+.venv-exam/
