@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo } from "react";
 import { DAYS, DAY_MAP, STAGES, STAGE_MAP, TOTAL_DAYS } from "@/data/curriculum";
 import type { ProgressState } from "@/lib/types";
-import { EMPTY_PROGRESS, dueReviews, studyStreak } from "@/lib/types";
+import { EMPTY_PROGRESS, dayUnitProgress, dueReviews, studyStreak } from "@/lib/types";
 import { useProgress } from "@/lib/progress-context";
 import { learnHref } from "@/lib/day-slug";
 import { CheckIcon, FlameIcon, RefreshIcon } from "@/components/icons";
@@ -56,6 +56,8 @@ export default function HomeView({
   const completedCount = completedDays.length;
   const nextDay = DAYS.find((d) => !progress.completed[d.day])?.day;
   const nextMeta = nextDay ? DAY_MAP[nextDay] : undefined;
+  // 오늘의 학습이 단원 단위로 어디까지 진행됐는지 (중간 저장 기준)
+  const todayUnits = nextMeta ? dayUnitProgress(progress, nextMeta.day, nextMeta.units) : null;
   const nextStage = nextMeta ? STAGE_MAP[nextMeta.stageId] : undefined;
 
   // 평균 정답률
@@ -79,17 +81,33 @@ export default function HomeView({
           </div>
           <h1 className="mt-1 text-2xl font-bold">{nextMeta.title}</h1>
           <div className="mt-3 flex flex-wrap gap-1.5">
-            {nextMeta.unitTitles.map((t) => (
-              <span key={t} className="rounded-full bg-card-muted px-2.5 py-1 text-xs text-muted">
-                {shortTopic(t)}
-              </span>
-            ))}
+            {nextMeta.unitTitles.map((t, i) => {
+              const studied = todayUnits?.studiedFlags[i] ?? false;
+              return (
+                <span
+                  key={t}
+                  className={`rounded-full px-2.5 py-1 text-xs ${
+                    studied
+                      ? "bg-accent-soft font-semibold text-accent"
+                      : "bg-card-muted text-muted"
+                  }`}
+                >
+                  {studied ? "✓ " : ""}
+                  {shortTopic(t)}
+                </span>
+              );
+            })}
           </div>
+          {todayUnits && todayUnits.studied > 0 && (
+            <p className="mt-2 text-xs font-semibold text-accent">
+              {todayUnits.studied}/{todayUnits.total}단원 학습 완료 · 이어서 학습할 수 있어요
+            </p>
+          )}
           <Link
             href={learnHref(nextMeta.day)}
             className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-accent px-5 py-3 font-semibold text-white hover:opacity-90 sm:w-auto"
           >
-            오늘의 학습 시작하기
+            {todayUnits && todayUnits.studied > 0 ? "이어서 학습하기" : "오늘의 학습 시작하기"}
           </Link>
         </section>
       ) : (

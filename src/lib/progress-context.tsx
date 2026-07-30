@@ -9,17 +9,19 @@ import {
   useRef,
   useState,
 } from "react";
-import type { DayRecord, DueReview, ProgressState } from "./types";
+import type { DayProgress, DayRecord, DueReview, ProgressState } from "./types";
 import {
   EMPTY_PROGRESS,
   REVIEW_INTERVALS,
   dueReviews,
+  studiedUnitsOfDay,
   studyStreak,
   todayStr,
 } from "./types";
 import { isAuthAvailable, supabaseBrowser } from "./supabase/client";
 import {
   alreadyMerged,
+  deleteRemoteDayProgress,
   loadLocal,
   loadRemote,
   markMerged,
@@ -27,6 +29,7 @@ import {
   saveLocal,
   setRemoteFavorite,
   upsertRemoteDay,
+  upsertRemoteDayProgress,
 } from "./progress-store";
 
 export interface AppUser {
@@ -45,6 +48,10 @@ interface ProgressContextValue {
   streak: number;
   completeDay: (day: number, score: number, total: number, wrongQuizIds: string[]) => void;
   completeReview: (day: number, wrongQuizIds: string[]) => void;
+  // 그 일차에서 카드를 끝까지 본 단원 번호 (중간 저장 — 완료된 일차는 비어 있다)
+  studiedUnits: (day: number) => number[];
+  // 한 단원의 카드를 다 본 시점에 호출 — 중간 저장(게스트 localStorage / 회원 Supabase)
+  markUnitStudied: (day: number, unit: number) => void;
   toggleFavorite: (type: "card" | "quiz", id: string) => void;
   isFavorite: (type: "card" | "quiz", id: string) => boolean;
   signInWithGoogle: () => Promise<void>;
@@ -162,6 +169,59 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     []
   );
 
+  // 단원 단위 중간 저장 반영 — 저장 경로는 applyDayRecord 와 동일(게스트 localStorage / 회원 Supabase)
+  const applyDayProgress = useCallback((day: number, rec: DayProgress) => {
+    setProgress((prev) => {
+      const next = { ...prev, dayProgress: { ...prev.dayProgress, [day]: rec } };
+      if (!userRef.current) saveLocal(next);
+      return next;
+    });
+    const u = userRef.current;
+    const sb = supabaseBrowser();
+    if (u && sb) {
+      upsertRemoteDayProgress(sb, u.id, day, rec).catch((e) =>
+        console.error("단원 진행 저장 실패:", e)
+      );
+    }
+  }, []);
+
+  // 완료 기록이 중간 저장을 대체한다 → 완료된 일차는 '진행 중' 표시가 남지 않게 지운다
+  const clearDayProgress = useCallback((day: number) => {
+    setProgress((prev) => {
+      if (!prev.dayProgress?.[day]) return prev;
+      const rest = { ...prev.dayProgress };
+      delete rest[day];
+      const next = { ...prev, dayProgress: rest };
+      if (!userRef.current) saveLocal(next);
+      return next;
+    });
+    const u = userRef.current;
+    const sb = supabaseBrowser();
+    if (u && sb) {
+      // 로컬 상태가 비어 있어도 서버 행이 남아 있을 수 있어 무조건 삭제(멱등)
+      deleteRemoteDayProgress(sb, u.id, day).catch((e) =>
+        console.error("단원 진행 정리 실패:", e)
+      );
+    }
+  }, []);
+
+  const studiedUnits = useCallback(
+    (day: number) => studiedUnitsOfDay(progress, day),
+    [progress]
+  );
+
+  const markUnitStudied = useCallback(
+    (day: number, unit: number) => {
+      const prevUnits = studiedUnitsOfDay(progress, day);
+      if (prevUnits.includes(unit)) return; // 이미 저장된 단원 (되돌아와 다시 본 경우)
+      applyDayProgress(day, {
+        studiedUnits: [...prevUnits, unit].sort((a, b) => a - b),
+        updatedAt: new Date().toISOString(),
+      });
+    },
+    [progress, applyDayProgress]
+  );
+
   const completeDay = useCallback(
     (day: number, score: number, total: number, wrongQuizIds: string[]) => {
       const prev = progress.completed[day];
@@ -170,8 +230,9 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         ? { ...prev, score, total, wrongQuizIds }
         : { date: todayStr(), score, total, wrongQuizIds, reviewDates: [] };
       applyDayRecord(day, rec);
+      clearDayProgress(day);
     },
-    [progress.completed, applyDayRecord]
+    [progress.completed, applyDayRecord, clearDayProgress]
   );
 
   const completeReview = useCallback(
@@ -247,12 +308,14 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
       streak: studyStreak(progress),
       completeDay,
       completeReview,
+      studiedUnits,
+      markUnitStudied,
       toggleFavorite,
       isFavorite,
       signInWithGoogle,
       signOut,
     }),
-    [ready, progress, user, completeDay, completeReview, toggleFavorite, isFavorite, signInWithGoogle, signOut]
+    [ready, progress, user, completeDay, completeReview, studiedUnits, markUnitStudied, toggleFavorite, isFavorite, signInWithGoogle, signOut]
   );
 
   return <ProgressContext.Provider value={value}>{children}</ProgressContext.Provider>;

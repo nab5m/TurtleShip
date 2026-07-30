@@ -15,6 +15,17 @@ create table if not exists public.progress (
   primary key (user_id, day)
 );
 
+-- 학습 중간 저장 (사용자 × 학습일차) — 그 일차에서 카드를 끝까지 본 단원 목록.
+-- 하루치가 단원 2~4개라 중간에 끊고 다음에 이어서 학습할 수 있어야 한다.
+-- 퀴즈까지 마쳐 progress 에 완료 기록이 생기면 이 행은 삭제된다(완료 기록이 대체).
+create table if not exists public.day_progress (
+  user_id uuid not null references auth.users (id) on delete cascade,
+  day int not null check (day between 1 and 28),
+  studied_units jsonb not null default '[]'::jsonb, -- 학습을 마친 단원 번호 배열 (1~90)
+  updated_at timestamptz not null default now(),
+  primary key (user_id, day)
+);
+
 -- 즐겨찾기 (카드/퀴즈)
 create table if not exists public.favorites (
   user_id uuid not null references auth.users (id) on delete cascade,

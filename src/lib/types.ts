@@ -126,10 +126,21 @@ export interface DayRecord {
   reviewDates: string[]; // 완료한 복습 날짜 (단계 순서대로, 최대 4회)
 }
 
+// 하루치 학습의 '중간 저장' — 그 일차에서 카드를 끝까지 본 단원 목록.
+// DayRecord(완료 기록)와 분리한 이유:
+//  - DayRecord 는 퀴즈까지 마친 완료 상태이며 복습 스케줄(망각곡선)의 기준이 된다.
+//  - 단원 진행은 완료 전의 '부분' 상태라 수명·의미가 달라서, 완료(completeDay) 시점에 지워진다.
+// 옛 저장본에는 이 필드가 아예 없으므로 읽을 때는 항상 studiedUnitsOfDay() 로 폴백한다.
+export interface DayProgress {
+  studiedUnits: number[]; // 카드를 모두 본 단원 번호 (오름차순·중복 없음)
+  updatedAt: string; // 마지막 갱신 시각 (ISO 8601)
+}
+
 // version 2 = 28일 커리큘럼 기준 (1 은 90일 커리큘럼 = 단원 번호 기준, progress-store 에서 변환)
 export interface ProgressState {
   version: 2;
   completed: Record<number, DayRecord>; // day 번호(1~28) -> 완료 기록
+  dayProgress: Record<number, DayProgress>; // day 번호 -> 진행 중인 단원 단위 중간 저장
   favoriteCards: string[]; // 즐겨찾기한 카드 id
   favoriteQuizzes: string[]; // 즐겨찾기한 퀴즈 id
 }
@@ -137,9 +148,43 @@ export interface ProgressState {
 export const EMPTY_PROGRESS: ProgressState = {
   version: 2,
   completed: {},
+  dayProgress: {},
   favoriteCards: [],
   favoriteQuizzes: [],
 };
+
+// 그 일차에서 카드를 끝까지 본 단원 번호.
+// dayProgress 는 나중에 추가된 필드라 옛 저장본·SSR 로 넘어온 객체에는 없을 수 있고,
+// 손상된 값이 들어 있을 수도 있다 → 어떤 경우에도 빈 배열로 폴백한다(읽기 경로의 단일 방어 지점).
+export function studiedUnitsOfDay(progress: ProgressState, day: number): number[] {
+  const units = progress.dayProgress?.[day]?.studiedUnits;
+  return Array.isArray(units) ? units : [];
+}
+
+// 하루치 단원 진행 요약 — 진도 UI(홈·커리큘럼)와 학습 세션의 '이어서 하기' 판단에 함께 쓴다.
+export interface DayUnitProgress {
+  studied: number; // 학습을 마친 단원 수
+  total: number; // 그 일차의 단원 수
+  nextUnitIndex: number; // 이어서 학습할 단원의 인덱스 (-1 = 모든 단원 학습 완료)
+  studiedFlags: boolean[]; // units 와 같은 순서의 단원별 학습 여부
+}
+
+// units 는 커리큘럼상 그 일차의 단원 목록(DayMeta.units). 커리큘럼에서 빠진 단원의
+// 옛 기록은 세지 않으므로, 커리큘럼이 바뀌어도 표시가 total 을 넘지 않는다.
+export function dayUnitProgress(
+  progress: ProgressState,
+  day: number,
+  units: number[]
+): DayUnitProgress {
+  const studiedSet = new Set(studiedUnitsOfDay(progress, day));
+  const studiedFlags = units.map((u) => studiedSet.has(u));
+  return {
+    studied: studiedFlags.filter(Boolean).length,
+    total: units.length,
+    nextUnitIndex: studiedFlags.indexOf(false),
+    studiedFlags,
+  };
+}
 
 // 오늘 복습해야 하는 항목
 export interface DueReview {

@@ -1,6 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { DAYS } from "@/data/curriculum";
-import type { DayRecord, ProgressState } from "./types";
+import type { DayProgress, DayRecord, ProgressState } from "./types";
 import { EMPTY_PROGRESS } from "./types";
 
 const LS_KEY = "kh-progress-v1";
@@ -9,6 +9,7 @@ const LS_KEY = "kh-progress-v1";
 interface StoredProgress {
   version?: number;
   completed?: Record<number, DayRecord>;
+  dayProgress?: Record<number, DayProgress>; // 나중에 추가된 필드 — 옛 저장본에는 없다
   favoriteCards?: string[];
   favoriteQuizzes?: string[];
 }
@@ -26,6 +27,8 @@ export function loadLocal(): ProgressState {
     return {
       version: 2,
       completed: parsed.completed ?? {},
+      // 단원 단위 중간 저장은 v2 도중에 추가되었다 → 없으면 '진행 중인 일차 없음'
+      dayProgress: parsed.dayProgress ?? {},
       favoriteCards: parsed.favoriteCards ?? [],
       favoriteQuizzes: parsed.favoriteQuizzes ?? [],
     };
@@ -61,6 +64,8 @@ function migrateV1(old: StoredProgress): ProgressState {
   const migrated: ProgressState = {
     version: 2,
     completed,
+    // v1 에는 단원 단위 진행 개념이 없었다 (부분 학습 일차는 처음부터 다시 학습)
+    dayProgress: {},
     favoriteCards: old.favoriteCards ?? [],
     favoriteQuizzes: old.favoriteQuizzes ?? [],
   };
@@ -88,6 +93,12 @@ interface ProgressRow {
   review_dates: string[];
 }
 
+interface DayProgressRow {
+  day: number;
+  studied_units: number[];
+  updated_at: string;
+}
+
 interface FavoriteRow {
   item_id: string;
   item_type: "card" | "quiz";
@@ -97,9 +108,10 @@ export async function loadRemote(
   sb: SupabaseClient,
   userId: string
 ): Promise<ProgressState> {
-  const [progressRes, favRes] = await Promise.all([
+  const [progressRes, favRes, dayProgressRes] = await Promise.all([
     sb.from("progress").select("day, date, score, total, wrong_quiz_ids, review_dates").eq("user_id", userId),
     sb.from("favorites").select("item_id, item_type").eq("user_id", userId),
+    sb.from("day_progress").select("day, studied_units, updated_at").eq("user_id", userId),
   ]);
   if (progressRes.error) throw progressRes.error;
   if (favRes.error) throw favRes.error;
@@ -114,10 +126,29 @@ export async function loadRemote(
       reviewDates: row.review_dates ?? [],
     };
   }
+
+  // day_progress 는 나중에 추가된 테이블이다. 마이그레이션 적용 전이라도 완료 기록·즐겨찾기
+  // 로드는 계속되어야 하므로, 이 조회 실패는 경고만 남기고 '중간 저장 없음'으로 처리한다.
+  const dayProgress: Record<number, DayProgress> = {};
+  if (dayProgressRes.error) {
+    console.warn(
+      "단원 진행(day_progress) 로드 실패 — 마이그레이션 적용 여부를 확인하세요:",
+      dayProgressRes.error.message
+    );
+  } else {
+    for (const row of (dayProgressRes.data ?? []) as DayProgressRow[]) {
+      dayProgress[row.day] = {
+        studiedUnits: row.studied_units ?? [],
+        updatedAt: row.updated_at,
+      };
+    }
+  }
+
   const favs = (favRes.data ?? []) as FavoriteRow[];
   return {
     version: 2,
     completed,
+    dayProgress,
     favoriteCards: favs.filter((f) => f.item_type === "card").map((f) => f.item_id),
     favoriteQuizzes: favs.filter((f) => f.item_type === "quiz").map((f) => f.item_id),
   };
@@ -139,6 +170,36 @@ export async function upsertRemoteDay(
     review_dates: rec.reviewDates,
     updated_at: new Date().toISOString(),
   });
+  if (error) throw error;
+}
+
+// 단원 단위 중간 저장 (진행 중인 일차) — 완료 기록과 별도 테이블
+export async function upsertRemoteDayProgress(
+  sb: SupabaseClient,
+  userId: string,
+  day: number,
+  rec: DayProgress
+): Promise<void> {
+  const { error } = await sb.from("day_progress").upsert({
+    user_id: userId,
+    day,
+    studied_units: rec.studiedUnits,
+    updated_at: rec.updatedAt,
+  });
+  if (error) throw error;
+}
+
+// 일차를 완료하면 중간 저장은 완료 기록으로 대체된다 → 남기지 않는다
+export async function deleteRemoteDayProgress(
+  sb: SupabaseClient,
+  userId: string,
+  day: number
+): Promise<void> {
+  const { error } = await sb
+    .from("day_progress")
+    .delete()
+    .eq("user_id", userId)
+    .eq("day", day);
   if (error) throw error;
 }
 
@@ -191,6 +252,13 @@ export async function mergeLocalToRemote(
     if (!remote.completed[day]) {
       uploads.push(upsertRemoteDay(sb, userId, day, rec));
     }
+  }
+  // 진행 중(단원 단위) 기록도 함께 올린다 — 서버에 이미 완료·진행 기록이 있으면 서버 우선
+  for (const [dayStr, rec] of Object.entries(local.dayProgress ?? {})) {
+    const day = Number(dayStr);
+    if (remote.completed[day] || remote.dayProgress?.[day]) continue;
+    if (rec.studiedUnits.length === 0) continue;
+    uploads.push(upsertRemoteDayProgress(sb, userId, day, rec));
   }
   const remoteCardSet = new Set(remote.favoriteCards);
   const remoteQuizSet = new Set(remote.favoriteQuizzes);

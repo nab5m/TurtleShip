@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { DAYS, ERA_MAP, STAGES, TOTAL_DAYS } from "@/data/curriculum";
-import { REVIEW_INTERVALS } from "@/lib/types";
+import { REVIEW_INTERVALS, dayUnitProgress } from "@/lib/types";
 import { useProgress } from "@/lib/progress-context";
 import { learnHref } from "@/lib/day-slug";
 import { estimatedMinutes } from "@/data/day-time";
@@ -48,6 +48,9 @@ export default function CurriculumPage() {
               {daysInStage.map((d, i) => {
                 const rec = ready ? progress.completed[d.day] : undefined;
                 const isNext = ready && d.day === nextDay;
+                // 완료 전 일차의 단원 단위 중간 저장 진행도 (0 < studied < total 일 때만 노출)
+                const unitProg = ready && !rec ? dayUnitProgress(progress, d.day, d.units) : null;
+                const inProgress = unitProg !== null && unitProg.studied > 0;
                 return (
                   <li
                     key={d.day}
@@ -74,7 +77,9 @@ export default function CurriculumPage() {
                         <span className="block truncate text-xs text-muted">
                           {rec
                             ? `${rec.date} 학습 · ${rec.score}/${rec.total}점 · 복습 ${rec.reviewDates.length}/${REVIEW_INTERVALS.length}`
-                            : d.unitTitles.join(" · ")}
+                            : inProgress
+                              ? `${unitProg.studied}/${unitProg.total}단원 학습 완료 · 이어서 학습하기`
+                              : d.unitTitles.join(" · ")}
                         </span>
                       </span>
                       {isNext && (
@@ -83,9 +88,15 @@ export default function CurriculumPage() {
                         </span>
                       )}
                     </Link>
-                    <span className="shrink-0 whitespace-nowrap text-[11px] font-medium text-muted">
-                      약 {estimatedMinutes(d.day)}분
-                    </span>
+                    {inProgress ? (
+                      <span className="shrink-0 whitespace-nowrap rounded-full bg-accent-soft px-2.5 py-1 text-[11px] font-bold text-accent">
+                        {unitProg.studied}/{unitProg.total}단원
+                      </span>
+                    ) : (
+                      <span className="shrink-0 whitespace-nowrap text-[11px] font-medium text-muted">
+                        약 {estimatedMinutes(d.day)}분
+                      </span>
+                    )}
                     {rec && rec.reviewDates.length < REVIEW_INTERVALS.length && (
                       <Link
                         href={`/review/${d.day}`}

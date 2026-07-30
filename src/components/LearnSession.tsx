@@ -62,7 +62,7 @@ export default function LearnSession({ day }: { day: number }) {
   const meta = DAY_MAP[day];
   const stage = stageOfDay(day);
   const content = getDayContent(day);
-  const { completeDay } = useProgress();
+  const { completeDay, markUnitStudied, studiedUnits, ready } = useProgress();
 
   const cards = content?.cards ?? [];
   const quizzes = content?.quizzes ?? [];
@@ -70,13 +70,29 @@ export default function LearnSession({ day }: { day: number }) {
   const segments = segmentsOfDay(day);
 
   const [phase, setPhase] = useState<Phase>("cards");
-  const [segIdx, setSegIdx] = useState(0);
+  // 사용자가 직접 이동한 단원. null 이면 중간 저장에서 이어서 할 단원을 따른다.
+  //
+  // 진도는 비동기로 도착하므로(ready) effect + setState 로 초기화하면
+  // react-hooks/set-state-in-effect 규칙에 걸린다 → 저장값에서 '파생'시켜 그 문제를 피한다.
+  const [segIdxOverride, setSegIdxOverride] = useState<number | null>(null);
   const [cardIdx, setCardIdx] = useState(0);
   const [quizIdx, setQuizIdx] = useState(0);
   const [result, setResult] = useState<{ score: number; wrongIds: string[] } | null>(null);
 
-  const segment = segments[Math.min(segIdx, segments.length - 1)];
+  // 중간 저장(단원 단위)에서 이어서 할 지점. 진도 로딩 전에는 1단원부터 보여 준다.
+  const studiedSet = new Set(ready ? studiedUnits(day) : []);
+  const studiedFlags = segments.map((s) => studiedSet.has(s.unit));
+  const resumeIdx = studiedFlags.indexOf(false); // -1 = 오늘 카드를 모두 봤음
+  const allCardsStudied = ready && resumeIdx === -1;
+
+  const segIdx = Math.min(segIdxOverride ?? Math.max(resumeIdx, 0), segments.length - 1);
+  const segment = segments[segIdx];
   const segCards = segment?.cards ?? [];
+
+  const goToSegment = (idx: number) => {
+    setSegIdxOverride(idx);
+    setCardIdx(0);
+  };
 
   // 카드 단계 키보드 내비게이션 (데스크탑) — 현재 단원 안에서만 이동한다
   useEffect(() => {
@@ -117,7 +133,7 @@ export default function LearnSession({ day }: { day: number }) {
     // 단원 첫 카드에서 이전을 누르면 앞 단원의 마지막 카드로 돌아간다
     if (segIdx > 0) {
       const prev = segments[segIdx - 1];
-      setSegIdx(segIdx - 1);
+      setSegIdxOverride(segIdx - 1);
       setCardIdx(prev.cards.length - 1);
     }
   };
@@ -127,13 +143,51 @@ export default function LearnSession({ day }: { day: number }) {
       setCardIdx((i) => i + 1);
       return;
     }
-    // 단원의 마지막 카드 → 마지막 단원이면 퀴즈로, 아니면 중간 지점으로
+    // 단원의 카드를 끝까지 봤으므로 여기서 중간 저장한다.
+    // (마지막 단원도 저장해야 퀴즈를 남기고 나갔다가 돌아왔을 때 카드를 다시 보지 않는다)
+    markUnitStudied(day, segment.unit);
     setPhase(isLastSegment ? "quiz" : "unit-done");
   };
 
+  // 카드는 다 봤는데 퀴즈를 남기고 나갔다가 돌아온 경우 — 카드를 처음부터 다시 보여 주지 않는다
+  const showAllStudied = phase === "cards" && allCardsStudied && segIdxOverride === null;
+
   return (
     <div className="mx-auto max-w-xl">
-      {phase === "cards" && (
+      {showAllStudied && (
+        <>
+          <SessionHeader
+            day={day}
+            title={meta.title}
+            stageName={stage.name}
+            stageColor={stage.color}
+            current={cards.length}
+            total={cards.length}
+          />
+          <div className="mt-4 rounded-2xl border border-border bg-card p-6 text-center">
+            <p className="text-lg font-bold">오늘 카드를 모두 봤어요</p>
+            <p className="mt-2 text-sm text-muted">
+              {segments.length}개 단원 · 카드 {cards.length}장을 마쳤어요. 퀴즈까지 풀면 오늘 학습이
+              완료되고 복습이 등록됩니다.
+            </p>
+            <button
+              onClick={() => setPhase("quiz")}
+              className="mt-5 flex w-full items-center justify-center gap-1 rounded-xl bg-accent px-4 py-3 font-semibold text-white hover:opacity-90"
+            >
+              퀴즈 풀기 ({quizzes.length}문항)
+              <ChevronRightIcon className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => goToSegment(0)}
+              className="mt-2 w-full rounded-xl border border-border bg-card px-4 py-3 font-semibold text-muted hover:bg-card-muted"
+            >
+              카드 다시 보기
+            </button>
+          </div>
+        </>
+      )}
+
+      {phase === "cards" && !showAllStudied && (
         <>
           <SessionHeader
             day={day}
@@ -214,8 +268,7 @@ export default function LearnSession({ day }: { day: number }) {
 
             <button
               onClick={() => {
-                setSegIdx(segIdx + 1);
-                setCardIdx(0);
+                goToSegment(segIdx + 1);
                 setPhase("cards");
               }}
               className="mt-5 flex w-full items-center justify-center gap-1 rounded-xl bg-accent px-4 py-3 font-semibold text-white hover:opacity-90"
