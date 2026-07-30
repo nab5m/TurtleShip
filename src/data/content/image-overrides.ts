@@ -33,6 +33,8 @@ export const IMAGE_OVERRIDES: Record<string, ItemImage> = {
   "d03-c20": { src: "https://contents.nahf.or.kr/download.do?fileName=ag_0050250.jpg&levelId=ag.d_0005_0010_0060", alt: "청동기 시대의 바위그림", width: 840, height: 641, credit: "출처: 동북아역사재단" },
   // 세형 동검
   "d04-c04": { src: "https://contents.history.go.kr/data/img/kc/thumb/kc_r000500.jpg", alt: "세형 동검", width: 515, height: 669, credit: "출처: 우리역사넷(국사편찬위원회)" },
+  // 거푸집 — 지시서의 gstatic 썸네일 대신 찾은 안정 원본(전 영암 거푸집 일괄)
+  "d04-c06": { src: "https://upload.wikimedia.org/wikipedia/commons/0/04/%EC%A0%84_%EC%98%81%EC%95%94_%EA%B1%B0%ED%91%B8%EC%A7%91_%EC%9D%BC%EA%B4%84.jpg", alt: "거푸집", width: 750, height: 471 },
   // 거푸집(용범)
   "d04-q02": { src: "https://devin.aks.ac.kr/image/b44beebf-d061-4f5f-b3a3-8e5a0fc17b97?preset=page", alt: "거푸집", width: 226, height: 350, credit: "출처: 한국학중앙연구원" },
   // 한 군현 설치 (한글 지명판)
@@ -53,12 +55,17 @@ export const IMAGE_OVERRIDES: Record<string, ItemImage> = {
   "d23-c13": { src: "https://i.namu.wiki/i/Ge6-GVh_X_2PLW4ybXwEQCgpZho56PsJ4E8Y1yVg-0iMb4Q9ylnBj75riRpn4VDs0hDOisz16XD02qNcs9Nqhg.webp", alt: "혜초와 왕오천축국전", width: 740, height: 493, credit: "출처: 나무위키" },
   // 불국사 3층 석탑(석가탑)
   "d23-c16": { src: "https://www.heritage.go.kr/unisearch/images/national_treasure/thumb/2021070210514100.jpg", alt: "불국사 3층 석탑(석가탑)", width: 432, height: 648, credit: "출처: 국가유산청" },
+  // 쌍봉사 철감선사탑 — gstatic 썸네일 대신 찾은 안정 원본(원본 8.5MB 라 1280px 렌디션 사용)
+  "d24-c21": { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/%EC%8C%8D%EB%B4%89%EC%82%AC_%EC%B2%A0%EA%B0%90%EC%84%A0%EC%82%AC%ED%83%91.jpg/1280px-%EC%8C%8D%EB%B4%89%EC%82%AC_%EC%B2%A0%EA%B0%90%EC%84%A0%EC%82%AC%ED%83%91.jpg", alt: "쌍봉사 철감선사탑", width: 1280, height: 1488 },
   // 발해의 영역
   "d25-c18": { src: "https://i.namu.wiki/i/8cX7rX8erLWBpsNryxrfvvUnvn6WuQEGcnr4Dsa3NILqVewENIS1t4Jrt6hDAWbPjY4fH8iUzf4iObhxFUUE-w.webp", alt: "발해의 영역", width: 1000, height: 1015, credit: "출처: 나무위키" },
   // 이불병좌상
   "d27-c03": { src: "https://mblogthumb-phinf.pstatic.net/MjAyMzEwMjZfMjM2/MDAxNjk4MzAzOTI4MDQw.s-ApHP-0jrr6PD0WjlXlIoM3B6drxJlHKOeUf_qsg3cg.N0jyJd_0EB22ULnB1-TVP9i8QIayreO0rjvnoQVQTBkg.JPEG.jhleetck1/20231026%EF%BC%BF155758.jpg?type=w800", alt: "이불병좌상", width: 800, height: 1067, credit: "출처: 네이버 블로그" },
   // 정효공주묘 벽화
   "d27-c11": { src: "https://contents.nahf.or.kr/download.do?fileName=ismy_0010048.jpg&levelId=ismy.d_0003_0030_0020", alt: "정효공주묘 벽화", width: 2834, height: 2119, credit: "출처: 동북아역사재단" },
+  // 정혜공주묘 돌사자상 — gstatic 썸네일 대신 찾은 안정 원본. Commons·동북아역사재단에 이 유물
+  // 사진이 없어 우리역사넷 역대 국사교과서 도판(302×319, 지면 스캔)을 쓴다
+  "d27-c09": { src: "https://contents.history.go.kr/data/img/ta/ta_h61/ta_h61_1150_01.jpg", alt: "정혜공주묘 돌사자상", width: 302, height: 319, credit: "출처: 우리역사넷(국사편찬위원회)" },
   // 영광탑
   "d27-c13": { src: "https://www.yeongnam.com/mnt/file/200609/20060912.010012258370001i1.jpg", alt: "영광탑", width: 600, height: 927, credit: "출처: 영남일보" },
   // 이불병좌상 (d27-c03 과 동일)
@@ -77,6 +84,8 @@ export const IMAGE_OVERRIDES: Record<string, ItemImage> = {
   "d34-q06": { src: "https://contents.history.go.kr/data/img/kc/thumb/kc_r200380.jpg", alt: "초조대장경", width: 781, height: 400, credit: "출처: 우리역사넷(국사편찬위원회)" },
   // 몽골풍
   "d38-c14": { src: "https://i.namu.wiki/i/fkD1gvd5AsfqOdV6Rg_os_mtxIry2kLtTikpJA9ZWkk1k_xIlN1OvPjnLJbYEdjgdQ2WnqDKW6aK3h8p7hER_Q.webp", alt: "몽골풍", width: 500, height: 354, credit: "출처: 나무위키" },
+  // 천산대렵도 — gstatic 썸네일 대신 찾은 안정 원본(Commons 판은 250×297 로 너무 작아 제외)
+  "d39-c21": { src: "https://contents.history.go.kr/data/img/ta/ta_m71/img_116_01.jpg", alt: "천산대렵도", width: 900, height: 1012, credit: "출처: 우리역사넷(국사편찬위원회)" },
   // 고려청자
   "d43-c01": { src: "https://i.namu.wiki/i/y_3AaYvUaV3H84xc9vw0oiDdOXB2gQbKbD4hh15-VY_eHQ9rPW43FeB7MR1K6vT1Md7ES91p2-2GItbSxapbww.webp", alt: "고려청자", width: 635, height: 755, credit: "출처: 나무위키" },
   // 상감청자 — 지시서가 d43-c01(고려청자) 과 같은 URL 을 지정했다(지시 그대로 유지, 추후 확인 필요)

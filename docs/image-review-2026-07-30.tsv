@@ -18,7 +18,7 @@ d03-q01	reuse	d03-c06	반달 돌칼 카드 사진 재사용 (지시대로. 문�
 d03-q02	reuse	d03-c06	반달 돌칼 카드 사진 재사용
 d03-q03	reuse	d03-c12	고인돌 카드 사진 재사용
 d04-c04	url	https://contents.history.go.kr/data/img/kc/thumb/kc_r000500.jpg	세형 동검
-d04-c06	find-source		거푸집 — gstatic 썸네일 대신 공공기관 원본 필요
+d04-c06	find-source	https://upload.wikimedia.org/wikipedia/commons/0/04/%EC%A0%84_%EC%98%81%EC%95%94_%EA%B1%B0%ED%91%B8%EC%A7%91_%EC%9D%BC%EA%B4%84.jpg	거푸집 — 안정 원본 확보(Wikimedia Commons, 전 영암 거푸집 일괄, 750x471)
 d04-c13	remove		붓 — 이미지 중요하지 않음
 d04-q02	url	https://devin.aks.ac.kr/image/b44beebf-d061-4f5f-b3a3-8e5a0fc17b97?preset=page	거푸집(용범)
 d04-q05	remove		붓 — 사진 불필요
@@ -47,11 +47,11 @@ d20-c16	url	https://minio.nculture.org/amsweb-opt/multimedia_assets/176/112972/1
 d22-c04	remove		신라 촌락 문서
 d23-c13	url	https://i.namu.wiki/i/Ge6-GVh_X_2PLW4ybXwEQCgpZho56PsJ4E8Y1yVg-0iMb4Q9ylnBj75riRpn4VDs0hDOisz16XD02qNcs9Nqhg.webp	혜초와 왕오천축국전
 d23-c16	url	https://www.heritage.go.kr/unisearch/images/national_treasure/thumb/2021070210514100.jpg	불국사 3층 석탑(석가탑)
-d24-c21	find-source		쌍봉사 철감선사탑 — gstatic 썸네일 대신 공공기관 원본 필요
+d24-c21	find-source	https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/%EC%8C%8D%EB%B4%89%EC%82%AC_%EC%B2%A0%EA%B0%90%EC%84%A0%EC%82%AC%ED%83%91.jpg/1280px-%EC%8C%8D%EB%B4%89%EC%82%AC_%EC%B2%A0%EA%B0%90%EC%84%A0%EC%82%AC%ED%83%91.jpg	쌍봉사 철감선사탑 — 안정 원본 확보(Wikimedia Commons 1280px 렌디션, 원본은 8.5MB)
 d25-c18	url	https://i.namu.wiki/i/8cX7rX8erLWBpsNryxrfvvUnvn6WuQEGcnr4Dsa3NILqVewENIS1t4Jrt6hDAWbPjY4fH8iUzf4iObhxFUUE-w.webp	발해의 영역
 d27-c01	remove		상경성
 d27-c03	url	https://mblogthumb-phinf.pstatic.net/MjAyMzEwMjZfMjM2/MDAxNjk4MzAzOTI4MDQw.s-ApHP-0jrr6PD0WjlXlIoM3B6drxJlHKOeUf_qsg3cg.N0jyJd_0EB22ULnB1-TVP9i8QIayreO0rjvnoQVQTBkg.JPEG.jhleetck1/20231026%EF%BC%BF155758.jpg?type=w800	이불병좌상
-d27-c09	find-source		정혜공주묘 돌사자상 — gstatic 썸네일 대신 공공기관 원본 필요
+d27-c09	find-source	https://contents.history.go.kr/data/img/ta/ta_h61/ta_h61_1150_01.jpg	정혜공주묘 돌사자상 — 우리역사넷 국사교과서 도판(302x319). Commons·동북아역사재단에 이 유물 사진 없음
 d27-c11	url	https://contents.nahf.or.kr/download.do?fileName=ismy_0010048.jpg&levelId=ismy.d_0003_0030_0020	정효공주묘 벽화
 d27-c13	url	https://www.yeongnam.com/mnt/file/200609/20060912.010012258370001i1.jpg	영광탑
 d27-q01	url	https://mblogthumb-phinf.pstatic.net/MjAyMzEwMjZfMjM2/MDAxNjk4MzAzOTI4MDQw.s-ApHP-0jrr6PD0WjlXlIoM3B6drxJlHKOeUf_qsg3cg.N0jyJd_0EB22ULnB1-TVP9i8QIayreO0rjvnoQVQTBkg.JPEG.jhleetck1/20231026%EF%BC%BF155758.jpg?type=w800	이불병좌상 (d27-c03 과 동일)
@@ -75,7 +75,7 @@ d37-c09	remove		황룡사 9층 목탑 소실
 d37-c19	remove		제주 항파두리
 d37-c21	remove		강화도의 고려 궁궐
 d38-c14	url	https://i.namu.wiki/i/fkD1gvd5AsfqOdV6Rg_os_mtxIry2kLtTikpJA9ZWkk1k_xIlN1OvPjnLJbYEdjgdQ2WnqDKW6aK3h8p7hER_Q.webp	몽골풍
-d39-c21	find-source		천산대렵도 — gstatic 썸네일 대신 공공기관 원본 필요
+d39-c21	find-source	https://contents.history.go.kr/data/img/ta/ta_m71/img_116_01.jpg	천산대렵도 — 우리역사넷 도판(900x1012). Commons 판은 250x297 로 작아 제외
 d39-c22	remove		공민왕릉
 d41-c08	remove		고려의 화폐
 d43-c01	url	https://i.namu.wiki/i/y_3AaYvUaV3H84xc9vw0oiDdOXB2gQbKbD4hh15-VY_eHQ9rPW43FeB7MR1K6vT1Md7ES91p2-2GItbSxapbww.webp	고려청자
