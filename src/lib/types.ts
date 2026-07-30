@@ -1,9 +1,6 @@
 // 시대 구분 (시대 흐름 순서)
 export type EraId =
-  | "paleolithic" // 구석기
-  | "neolithic" // 신석기
-  | "bronze" // 청동기
-  | "iron" // 철기
+  | "prehistory" // 선사 (구석기·신석기·청동기·철기 — 2026-07-31 통합)
   | "gojoseon" // 고조선
   | "confederacy" // 연맹왕국
   | "three-kingdoms" // 삼국시대
@@ -24,7 +21,7 @@ export interface Era {
   unitRange: [number, number]; // 이 시대에 배정된 단원 범위 (1-90)
 }
 
-// 커리큘럼 단계 — 시대를 묶은 그룹. 하루가 여러 시대를 걸치므로(1일차 = 구석기~철기)
+// 커리큘럼 단계 — 시대를 묶은 그룹. 하루가 여러 시대를 걸치므로(2일차 = 고조선~연맹왕국)
 // 커리큘럼/홈 화면의 그룹 단위는 시대가 아니라 이 단계다.
 export type StageId =
   | "prehistory"
@@ -49,7 +46,7 @@ export interface Stage {
 
 // 학습 단원 — 콘텐츠(카드/퀴즈)의 최소 단위. 카드 id 의 dNN 이 이 번호다.
 export interface UnitMeta {
-  unit: number; // 1 ~ 90
+  unit: number; // 1 · 5 ~ 90 (연속 아님 — 옛 단원 2~4 는 단원 1 로 통합됨)
   eraId: EraId;
   title: string; // 예: "광개토대왕과 장수왕"
   topics: string[]; // 그 단원이 다루는 핵심 주제/키워드 요약

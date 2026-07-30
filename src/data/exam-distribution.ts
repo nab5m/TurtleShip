@@ -88,255 +88,234 @@ export const EXAM_DISTRIBUTION: ExamDistribution = {
   "unclassified": 0,
   "byEra": [
     {
-      "eraId": "paleolithic",
-      "name": "구석기",
-      "questions": 6,
-      "percent": 0.5
-    },
-    {
-      "eraId": "neolithic",
-      "name": "신석기",
-      "questions": 7,
-      "percent": 0.6
-    },
-    {
-      "eraId": "bronze",
-      "name": "청동기",
-      "questions": 11,
-      "percent": 1
-    },
-    {
-      "eraId": "iron",
-      "name": "철기",
-      "questions": 1,
-      "percent": 0.1
+      "eraId": "prehistory",
+      "name": "선사",
+      "questions": 24,
+      "percent": 2.2
     },
     {
       "eraId": "gojoseon",
       "name": "고조선",
-      "questions": 12,
-      "percent": 1.1
+      "questions": 11,
+      "percent": 1
     },
     {
       "eraId": "confederacy",
       "name": "연맹왕국",
-      "questions": 20,
-      "percent": 1.8
+      "questions": 23,
+      "percent": 2.1
     },
     {
       "eraId": "three-kingdoms",
       "name": "삼국시대",
-      "questions": 89,
-      "percent": 8.1
+      "questions": 85,
+      "percent": 7.8
     },
     {
       "eraId": "north-south",
       "name": "남북국시대",
-      "questions": 67,
-      "percent": 6.1
+      "questions": 63,
+      "percent": 5.8
     },
     {
       "eraId": "later-three",
       "name": "후삼국시대",
-      "questions": 22,
-      "percent": 2
+      "questions": 19,
+      "percent": 1.7
     },
     {
       "eraId": "goryeo",
       "name": "고려",
-      "questions": 179,
-      "percent": 16.4
+      "questions": 185,
+      "percent": 16.9
     },
     {
       "eraId": "early-joseon",
       "name": "조선전기",
-      "questions": 110,
-      "percent": 10.1
+      "questions": 106,
+      "percent": 9.7
     },
     {
       "eraId": "late-joseon",
       "name": "조선후기",
-      "questions": 115,
-      "percent": 10.5
+      "questions": 114,
+      "percent": 10.4
     },
     {
       "eraId": "open-port",
       "name": "개항기",
-      "questions": 144,
-      "percent": 13.2
+      "questions": 154,
+      "percent": 14.1
     },
     {
       "eraId": "colonial",
       "name": "일제강점기",
-      "questions": 174,
-      "percent": 15.9
+      "questions": 171,
+      "percent": 15.6
     },
     {
       "eraId": "modern",
       "name": "현대",
-      "questions": 136,
-      "percent": 12.4
+      "questions": 138,
+      "percent": 12.6
     }
   ],
   "byStage": [
     {
       "stageId": "prehistory",
       "name": "선사 시대",
-      "questions": 25,
-      "percent": 2.3
+      "questions": 24,
+      "percent": 2.2
     },
     {
       "stageId": "gojoseon-confederacy",
       "name": "고조선과 연맹 왕국",
-      "questions": 32,
-      "percent": 2.9
+      "questions": 34,
+      "percent": 3.1
     },
     {
       "stageId": "three-kingdoms",
       "name": "삼국 시대",
-      "questions": 89,
-      "percent": 8.1
+      "questions": 85,
+      "percent": 7.8
     },
     {
       "stageId": "north-south",
       "name": "남북국 시대",
-      "questions": 67,
-      "percent": 6.1
+      "questions": 63,
+      "percent": 5.8
     },
     {
       "stageId": "goryeo",
       "name": "후삼국과 고려",
-      "questions": 201,
-      "percent": 18.4
+      "questions": 204,
+      "percent": 18.7
     },
     {
       "stageId": "early-joseon",
       "name": "조선 전기",
-      "questions": 110,
-      "percent": 10.1
+      "questions": 106,
+      "percent": 9.7
     },
     {
       "stageId": "late-joseon",
       "name": "조선 후기",
-      "questions": 115,
-      "percent": 10.5
+      "questions": 114,
+      "percent": 10.4
     },
     {
       "stageId": "open-port",
       "name": "개항기",
-      "questions": 144,
-      "percent": 13.2
+      "questions": 154,
+      "percent": 14.1
     },
     {
       "stageId": "colonial",
       "name": "일제 강점기",
-      "questions": 174,
-      "percent": 15.9
+      "questions": 171,
+      "percent": 15.6
     },
     {
       "stageId": "modern",
       "name": "현대",
-      "questions": 136,
-      "percent": 12.4
+      "questions": 138,
+      "percent": 12.6
     }
   ],
   "premodern": {
-    "questions": 639,
-    "percent": 58.5
+    "questions": 630,
+    "percent": 57.6
   },
   "modern": {
-    "questions": 454,
-    "percent": 41.5
+    "questions": 463,
+    "percent": 42.4
   },
   "byUnit": {
-    "1": 8,
-    "2": 7,
-    "3": 12,
-    "4": 1,
+    "1": 28,
     "5": 6,
-    "6": 8,
-    "7": 9,
-    "8": 13,
-    "9": 6,
+    "6": 7,
+    "7": 13,
+    "8": 16,
+    "9": 5,
     "10": 5,
-    "11": 5,
+    "11": 2,
     "12": 8,
-    "13": 1,
+    "13": 2,
     "14": 6,
-    "15": 5,
-    "16": 6,
-    "17": 4,
-    "18": 16,
-    "19": 2,
-    "20": 19,
+    "15": 4,
+    "16": 7,
+    "17": 3,
+    "18": 17,
+    "19": 5,
+    "20": 18,
     "21": 10,
-    "22": 11,
+    "22": 12,
     "23": 9,
-    "24": 9,
+    "24": 10,
     "25": 6,
-    "26": 10,
-    "27": 12,
-    "28": 11,
-    "29": 13,
-    "30": 5,
-    "31": 14,
-    "32": 9,
-    "33": 3,
-    "34": 13,
-    "35": 15,
-    "36": 16,
-    "37": 9,
-    "38": 12,
-    "39": 5,
+    "26": 9,
+    "27": 8,
+    "28": 9,
+    "29": 14,
+    "30": 6,
+    "31": 10,
+    "32": 7,
+    "33": 4,
+    "34": 12,
+    "35": 14,
+    "36": 17,
+    "37": 13,
+    "38": 11,
+    "39": 4,
     "40": 8,
     "41": 15,
-    "42": 15,
-    "43": 32,
-    "44": 10,
-    "45": 10,
+    "42": 18,
+    "43": 29,
+    "44": 9,
+    "45": 8,
     "46": 14,
-    "47": 17,
-    "48": 6,
+    "47": 15,
+    "48": 4,
     "49": 20,
-    "50": 9,
-    "51": 4,
-    "53": 10,
-    "54": 12,
-    "55": 21,
+    "50": 12,
+    "51": 3,
+    "53": 14,
+    "54": 10,
+    "55": 22,
     "56": 7,
-    "57": 16,
+    "57": 15,
     "58": 7,
     "59": 14,
     "60": 5,
     "61": 9,
     "62": 16,
     "63": 5,
-    "64": 16,
+    "64": 17,
     "65": 1,
     "66": 18,
-    "67": 14,
-    "68": 12,
-    "69": 8,
+    "67": 13,
+    "68": 14,
+    "69": 10,
     "70": 15,
-    "71": 16,
-    "72": 22,
-    "73": 42,
-    "74": 11,
-    "75": 27,
-    "76": 12,
-    "77": 5,
+    "71": 12,
+    "72": 25,
+    "73": 48,
+    "74": 9,
+    "75": 29,
+    "76": 11,
+    "77": 7,
     "78": 6,
-    "79": 8,
-    "80": 42,
-    "81": 23,
-    "82": 21,
-    "83": 14,
-    "84": 18,
-    "85": 16,
+    "79": 7,
+    "80": 41,
+    "81": 21,
+    "82": 19,
+    "83": 15,
+    "84": 16,
+    "85": 17,
     "86": 13,
     "87": 13,
-    "88": 28,
-    "89": 19,
-    "90": 32
+    "88": 25,
+    "89": 21,
+    "90": 34
   }
 };

@@ -1,7 +1,7 @@
 // 학습 콘텐츠 무결성 검증
 // 사용법: npx tsx scripts/validate-content.ts
 import { UNIT_CONTENT_MAP } from "../src/data/content";
-import { DAYS, TOTAL_UNITS, UNITS } from "../src/data/curriculum";
+import { DAYS, UNITS, UNIT_MAP } from "../src/data/curriculum";
 
 let errors = 0;
 let warnings = 0;
@@ -59,7 +59,8 @@ for (const meta of UNITS) {
     warn(`단원 ${meta.unit}: 정답 인덱스 편중 (${answerDist.join("/")})`);
 }
 
-// 커리큘럼 배분 검증 — 28일이 90단원을 빠짐없이 한 번씩 다뤄야 한다
+// 커리큘럼 배분 검증 — 28일이 모든 단원을 빠짐없이 한 번씩 다뤄야 한다.
+// 단원 번호는 연속이 아니므로(1·5~90) 범위가 아니라 UNIT_MAP 존재 여부로 확인한다.
 const assigned = DAYS.flatMap((d) => d.units);
 const assignedSet = new Set(assigned);
 if (assigned.length !== assignedSet.size) err("커리큘럼: 여러 일차에 중복 배정된 단원이 있음");
@@ -67,10 +68,11 @@ for (const u of UNITS) {
   if (!assignedSet.has(u.unit)) err(`커리큘럼: 단원 ${u.unit} 이 어느 일차에도 배정되지 않음`);
 }
 for (const u of assignedSet) {
-  if (u < 1 || u > TOTAL_UNITS) err(`커리큘럼: 존재하지 않는 단원 ${u} 배정`);
+  if (!UNIT_MAP[u]) err(`커리큘럼: 존재하지 않는 단원 ${u} 배정`);
 }
 for (const d of DAYS) {
-  if (d.units.length < 2) warn(`day ${d.day}: 단원 ${d.units.length}개 (<2)`);
+  // 1일차(선사)는 단원 1개로 통합되어 있어 하한 경고 대상이 아니다.
+  if (d.units.length < 1) err(`day ${d.day}: 배정된 단원이 없음`);
   if (d.units.length > 4) warn(`day ${d.day}: 단원 ${d.units.length}개 (>4)`);
 }
 

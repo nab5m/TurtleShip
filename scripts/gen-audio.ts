@@ -6,7 +6,7 @@
 // 사전 준비(1회):
 //   python3 -m venv .venv-tts && .venv-tts/bin/pip install edge-tts
 // 실행:
-//   EDGE_TTS=.venv-tts/bin/edge-tts npx tsx scripts/gen-audio.ts          # 전체(1~90단원)
+//   EDGE_TTS=.venv-tts/bin/edge-tts npx tsx scripts/gen-audio.ts          # 전체 단원
 //   EDGE_TTS=.venv-tts/bin/edge-tts npx tsx scripts/gen-audio.ts 1 2 3    # 특정 단원만
 // 옵션(환경변수): CONCURRENCY(기본 5), FORCE=1(기존 파일 덮어쓰기), TTS_VOICE, TTS_RATE
 //
@@ -18,7 +18,7 @@ import { mkdirSync, writeFileSync, readdirSync, existsSync, unlinkSync } from "n
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { getUnitContent } from "@/data/content";
-import { TOTAL_UNITS } from "@/data/curriculum";
+import { UNIT_NUMBERS } from "@/data/curriculum";
 
 const execFileP = promisify(execFile);
 const EDGE_TTS = process.env.EDGE_TTS ?? "edge-tts";
@@ -28,13 +28,12 @@ const CONCURRENCY = Math.max(1, Number(process.env.CONCURRENCY ?? "5"));
 const FORCE = process.env.FORCE === "1";
 const MAX_RETRY = 4;
 
+// 단원 번호는 연속이 아니다(1·5~90) → 번호 목록을 그대로 쓴다.
 const argUnits = process.argv
   .slice(2)
   .map(Number)
-  .filter((n) => Number.isInteger(n) && n >= 1 && n <= TOTAL_UNITS);
-const targetUnits = argUnits.length
-  ? argUnits
-  : Array.from({ length: TOTAL_UNITS }, (_, i) => i + 1);
+  .filter((n) => UNIT_NUMBERS.includes(n));
+const targetUnits = argUnits.length ? argUnits : [...UNIT_NUMBERS];
 
 const OUT_DIR = join(process.cwd(), "public", "audio", "cards");
 mkdirSync(OUT_DIR, { recursive: true });

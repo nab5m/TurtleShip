@@ -15,11 +15,26 @@ for (const d of DAYS) {
   SLUG_TO_DAY.set(slug, d.day);
 }
 
-// 90일 커리큘럼 시절의 단원 제목 슬러그(/learn/구석기-시대의-생활 등)도 계속 받아
+// 90일 커리큘럼 시절의 단원 제목 슬러그(/learn/고조선의-성립과-발전 등)도 계속 받아
 // 그 단원을 학습하는 일차로 연결한다. 이미 색인된 URL 이 깨지지 않게 하기 위한 호환 경로.
 for (const u of UNITS) {
   const slug = slugifyTitle(u.title);
   const day = dayOfUnit(u.unit);
+  if (day !== undefined && !SLUG_TO_DAY.has(slug)) SLUG_TO_DAY.set(slug, day);
+}
+
+// 2026-07-31 단원 통합(옛 단원 1~4 → 단원 1 "선사 시대의 생활") 이전의 단원 제목 슬러그.
+// 그 단원들이 UNITS 에서 사라져 위 루프로는 더 이상 등록되지 않으므로 여기서 직접 잇는다.
+const LEGACY_UNIT_TITLES: { title: string; unit: number }[] = [
+  { title: "구석기 시대의 생활", unit: 1 },
+  { title: "신석기 시대의 생활", unit: 1 },
+  { title: "청동기 시대의 생활", unit: 1 },
+  { title: "철기 시대의 생활", unit: 1 },
+];
+
+for (const { title, unit } of LEGACY_UNIT_TITLES) {
+  const slug = slugifyTitle(title);
+  const day = dayOfUnit(unit);
   if (day !== undefined && !SLUG_TO_DAY.has(slug)) SLUG_TO_DAY.set(slug, day);
 }
 

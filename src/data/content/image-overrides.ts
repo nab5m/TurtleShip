@@ -22,21 +22,15 @@ import type { ItemImage } from "@/lib/types";
 
 export const IMAGE_OVERRIDES: Record<string, ItemImage> = {
   // 가락바퀴
-  "d02-c08": { src: "https://contents.history.go.kr/data/img/ta/ta_h71/img_031_03.jpg", alt: "가락바퀴", width: 376, height: 386, credit: "출처: 우리역사넷(국사편찬위원회)" },
-  // 움집
-  "d02-c10": { src: "https://contents.history.go.kr/data/img/eh/eh_r0020/eh_r0020_p01.jpg", alt: "움집", width: 1200, height: 801, credit: "출처: 우리역사넷(국사편찬위원회)" },
+  "d01-c10": { src: "https://contents.history.go.kr/data/img/ta/ta_h71/img_031_03.jpg", alt: "가락바퀴", width: 376, height: 386, credit: "출처: 우리역사넷(국사편찬위원회)" },
   // 조개껍데기 가면
-  "d02-c18": { src: "https://busan.grandculture.net/ImageView.aspx?fi=GC042P56430&t=middle&ext=jpg&iwm=1", alt: "조개껍데기 가면", width: 640, height: 630, credit: "출처: 부산역사문화대전(한국학중앙연구원)" },
+  "d01-c11": { src: "https://busan.grandculture.net/ImageView.aspx?fi=GC042P56430&t=middle&ext=jpg&iwm=1", alt: "조개껍데기 가면", width: 640, height: 630, credit: "출처: 부산역사문화대전(한국학중앙연구원)" },
   // 미송리식 토기
-  "d03-c10": { src: "https://i.namu.wiki/i/3emZjUpd7DyfY1gTUnBDloYa4zu9sdbOTXkMJudtZfWJegSHnhETQTIjD4ngJ1I_varCRbT3N1jt08fCgsPrUA.webp", alt: "미송리식 토기", width: 767, height: 955, credit: "출처: 나무위키" },
-  // 청동기 시대의 바위그림
-  "d03-c20": { src: "https://contents.nahf.or.kr/download.do?fileName=ag_0050250.jpg&levelId=ag.d_0005_0010_0060", alt: "청동기 시대의 바위그림", width: 840, height: 641, credit: "출처: 동북아역사재단" },
+  "d01-c17": { src: "https://i.namu.wiki/i/3emZjUpd7DyfY1gTUnBDloYa4zu9sdbOTXkMJudtZfWJegSHnhETQTIjD4ngJ1I_varCRbT3N1jt08fCgsPrUA.webp", alt: "미송리식 토기", width: 767, height: 955, credit: "출처: 나무위키" },
   // 세형 동검
-  "d04-c04": { src: "https://contents.history.go.kr/data/img/kc/thumb/kc_r000500.jpg", alt: "세형 동검", width: 515, height: 669, credit: "출처: 우리역사넷(국사편찬위원회)" },
-  // 거푸집 — 지시서의 gstatic 썸네일 대신 찾은 안정 원본(전 영암 거푸집 일괄)
-  "d04-c06": { src: "https://upload.wikimedia.org/wikipedia/commons/0/04/%EC%A0%84_%EC%98%81%EC%95%94_%EA%B1%B0%ED%91%B8%EC%A7%91_%EC%9D%BC%EA%B4%84.jpg", alt: "거푸집", width: 750, height: 471 },
+  "d01-c22": { src: "https://contents.history.go.kr/data/img/kc/thumb/kc_r000500.jpg", alt: "세형 동검", width: 515, height: 669, credit: "출처: 우리역사넷(국사편찬위원회)" },
   // 거푸집(용범)
-  "d04-q02": { src: "https://devin.aks.ac.kr/image/b44beebf-d061-4f5f-b3a3-8e5a0fc17b97?preset=page", alt: "거푸집", width: 226, height: 350, credit: "출처: 한국학중앙연구원" },
+  "d01-q42": { src: "https://devin.aks.ac.kr/image/b44beebf-d061-4f5f-b3a3-8e5a0fc17b97?preset=page", alt: "거푸집", width: 226, height: 350, credit: "출처: 한국학중앙연구원" },
   // 한 군현 설치 (한글 지명판)
   "d06-c16": { src: "https://upload.wikimedia.org/wikipedia/commons/5/52/Four_Commanderies_of_Han%2C_with_Korean_Names.png", alt: "한 군현 설치", width: 2000, height: 1500 },
   // 낙랑의 문화
@@ -112,9 +106,9 @@ export const IMAGE_OVERRIDES: Record<string, ItemImage> = {
 
 export const IMAGE_ALIASES: Record<string, string> = {
   "d01-q01": "d01-c03", // 주먹도끼
-  "d02-q01": "d02-c03", // 빗살무늬 토기
-  "d02-q11": "d02-c07", // 갈돌과 갈판
-  "d03-q01": "d03-c06", // 반달 돌칼
-  "d03-q02": "d03-c06", // 반달 돌칼
-  "d03-q03": "d03-c12", // 고인돌
+  "d01-q14": "d01-c08", // 빗살무늬 토기
+  "d01-q24": "d01-c09", // 갈돌과 갈판
+  "d01-q27": "d01-c15", // 반달 돌칼
+  "d01-q28": "d01-c15", // 반달 돌칼
+  "d01-q29": "d01-c18", // 고인돌
 };
