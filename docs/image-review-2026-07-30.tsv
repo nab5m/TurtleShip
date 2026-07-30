@@ -1,0 +1,164 @@
+// 카드/퀴즈 이미지 검토 결과 지시서 (2026-07-30)
+// 컬럼: id <TAB> action <TAB> value <TAB> note
+// action:
+//   remove      = 해당 항목에서 imageSearch 를 제거해 이미지를 노출하지 않는다
+//   url         = value 의 URL 로 교체 (오버라이드 등록)
+//   reuse       = value 에 적힌 다른 항목 id 의 이미지를 그대로 사용 (alias)
+//   find-source = gstatic 썸네일이라 불안정 → 안정적인 공공기관 원본을 새로 찾아 url 로 등록
+// quiz-rewrite 표시가 있는 항목은 문항 텍스트도 함께 수정해야 한다.
+d01-q01	reuse	d01-c03	주먹도끼 카드 사진을 퀴즈에서도 사용
+d02-c08	url	https://contents.history.go.kr/data/img/ta/ta_h71/img_031_03.jpg	가락바퀴
+d02-c10	url	https://contents.history.go.kr/data/img/eh/eh_r0020/eh_r0020_p01.jpg	움집
+d02-c18	url	https://busan.grandculture.net/ImageView.aspx?fi=GC042P56430&t=middle&ext=jpg&iwm=1	조개껍데기 가면
+d02-q01	reuse	d02-c03	빗살무늬 토기 카드 사진 재사용
+d02-q11	reuse	d02-c07	갈돌과 갈판 카드 사진 재사용
+d03-c10	url	https://i.namu.wiki/i/3emZjUpd7DyfY1gTUnBDloYa4zu9sdbOTXkMJudtZfWJegSHnhETQTIjD4ngJ1I_varCRbT3N1jt08fCgsPrUA.webp	미송리식 토기
+d03-c20	url	https://contents.nahf.or.kr/download.do?fileName=ag_0050250.jpg&levelId=ag.d_0005_0010_0060	청동기 시대의 바위그림
+d03-q01	reuse	d03-c06	반달 돌칼 카드 사진 재사용 (지시대로. 문항은 청동기 시대 판정이라 성립)
+d03-q02	reuse	d03-c06	반달 돌칼 카드 사진 재사용
+d03-q03	reuse	d03-c12	고인돌 카드 사진 재사용
+d04-c04	url	https://contents.history.go.kr/data/img/kc/thumb/kc_r000500.jpg	세형 동검
+d04-c06	find-source		거푸집 — gstatic 썸네일 대신 공공기관 원본 필요
+d04-c13	remove		붓 — 이미지 중요하지 않음
+d04-q02	url	https://devin.aks.ac.kr/image/b44beebf-d061-4f5f-b3a3-8e5a0fc17b97?preset=page	거푸집(용범)
+d04-q05	remove		붓 — 사진 불필요
+d05-c21	remove		참성단
+d06-c16	url	https://upload.wikimedia.org/wikipedia/commons/5/52/Four_Commanderies_of_Han%2C_with_Korean_Names.png	한 군현 설치 (한글 지명판)
+d06-c19	url	https://upload.wikimedia.org/wikipedia/commons/5/52/Four_Commanderies_of_Han%2C_with_Korean_Names.png	낙랑의 문화
+d07-c17	remove		동맹
+d08-c18	remove		삼한의 벼농사
+d08-c19	remove		변한의 철
+d09-c02	remove		국내성 천도
+d09-c03	remove		오녀산성(졸본성)
+d11-c03	remove		풍납토성
+d11-c05	remove		석촌동 고분군
+d12-c05	url	https://img.khan.co.kr/news/2021/03/19/l_2021031901002320300198132.jpg	무령왕릉
+d14-c07	remove		단양 신라 적성비
+d14-c08	remove		북한산 순수비
+d15-c07	remove		김해 대성동 고분군
+d15-c12	remove		고령 지산동 고분군
+d15-c15	remove		가야의 철제 갑옷과 마구
+d16-c17	remove		임신서기석
+d20-c08	url	https://img.khan.co.kr/news/2021/03/19/l_2021031901002320300198132.jpg	무령왕릉 (d12-c05 와 동일)
+d20-c09	remove		무령왕릉 출토 유물
+d20-c11	url	https://i.namu.wiki/i/EmNAI1iPUpHCMFwW7EIhXNd2AXLQ8HNSGzSy4q13gdy7oNVbMzrz6LlE5JFKqZZsTKPOISn3JsFo1xrU9ygtkw.webp	천마총과 천마도
+d20-c13	url	https://i.namu.wiki/i/R_wYTlDN6aqbqCaakpdQIOZ0rQsbOYjn9blK8dWOr8oak2yNohphV6lERbPE881zc3XulPUM2XbswR4wArqD5g.webp	금동 연가 7년명 여래 입상
+d20-c16	url	https://minio.nculture.org/amsweb-opt/multimedia_assets/176/112972/159703/c/%EC%9D%B5%EC%82%B0-%EB%AF%B8%EB%A5%B5%EC%82%AC%EC%A7%80%EC%84%9D%ED%83%91_%EC%9D%B5%EC%82%B0%EB%AF%B8%EB%A5%B5%EC%82%AC%EC%A7%80%EC%84%9D%ED%83%91-%EC%A0%84%EA%B2%BD-%281%29_%EB%AC%B8%ED%99%94%EC%9E%AC%EC%B2%AD_%EC%A0%9C1%EC%9C%A0%ED%98%95-medium-size.jpg	익산 미륵사지 석탑
+d22-c04	remove		신라 촌락 문서
+d23-c13	url	https://i.namu.wiki/i/Ge6-GVh_X_2PLW4ybXwEQCgpZho56PsJ4E8Y1yVg-0iMb4Q9ylnBj75riRpn4VDs0hDOisz16XD02qNcs9Nqhg.webp	혜초와 왕오천축국전
+d23-c16	url	https://www.heritage.go.kr/unisearch/images/national_treasure/thumb/2021070210514100.jpg	불국사 3층 석탑(석가탑)
+d24-c21	find-source		쌍봉사 철감선사탑 — gstatic 썸네일 대신 공공기관 원본 필요
+d25-c18	url	https://i.namu.wiki/i/8cX7rX8erLWBpsNryxrfvvUnvn6WuQEGcnr4Dsa3NILqVewENIS1t4Jrt6hDAWbPjY4fH8iUzf4iObhxFUUE-w.webp	발해의 영역
+d27-c01	remove		상경성
+d27-c03	url	https://mblogthumb-phinf.pstatic.net/MjAyMzEwMjZfMjM2/MDAxNjk4MzAzOTI4MDQw.s-ApHP-0jrr6PD0WjlXlIoM3B6drxJlHKOeUf_qsg3cg.N0jyJd_0EB22ULnB1-TVP9i8QIayreO0rjvnoQVQTBkg.JPEG.jhleetck1/20231026%EF%BC%BF155758.jpg?type=w800	이불병좌상
+d27-c09	find-source		정혜공주묘 돌사자상 — gstatic 썸네일 대신 공공기관 원본 필요
+d27-c11	url	https://contents.nahf.or.kr/download.do?fileName=ismy_0010048.jpg&levelId=ismy.d_0003_0030_0020	정효공주묘 벽화
+d27-c13	url	https://www.yeongnam.com/mnt/file/200609/20060912.010012258370001i1.jpg	영광탑
+d27-q01	url	https://mblogthumb-phinf.pstatic.net/MjAyMzEwMjZfMjM2/MDAxNjk4MzAzOTI4MDQw.s-ApHP-0jrr6PD0WjlXlIoM3B6drxJlHKOeUf_qsg3cg.N0jyJd_0EB22ULnB1-TVP9i8QIayreO0rjvnoQVQTBkg.JPEG.jhleetck1/20231026%EF%BC%BF155758.jpg?type=w800	이불병좌상 (d27-c03 과 동일)
+d27-q05	url	https://www.yeongnam.com/mnt/file/200609/20060912.010012258370001i1.jpg	영광탑 (d27-c13 과 동일)
+d28-c19	url	https://contents.history.go.kr/data/img/eh/eh_r0118/eh_r0118_m02.jpg	후삼국의 정립
+d29-c01	remove		왕건의 즉위
+d29-c06	remove		견훤의 경주 습격
+d29-c17	remove		신라 경순왕의 항복
+d29-c21	remove		후삼국 통일
+d30-c18	remove		개태사
+d31-c17	remove		국자감 정비
+d32-c23	remove		5도와 양계의 비교
+d34-c05	remove		서희의 외교 담판
+d34-c06	url	https://cdn.koreahiti.com/news/photo/201705/2046_691_1338.jpg	강동 6주
+d34-c18	url	https://i.namu.wiki/i/i0Px_srJhIXOFzcrYTgTs7CQqKokK2hYLm8xQzvpSkvY0LCZP-0TVdN8MPTV9pGo1CTiobUekZGCRpVi6yc3_A.webp	천리장성
+d34-c19	url	https://contents.history.go.kr/data/img/kc/thumb/kc_r200380.jpg	초조대장경
+d34-q01	remove		서희 담판 — 본문에 인용문 있어 사진 없이 성립. 지시어 정리 검토
+d34-q06	url	https://contents.history.go.kr/data/img/kc/thumb/kc_r200380.jpg	초조대장경 (d34-c19 와 동일)
+d35-c06	remove		동북 9성
+d37-c09	remove		황룡사 9층 목탑 소실
+d37-c19	remove		제주 항파두리
+d37-c21	remove		강화도의 고려 궁궐
+d38-c14	url	https://i.namu.wiki/i/fkD1gvd5AsfqOdV6Rg_os_mtxIry2kLtTikpJA9ZWkk1k_xIlN1OvPjnLJbYEdjgdQ2WnqDKW6aK3h8p7hER_Q.webp	몽골풍
+d39-c21	find-source		천산대렵도 — gstatic 썸네일 대신 공공기관 원본 필요
+d39-c22	remove		공민왕릉
+d41-c08	remove		고려의 화폐
+d43-c01	url	https://i.namu.wiki/i/y_3AaYvUaV3H84xc9vw0oiDdOXB2gQbKbD4hh15-VY_eHQ9rPW43FeB7MR1K6vT1Md7ES91p2-2GItbSxapbww.webp	고려청자
+d43-c02	url	https://i.namu.wiki/i/y_3AaYvUaV3H84xc9vw0oiDdOXB2gQbKbD4hh15-VY_eHQ9rPW43FeB7MR1K6vT1Md7ES91p2-2GItbSxapbww.webp	상감청자 (d43-c01 과 동일 URL 지정됨 — 확인 필요 note)
+d43-c04	url	https://upload.wikimedia.org/wikipedia/commons/9/9f/Korean_book-Jikji-Selected_Teachings_of_Buddhist_Sages_and_Seon_Masters-1377.jpg	직지심체요절
+d43-c06	remove		부석사 무량수전
+d43-c07	remove		수덕사 대웅전
+d46-c05	remove		생육신
+d46-c19	remove		경국대전 완성·반포
+d46-c23	remove		악학궤범
+d47-c12	remove		조선왕조실록
+d47-q10	remove	quiz-rewrite	"사진의 기록물에 대한 설명으로…" → 사진 소멸로 지시 대상 없음. 해설상 조선왕조실록
+d48-c16	remove		향교
+d48-c17	remove		서원
+d48-q04	remove	quiz-rewrite	"사진의 교육 기관에 대한 설명으로…" → 지시 대상 없음. 원래 소수서원
+d50-c07	remove		이황(퇴계)
+d50-c12	remove		도산서원
+d50-c13	remove		이이(율곡)
+d50-c19	remove		소수서원
+d53-c01	remove		조선왕조실록
+d53-c10	url	https://i.namu.wiki/i/ZOxUAur7Fx0c4-Oz6-EypkLbKluRnm1qg3Jhx82orrAz20O2w1SaYQfSEfjoxO9hRwV7Qr9Yck3Z8Uc8ABpZqQ.webp	분청사기
+d53-c11	url	https://www.jemin.com/news/photo/200904/217674_39724_5442.jpg	순백자
+d53-c12	url	https://i.namu.wiki/i/IxjK5Xi0XRy6steX1sqZXyX-Ec0u_qNoC2yiWrs7zsFMI5ONC1Ft9axXJkO-PmtJBCcNQRHnbP0uherrALQmiQ.webp	안견의 몽유도원도
+d54-c06	remove		한산도 대첩
+d55-c05	remove		동의보감
+d55-c14	remove		병자호란과 남한산성
+d55-c15	remove		삼전도의 굴욕
+d55-q07	remove	quiz-rewrite	"사진의 비석이 세워지는 계기가 된 전쟁의…" → 지시 대상 없음. 원래 삼전도비/병자호란
+d57-c03	remove		탕평비
+d57-c12	remove		규장각
+d57-c20	remove		정조의 편찬 사업
+d57-q02	remove		탕평비 — 본문에 인용문 있어 성립. 지시어 정리 검토
+d57-q07	remove		수원 화성 — 본문에 설명 있어 성립. 지시어 정리 검토
+d59-c17	remove		상평통보
+d59-q10	remove		상평통보 — 본문에 설명 있어 성립. 지시어 정리 검토
+d60-c05	remove		공명첩
+d60-c22	remove		부계 중심 가족 제도의 강화
+d64-c04	url	https://www.heritage.go.kr/unisearch/images/national_treasure/thumb/1611691.jpg	정선의 금강전도
+d64-c05	url	https://www.koya-culture.com/data/photos/20210521/art_1622381602089_12cb4d.jpg	김홍도의 풍속화
+d64-c06	url	https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Hyewon-Miindo.jpg/250px-Hyewon-Miindo.jpg	신윤복의 풍속화
+d64-c07	url	https://img.hankyung.com/photo/202601/01.43007898.1.jpg	민화
+d65-c03	remove		운현궁
+d65-c09	remove		당백전
+d66-c11	remove		외규장각 의궤 약탈과 반환
+d66-c16	remove		어재연과 광성보 전투
+d66-q06	url	https://wimg.sedaily.com/news/legacy/2018/10/14/1S5WS6Z2W8_2.jpg	수자기 — 사진이 문항 핵심이므로 유지·교체
+d66-q08	remove		척화비 — 본문에 인용문 있어 성립. 지시어 정리 검토
+d67-c05	remove		강화도 조약(1876)
+d67-c13	remove		조선책략
+d67-q13	remove		강화도 조약 — 본문에 자료 있어 성립. 지시어 정리 검토
+d68-c05	remove		2차 수신사 김홍집
+d68-c09	remove		보빙사(1883)
+d68-c12	remove		최익현의 왜양일체론
+d68-c23	remove		청의 내정 간섭
+d69-c04	remove		김옥균
+d69-c07	remove		우정총국
+d69-c18	remove		거문도 사건
+d69-c20	remove		유길준의 중립화론
+d69-q01	remove	quiz-rewrite	"사진 속 건물의 개국 축하연을 기회로…" → 지시 대상 없음. 원래 우정총국/갑신정변
+d71-c16	remove		아관파천(1896)
+d72-c13	remove		환구단
+d73-c06	remove		을사늑약(1905)
+d74-c03	remove		조선 총독의 지위와 권한
+d74-c16	remove		동양척식주식회사
+d74-c22	remove		조선물산공진회(1915)
+d75-c12	remove		흥사단(1913)
+d75-c21	remove		기미 독립 선언서
+d76-c05	remove		통합 대한민국 임시 정부
+d76-c11	remove		독립 공채
+d76-c21	remove		제2대 대통령 박은식
+d77-c01	remove		문화 통치의 배경
+d77-c05	remove		조선일보·동아일보 창간
+d77-c07	remove		제2차 조선 교육령(1922)
+d78-c02	remove		대한독립군과 홍범도
+d79-c02	remove		김원봉
+d79-c04	remove		강우규 의거
+d79-c17	remove		이봉창 의거
+d79-c19	remove		윤봉길 의거
+d79-q08	remove	quiz-rewrite	"사진 속 인물이 일으킨 의거의 영향으로…" → 지시 대상 없음. 원래 윤봉길
+d80-c05	remove		조만식
+d81-c06	remove		황국 신민 서사
+d81-c07	remove		신사 참배 강요
+d82-c02	remove		양세봉의 조선혁명군
+d82-c07	remove		한국광복군의 창설
+d83-c06	remove		박은식의 역사 연구
+d83-c07	remove		신채호의 민족주의 사학
