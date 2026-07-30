@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="mt-auto border-t border-border bg-card-muted/40">
-      <div className="mx-auto w-full max-w-3xl px-4 py-7 text-xs leading-relaxed text-muted">
+      <div className="mx-auto w-full max-w-3xl px-4 py-7 text-xs leading-relaxed text-muted md:max-w-none">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <span className="font-bold text-foreground">거북선</span>
           <Link href="/card" className="hover:text-foreground hover:underline">
