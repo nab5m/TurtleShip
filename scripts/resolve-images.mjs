@@ -4,9 +4,14 @@
 //   1) 한국어 위키백과 문서의 대표이미지 (카드 제목 기준) — 유물/지도/인물이 잘 맞음
 //   2) 영어 위키백과 상위 문서의 대표이미지 (imageSearch 기준)
 //   3) Wikimedia Commons 자유검색 (안내판·라벨 사진 필터 + 첫 유효 결과)
-// ⚠️ 저작권: upload.wikimedia.org/wikipedia/commons/ (자유 라이선스)만 채택한다.
-//    한국어/영어 위키 자체 업로드(/wikipedia/ko|en/)는 공정이용(비자유)이 많아 제외.
+// ⚠️ 저작권: 이 스크립트가 "자동으로" 고르는 이미지는 upload.wikimedia.org/wikipedia/commons/
+//    (자유 라이선스)만 채택한다. 한국어/영어 위키 자체 업로드(/wikipedia/ko|en/)는
+//    공정이용(비자유)이 많아 제외.
+//    반면 src/data/content/image-overrides.ts 에 손으로 등록한 항목(오버라이드·alias)은
+//    운영자가 출처를 직접 확인하고 고른 것이므로 이 Commons 전용 규칙의 예외다.
+//    그 id 들은 아래에서 조회 대상에서 제외하므로 이 스크립트가 덮어쓰지 않는다.
 // 기존 이미지는 새 결과를 찾았을 때만 교체한다(못 찾으면 유지 → 회귀 방지).
+// imageSearch 가 없는 항목은 후보로 수집되지 않는다 → 사진을 뻀 항목이 되살아나지 않는다.
 //
 // 사용법: node scripts/resolve-images.mjs
 import { readFileSync, readdirSync, writeFileSync, existsSync } from "node:fs";
@@ -16,6 +21,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CONTENT_DIR = join(__dirname, "..", "src", "data", "content");
 const OUT_FILE = join(CONTENT_DIR, "images.ts");
+const OVERRIDE_FILE = join(CONTENT_DIR, "image-overrides.ts");
 const THUMB = 640;
 const CONCURRENCY = 2;
 const RETRIES = 3;
@@ -166,6 +172,14 @@ function loadExisting() {
   return map;
 }
 
+// image-overrides.ts 에 손으로 등록한 id (IMAGE_OVERRIDES · IMAGE_ALIASES 양쪽 키)
+// → 조회도 하지 않고 images.ts 에도 손대지 않는다 (API 호출 낭비·덮어쓰기 방지)
+function loadCuratedIds() {
+  if (!existsSync(OVERRIDE_FILE)) return new Set();
+  const text = readFileSync(OVERRIDE_FILE, "utf8");
+  return new Set([...text.matchAll(/^\s*"(d\d+-[cq]\d+)":/gm)].map((m) => m[1]));
+}
+
 // 콘텐츠에서 (id, title, imageSearch) 추출
 function extractItems() {
   const files = readdirSync(CONTENT_DIR).filter((f) => /^days-.*\.ts$/.test(f));
@@ -208,12 +222,20 @@ function serialize(map, total, itemsLen) {
 async function main() {
   const items = extractItems();
   const map = loadExisting();
+  const curated = loadCuratedIds();
   const onlyMissing = process.argv.includes("--missing");
-  const queue = onlyMissing ? items.filter((it) => !map[it.id]) : [...items];
+  const candidates = items.filter((it) => !curated.has(it.id));
+  const queue = onlyMissing ? candidates.filter((it) => !map[it.id]) : [...candidates];
   console.log(
-    `imageSearch ${items.length}개 · 기존 ${Object.keys(map).length}개 · 이번 처리 ${queue.length}개` +
+    `imageSearch ${items.length}개 · 손지정 제외 ${items.length - candidates.length}개 · ` +
+      `기존 ${Object.keys(map).length}개 · 이번 처리 ${queue.length}개` +
       (onlyMissing ? " (누락만)" : " (전체 재조회)")
   );
+  const searchable = new Set(items.map((it) => it.id));
+  const stale = Object.keys(map).filter((id) => !searchable.has(id));
+  if (stale.length > 0) {
+    console.log(`  참고: imageSearch 가 사라진 잔여 엔트리 ${stale.length}개 (노출에는 쓰이지 않음)`);
+  }
   let done = 0;
   let replaced = 0;
 

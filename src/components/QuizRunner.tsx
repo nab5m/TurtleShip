@@ -81,7 +81,8 @@ export default function QuizRunner({ quizzes, onFinish, onProgress }: Props) {
               className="mx-auto max-h-40 w-auto rounded-lg object-contain sm:max-h-48"
             />
             <figcaption className="mt-1 text-center text-[10px] text-muted">
-              {quiz.image.alt} · 출처: Wikimedia Commons
+              {quiz.image.alt}
+              {quiz.image.credit ? ` · ${quiz.image.credit}` : " · 출처: Wikimedia Commons"}
             </figcaption>
           </figure>
         )}

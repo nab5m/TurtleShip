@@ -1,4 +1,4 @@
-import type { DayContent, UnitContent } from "@/lib/types";
+import type { DayContent, ItemImage, UnitContent } from "@/lib/types";
 import { DAYS } from "@/data/curriculum";
 import { units as g01 } from "./days-01-04";
 import { units as g02 } from "./days-05-08";
@@ -19,18 +19,30 @@ import { units as g16 } from "./days-74-78";
 import { units as g17 } from "./days-79-83";
 import { units as g18 } from "./days-84-90";
 import { IMAGE_MAP } from "./images";
+import { IMAGE_ALIASES, IMAGE_OVERRIDES } from "./image-overrides";
 
 const ALL_UNITS: UnitContent[] = [
   ...g01, ...g02, ...g03, ...g04, ...g05, ...g06, ...g07, ...g08, ...g09,
   ...g10, ...g11, ...g12, ...g13, ...g14, ...g15, ...g16, ...g17, ...g18,
 ];
 
-// imageSearch가 resolve된 항목에 이미지 URL을 주입
+// 이미지 해석 우선순위
+//   1) IMAGE_ALIASES — 다른 항목의 이미지를 빌려 쓴다 (id 를 바꿔치기)
+//   2) IMAGE_OVERRIDES — 손으로 지정한 이미지 (자동 해석 결과보다 우선)
+//   3) IMAGE_MAP — scripts/resolve-images.mjs 가 만든 자동 해석 결과
+function resolveImage(id: string): ItemImage | undefined {
+  const sourceId = IMAGE_ALIASES[id] ?? id;
+  return IMAGE_OVERRIDES[sourceId] ?? IMAGE_MAP[sourceId];
+}
+
+// imageSearch 가 살아 있는 항목에만 이미지를 주입한다.
+// → 사진을 없애려면 days-*.ts 에서 imageSearch 를 지우면 되고(오버라이드/자동 해석 모두 무력화),
+//   그러면 resolve-images.mjs 도 그 항목을 다시 찾지 않는다.
 for (const unit of ALL_UNITS) {
   for (const item of [...unit.cards, ...unit.quizzes]) {
-    if (item.imageSearch && IMAGE_MAP[item.id]) {
-      item.image = IMAGE_MAP[item.id];
-    }
+    if (!item.imageSearch) continue;
+    const image = resolveImage(item.id);
+    if (image) item.image = image;
   }
 }
 
