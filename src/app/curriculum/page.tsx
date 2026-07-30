@@ -1,16 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { DAYS, ERA_MAP, STAGES, TOTAL_DAYS } from "@/data/curriculum";
 import { REVIEW_INTERVALS, dayUnitProgress } from "@/lib/types";
 import { useProgress } from "@/lib/progress-context";
 import { learnHref } from "@/lib/day-slug";
 import { estimatedMinutes } from "@/data/day-time";
-import { CheckIcon } from "@/components/icons";
+import { CheckIcon, ChevronRightIcon } from "@/components/icons";
 
 export default function CurriculumPage() {
   const { ready, progress } = useProgress();
   const nextDay = DAYS.find((d) => !progress.completed[d.day])?.day;
+  // 펼쳐진 일차 (한 번에 하나) — 그 일차가 어떤 단원으로 이뤄지는지 보여 준다
+  const [openDay, setOpenDay] = useState<number | null>(null);
 
   return (
     <div className="space-y-6">
@@ -48,19 +51,18 @@ export default function CurriculumPage() {
               {daysInStage.map((d, i) => {
                 const rec = ready ? progress.completed[d.day] : undefined;
                 const isNext = ready && d.day === nextDay;
+                const unitProg = ready ? dayUnitProgress(progress, d.day, d.units) : null;
                 // 완료 전 일차의 단원 단위 중간 저장 진행도 (0 < studied < total 일 때만 노출)
-                const unitProg = ready && !rec ? dayUnitProgress(progress, d.day, d.units) : null;
-                const inProgress = unitProg !== null && unitProg.studied > 0;
+                const inProgress = !rec && unitProg !== null && unitProg.studied > 0;
+                const open = openDay === d.day;
                 return (
-                  <li
-                    key={d.day}
-                    className={`flex items-center gap-3 px-4 py-3 hover:bg-card-muted ${
-                      i > 0 ? "border-t border-border" : ""
-                    }`}
-                  >
-                    <Link
-                      href={learnHref(d.day)}
-                      className="flex min-w-0 flex-1 items-center gap-3"
+                  <li key={d.day} className={i > 0 ? "border-t border-border" : ""}>
+                    <div className="flex items-center gap-3 px-4 py-3 hover:bg-card-muted">
+                    <button
+                      type="button"
+                      onClick={() => setOpenDay(open ? null : d.day)}
+                      aria-expanded={open}
+                      className="flex min-w-0 flex-1 items-center gap-3 text-left"
                     >
                       <span
                         className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
@@ -87,7 +89,12 @@ export default function CurriculumPage() {
                           오늘의 학습
                         </span>
                       )}
-                    </Link>
+                      <ChevronRightIcon
+                        className={`h-4 w-4 shrink-0 text-muted transition-transform ${
+                          open ? "rotate-90" : ""
+                        }`}
+                      />
+                    </button>
                     {inProgress ? (
                       <span className="shrink-0 whitespace-nowrap rounded-full bg-accent-soft px-2.5 py-1 text-[11px] font-bold text-accent">
                         {unitProg.studied}/{unitProg.total}단원
@@ -104,6 +111,44 @@ export default function CurriculumPage() {
                       >
                         복습
                       </Link>
+                    )}
+                    </div>
+
+                    {open && (
+                      <div className="border-t border-border bg-card-muted/40 px-4 py-3">
+                        <ul className="space-y-1.5">
+                          {d.units.map((u, idx) => {
+                            // 완료된 일차는 모든 단원을 마친 것으로 본다
+                            const done = rec ? true : (unitProg?.studiedFlags[idx] ?? false);
+                            return (
+                              <li key={u} className="flex items-center gap-2">
+                                <span
+                                  className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold ${
+                                    done ? "text-white" : "bg-card text-muted"
+                                  }`}
+                                  style={done ? { backgroundColor: stage.color } : undefined}
+                                >
+                                  {done ? <CheckIcon className="h-3 w-3" /> : idx + 1}
+                                </span>
+                                <span
+                                  className={`min-w-0 flex-1 truncate text-xs ${
+                                    done ? "font-semibold" : "text-muted"
+                                  }`}
+                                >
+                                  {d.unitTitles[idx]}
+                                </span>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                        <Link
+                          href={learnHref(d.day)}
+                          className="mt-3 flex w-full items-center justify-center gap-1 rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-white hover:opacity-90"
+                        >
+                          {rec ? "다시 학습하기" : inProgress ? "이어서 학습하기" : "학습 시작하기"}
+                          <ChevronRightIcon className="h-4 w-4" />
+                        </Link>
+                      </div>
                     )}
                   </li>
                 );

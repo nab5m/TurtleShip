@@ -205,6 +205,37 @@ export default function LearnSession({ day }: { day: number }) {
               {unitStep}/{segments.length}단원 · {unitMeta.title}
             </p>
           )}
+
+          {/* 단원 이동 — 순서에 관계없이 원하는 단원으로 바로 갈 수 있게 한다.
+              ✓ 는 카드를 끝까지 본 단원(중간 저장 기준). */}
+          {segments.length > 1 && (
+            <div className="mb-2 flex flex-wrap justify-center gap-1.5">
+              {segments.map((s, i) => {
+                const active = i === segIdx;
+                const studied = studiedFlags[i];
+                return (
+                  <button
+                    key={s.unit}
+                    type="button"
+                    onClick={() => goToSegment(i)}
+                    aria-current={active ? "step" : undefined}
+                    title={UNIT_MAP[s.unit]?.title}
+                    className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold transition-colors ${
+                      active
+                        ? "border-transparent bg-accent text-white"
+                        : studied
+                          ? "border-transparent bg-accent-soft text-accent hover:opacity-80"
+                          : "border-border bg-card text-muted hover:bg-card-muted"
+                    }`}
+                  >
+                    {studied && !active ? "✓ " : ""}
+                    {i + 1}단원
+                    <span className="ml-1 opacity-70">{s.cards.length}장</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
           <p className="mb-2 text-center text-xs font-medium text-muted">
             이 단원 {cardIdx + 1} / {segCards.length} · 오늘 전체 {globalCardNo} / {cards.length}
           </p>
