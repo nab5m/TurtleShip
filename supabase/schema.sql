@@ -37,10 +37,15 @@ create table if not exists public.favorites (
 
 -- RLS: 본인 데이터만 접근 가능
 alter table public.progress enable row level security;
+alter table public.day_progress enable row level security;
 alter table public.favorites enable row level security;
 
 drop policy if exists "progress_own" on public.progress;
 create policy "progress_own" on public.progress
+  for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+drop policy if exists "day_progress_own" on public.day_progress;
+create policy "day_progress_own" on public.day_progress
   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
 drop policy if exists "favorites_own" on public.favorites;
