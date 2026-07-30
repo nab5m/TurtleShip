@@ -1353,7 +1353,7 @@ export const units: UnitContent[] = [
       },
       {
         id: "d47-q10",
-        question: "사진의 기록물에 대한 설명으로 옳지 않은 것은?",
+        question: "조선왕조실록에 대한 설명으로 옳지 않은 것은?",
         options: [
           "사초와 시정기를 바탕으로 편찬되었다.",
           "국왕이 생전에 직접 검토하여 완성하였다.",
@@ -1601,7 +1601,7 @@ export const units: UnitContent[] = [
       },
       {
         id: "d48-q04",
-        question: "사진의 교육 기관에 대한 설명으로 옳은 것은?",
+        question: "서원에 대한 설명으로 옳은 것은?",
         options: [
           "국가가 모든 군현에 하나씩 설립하였다.",
           "왕명의 출납을 담당하였다.",

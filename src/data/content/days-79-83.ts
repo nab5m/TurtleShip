@@ -205,7 +205,7 @@ export const units: UnitContent[] = [
       },
       {
         id: "d79-q08",
-        question: "사진 속 인물이 일으킨 의거의 영향으로 옳은 것은?",
+        question: "윤봉길이 일으킨 의거의 영향으로 옳은 것은?",
         options: [
           "일제가 이른바 문화 통치로 전환하였다.",
           "국민 대표 회의가 소집되었다.",
