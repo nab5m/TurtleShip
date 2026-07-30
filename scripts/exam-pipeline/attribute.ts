@@ -70,6 +70,29 @@ export function cardsPerTerm(cards: IndexedCard[]): Map<string, number> {
   return counts;
 }
 
+// 개념 ↔ 카드 대응 판정용 낱말 집합. 귀속(attribution)과 달리 여기서는 태그성 낱말을
+// 걸러내지 않고 2글자 낱말도 쓴다 — "이 개념을 다루는 카드가 하나라도 있는가"를 보는 것이므로
+// 넓게 잡는 편이 맞다(카드 제목이 "녹읍" 처럼 2글자인 경우도 있다).
+export function cardMatchTerms(): { id: string; unit: number; title: string; terms: string[] }[] {
+  const out: { id: string; unit: number; title: string; terms: string[] }[] = [];
+  for (const meta of UNITS) {
+    const content = UNIT_CONTENT_MAP[meta.unit];
+    if (!content) continue;
+    for (const card of content.cards) {
+      const terms = new Set<string>();
+      for (const item of [card.title, ...card.keywords]) {
+        const flat = item.replace(/\s+/g, "");
+        for (const candidate of [flat, flat.split(/[(（]/)[0]]) {
+          const term = candidate.replace(/[^가-힣一-龥A-Za-z0-9]/g, "");
+          if (term.length >= 2 && !/^[0-9]+$/.test(term)) terms.add(term);
+        }
+      }
+      out.push({ id: card.id, unit: meta.unit, title: card.title, terms: [...terms] });
+    }
+  }
+  return out;
+}
+
 // 태그성 낱말을 걸러낸 검색 색인
 export function buildCardIndex(maxCardsPerTerm: number): IndexedCard[] {
   const cards = allCards();

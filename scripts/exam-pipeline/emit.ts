@@ -12,6 +12,7 @@ import type { EraId, StageId } from "../../src/lib/types";
 import type { ClassifiedRound } from "./classify";
 import { parseChoices, flattenChoice, type ChoiceRole } from "./choices";
 import { buildCardIndex, attributeChoice } from "./attribute";
+import { writeTopics, writeGapDoc } from "./emit-topics";
 
 const OUT_DIR = join(process.cwd(), "src", "data");
 
@@ -160,7 +161,9 @@ function buildFrequency(rounds: ClassifiedRound[]): {
   };
 }
 
-function writeFrequency(rounds: ClassifiedRound[]): FrequencyStats {
+function writeFrequency(rounds: ClassifiedRound[]): FrequencyStats & {
+  entries: Record<string, FreqEntry>;
+} {
   const { freq, stats } = buildFrequency(rounds);
   const labels = rounds.map((r) => r.label);
   const hoes = rounds.map((r) => r.hoe);
@@ -226,7 +229,7 @@ function writeFrequency(rounds: ClassifiedRound[]): FrequencyStats {
   console.log(
     `    별점 분포: ${stats.starHistogram.map((n, i) => `${i + 1}점 ${n}장`).join(" · ")}`
   );
-  return stats;
+  return { ...stats, entries: freq };
 }
 
 // ---------------------------------------------------------------- 시대별 출제 비율
@@ -326,6 +329,8 @@ function writeDistribution(rounds: ClassifiedRound[]) {
 
 export function emitData(rounds: ClassifiedRound[]) {
   console.log("[4/4] 데이터 파일 생성");
-  writeFrequency(rounds);
+  const freq = writeFrequency(rounds);
   writeDistribution(rounds);
+  const topics = writeTopics(rounds);
+  writeGapDoc(topics, freq.entries, rounds);
 }
