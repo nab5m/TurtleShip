@@ -36,7 +36,6 @@ const STAGE_ROWS = STAGES.map((stage) => {
     questions: share?.questions ?? 0,
     percent: share?.percent ?? 0,
     days,
-    dayPercent: Math.round((days / TOTAL_DAYS) * 1000) / 10,
   };
 });
 
