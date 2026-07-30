@@ -420,58 +420,65 @@ export const STAGES: Stage[] = [
   { id: "gojoseon-confederacy", name: "고조선과 연맹 왕국", period: "기원전 2333 ~ 기원 전후", color: "#7e57c2",
     eraIds: ["gojoseon", "confederacy"], dayRange: [2, 2] },
   { id: "three-kingdoms", name: "삼국 시대", period: "기원전 1세기 ~ 676", color: "#43a047",
-    eraIds: ["three-kingdoms"], dayRange: [3, 6] },
+    eraIds: ["three-kingdoms"], dayRange: [3, 5] },
   { id: "north-south", name: "남북국 시대", period: "698 ~ 935", color: "#26a69a",
-    eraIds: ["north-south"], dayRange: [7, 8] },
+    eraIds: ["north-south"], dayRange: [6, 7] },
   { id: "goryeo", name: "후삼국과 고려", period: "892 ~ 1392", color: "#00acc1",
-    eraIds: ["later-three", "goryeo"], dayRange: [9, 13] },
+    eraIds: ["later-three", "goryeo"], dayRange: [8, 11] },
   { id: "early-joseon", name: "조선 전기", period: "1392 ~ 1592", color: "#3f51b5",
-    eraIds: ["early-joseon"], dayRange: [14, 17] },
+    eraIds: ["early-joseon"], dayRange: [12, 14] },
   { id: "late-joseon", name: "조선 후기", period: "1592 ~ 1863", color: "#8e24aa",
-    eraIds: ["late-joseon"], dayRange: [18, 20] },
+    eraIds: ["late-joseon"], dayRange: [15, 17] },
   { id: "open-port", name: "개항기", period: "1863 ~ 1910", color: "#fb8c00",
-    eraIds: ["open-port"], dayRange: [21, 23] },
+    eraIds: ["open-port"], dayRange: [18, 21] },
   { id: "colonial", name: "일제 강점기", period: "1910 ~ 1945", color: "#546e7a",
-    eraIds: ["colonial"], dayRange: [24, 26] },
+    eraIds: ["colonial"], dayRange: [22, 25] },
   { id: "modern", name: "현대", period: "1945 ~ 현재", color: "#1e88e5",
-    eraIds: ["modern"], dayRange: [27, 28] },
+    eraIds: ["modern"], dayRange: [26, 28] },
 ];
 
 export const STAGE_MAP: Record<StageId, Stage> = Object.fromEntries(
   STAGES.map((s) => [s.id, s])
 ) as Record<StageId, Stage>;
 
-// 하루치 묶음 — 단원 90개를 28일로 나눈 설계(하루 2~4단원, 평균 3.2단원 ≒ 30분).
+// 하루치 묶음 — 단원 90개를 28일로 나눈 설계(하루 2~4단원).
 // 실제 수험생 준비 기간(3~4주)에 맞춘 배분이며, 시대 흐름이 끊기지 않도록 단원 순서를 유지한다.
+//
+// 2026-07-30 재배분: 실제 출제 비중(전근대 : 근·현대 = 60 : 40)에 맞춰
+// 전근대 20일 → 17일, 근·현대 8일 → 11일로 옮겼다. 단원 번호(1~90)는 그대로 두고
+// "어느 단원을 몇 일차에 배치할지"만 바꾼 것이다(카드 id·오디오·즐겨찾기 보존).
+// 자세한 근거는 docs/content-redesign-2026-07-30.md.
 const DAY_PLAN: { stageId: StageId; title: string; units: number[] }[] = [
+  // ---------- 전근대 17일 ----------
   { stageId: "prehistory", title: "선사 시대의 생활", units: [1, 2, 3, 4] },
   { stageId: "gojoseon-confederacy", title: "고조선과 연맹 왕국", units: [5, 6, 7, 8] },
-  { stageId: "three-kingdoms", title: "고구려의 성장과 백제의 건국", units: [9, 10, 11] },
-  { stageId: "three-kingdoms", title: "백제의 중흥과 신라의 발전", units: [12, 13, 14] },
-  { stageId: "three-kingdoms", title: "가야 연맹과 삼국의 체제·항쟁", units: [15, 16, 17] },
-  { stageId: "three-kingdoms", title: "삼국 통일과 삼국의 문화", units: [18, 19, 20] },
+  { stageId: "three-kingdoms", title: "고구려의 성장과 백제의 중흥", units: [9, 10, 11, 12] },
+  { stageId: "three-kingdoms", title: "신라의 발전과 가야, 삼국의 통치 체제", units: [13, 14, 15, 16] },
+  { stageId: "three-kingdoms", title: "대외 항쟁과 삼국 통일, 삼국의 문화", units: [17, 18, 19, 20] },
   { stageId: "north-south", title: "통일 신라의 발전과 동요", units: [21, 22, 23, 24] },
   { stageId: "north-south", title: "발해의 발전과 문화", units: [25, 26, 27] },
-  { stageId: "goryeo", title: "후삼국의 성립과 고려의 건국", units: [28, 29, 30] },
-  { stageId: "goryeo", title: "고려의 통치 체제 정비", units: [31, 32, 33] },
-  { stageId: "goryeo", title: "거란·여진의 침입과 무신 정권", units: [34, 35, 36] },
-  { stageId: "goryeo", title: "몽골 항쟁과 원 간섭기", units: [37, 38, 39] },
+  { stageId: "goryeo", title: "후삼국 통일과 고려의 기틀", units: [28, 29, 30, 31] },
+  { stageId: "goryeo", title: "고려의 통치 체제와 거란·여진의 침입", units: [32, 33, 34, 35] },
+  { stageId: "goryeo", title: "무신 정권과 몽골 항쟁, 원 간섭기", units: [36, 37, 38, 39] },
   { stageId: "goryeo", title: "고려의 경제·문화와 왕조 교체", units: [40, 41, 42, 43] },
-  { stageId: "early-joseon", title: "조선의 건국과 통치 기반", units: [44, 45, 46] },
-  { stageId: "early-joseon", title: "조선의 통치 체제와 사림의 성장", units: [47, 48, 49] },
-  { stageId: "early-joseon", title: "붕당의 형성과 조선 전기의 사회", units: [50, 51, 52] },
-  { stageId: "early-joseon", title: "조선 전기의 문화와 임진왜란", units: [53, 54] },
+  { stageId: "early-joseon", title: "조선의 건국과 통치 체제 정비", units: [44, 45, 46, 47] },
+  { stageId: "early-joseon", title: "사림의 성장과 조선 전기의 경제", units: [48, 49, 50, 51] },
+  { stageId: "early-joseon", title: "조선 전기의 사회·문화와 임진왜란", units: [52, 53, 54] },
   { stageId: "late-joseon", title: "호란과 조선 후기 정치의 변화", units: [55, 56, 57] },
   { stageId: "late-joseon", title: "수취 체제 개편과 경제·사회 변동", units: [58, 59, 60] },
   { stageId: "late-joseon", title: "세도 정치와 실학·문화의 새 기운", units: [61, 62, 63, 64] },
-  { stageId: "open-port", title: "흥선대원군의 정치와 개항", units: [65, 66, 67] },
-  { stageId: "open-port", title: "개화 정책과 동학 농민 운동", units: [68, 69, 70] },
-  { stageId: "open-port", title: "근대 개혁과 국권 피탈", units: [71, 72, 73] },
-  { stageId: "colonial", title: "무단 통치와 3·1 운동, 임시정부", units: [74, 75, 76] },
-  { stageId: "colonial", title: "1920년대 수탈과 무장·의열 투쟁", units: [77, 78, 79] },
-  { stageId: "colonial", title: "민족 말살 통치와 항일 투쟁의 확대", units: [80, 81, 82, 83] },
-  { stageId: "modern", title: "광복과 분단, 6·25 전쟁", units: [84, 85, 86] },
-  { stageId: "modern", title: "민주주의의 발전과 통일 노력", units: [87, 88, 89, 90] },
+  // ---------- 근·현대 11일 ----------
+  { stageId: "open-port", title: "흥선대원군의 정치와 양요", units: [65, 66] },
+  { stageId: "open-port", title: "개항과 개화 정책의 추진", units: [67, 68] },
+  { stageId: "open-port", title: "갑신정변과 동학 농민 운동, 갑오개혁", units: [69, 70, 71] },
+  { stageId: "open-port", title: "대한제국과 국권 피탈", units: [72, 73] },
+  { stageId: "colonial", title: "무단 통치와 3·1 운동", units: [74, 75] },
+  { stageId: "colonial", title: "대한민국 임시 정부와 문화 통치", units: [76, 77] },
+  { stageId: "colonial", title: "무장 독립 전쟁과 의열·대중 운동", units: [78, 79, 80] },
+  { stageId: "colonial", title: "민족 말살 통치와 항일 투쟁의 확대", units: [81, 82, 83] },
+  { stageId: "modern", title: "광복과 대한민국 정부 수립", units: [84, 85] },
+  { stageId: "modern", title: "6·25 전쟁과 4·19 혁명", units: [86, 87] },
+  { stageId: "modern", title: "민주주의의 발전과 통일 노력", units: [88, 89, 90] },
 ];
 
 export const DAYS: DayMeta[] = DAY_PLAN.map((plan, i) => {

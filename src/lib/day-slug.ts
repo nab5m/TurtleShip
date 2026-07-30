@@ -23,6 +23,47 @@ for (const u of UNITS) {
   if (day !== undefined && !SLUG_TO_DAY.has(slug)) SLUG_TO_DAY.set(slug, day);
 }
 
+// 2026-07-30 커리큘럼 재배분(전근대 20일→17일 / 근·현대 8일→11일) 이전의 일차 제목 슬러그.
+// 슬러그가 제목에서 파생되므로 제목이 바뀌면 URL 도 바뀐다 → 옛 URL 은 그 내용이 옮겨 간
+// 현재 일차로 연결한다. 연결 기준은 옛 일차의 첫 단원 번호이며(단원 번호는 재배분에서도 유지),
+// 제목이 그대로인 일차는 위 루프에서 이미 등록되므로 자동으로 건너뛴다.
+const LEGACY_DAY_TITLES: { title: string; unit: number }[] = [
+  { title: "선사 시대의 생활", unit: 1 },
+  { title: "고조선과 연맹 왕국", unit: 5 },
+  { title: "고구려의 성장과 백제의 건국", unit: 9 },
+  { title: "백제의 중흥과 신라의 발전", unit: 12 },
+  { title: "가야 연맹과 삼국의 체제·항쟁", unit: 15 },
+  { title: "삼국 통일과 삼국의 문화", unit: 18 },
+  { title: "통일 신라의 발전과 동요", unit: 21 },
+  { title: "발해의 발전과 문화", unit: 25 },
+  { title: "후삼국의 성립과 고려의 건국", unit: 28 },
+  { title: "고려의 통치 체제 정비", unit: 31 },
+  { title: "거란·여진의 침입과 무신 정권", unit: 34 },
+  { title: "몽골 항쟁과 원 간섭기", unit: 37 },
+  { title: "고려의 경제·문화와 왕조 교체", unit: 40 },
+  { title: "조선의 건국과 통치 기반", unit: 44 },
+  { title: "조선의 통치 체제와 사림의 성장", unit: 47 },
+  { title: "붕당의 형성과 조선 전기의 사회", unit: 50 },
+  { title: "조선 전기의 문화와 임진왜란", unit: 53 },
+  { title: "호란과 조선 후기 정치의 변화", unit: 55 },
+  { title: "수취 체제 개편과 경제·사회 변동", unit: 58 },
+  { title: "세도 정치와 실학·문화의 새 기운", unit: 61 },
+  { title: "흥선대원군의 정치와 개항", unit: 65 },
+  { title: "개화 정책과 동학 농민 운동", unit: 68 },
+  { title: "근대 개혁과 국권 피탈", unit: 71 },
+  { title: "무단 통치와 3·1 운동, 임시정부", unit: 74 },
+  { title: "1920년대 수탈과 무장·의열 투쟁", unit: 77 },
+  { title: "민족 말살 통치와 항일 투쟁의 확대", unit: 80 },
+  { title: "광복과 분단, 6·25 전쟁", unit: 84 },
+  { title: "민주주의의 발전과 통일 노력", unit: 87 },
+];
+
+for (const { title, unit } of LEGACY_DAY_TITLES) {
+  const slug = slugifyTitle(title);
+  const day = dayOfUnit(unit);
+  if (day !== undefined && !SLUG_TO_DAY.has(slug)) SLUG_TO_DAY.set(slug, day);
+}
+
 export function daySlug(day: number): string {
   return DAY_TO_SLUG.get(day) ?? String(day);
 }
