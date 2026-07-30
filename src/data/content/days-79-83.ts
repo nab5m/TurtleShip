@@ -15,7 +15,6 @@ export const units: UnitContent[] = [
         title: "김원봉",
         keywords: ["의열단장", "황푸 군관학교", "조선의용대", "밀양"],
         content: "밀양 출신으로 의열단을 조직해 이끈 독립운동가이다. 이후 황푸 군관학교에서 군사 교육을 받고 조선혁명간부학교를 세웠으며, 민족 혁명당 결성과 조선 의용대 창설을 주도하는 등 개별 의거에서 조직적 무장 투쟁으로 나아갔다.",
-        imageSearch: "Kim Won-bong",
       },
       {
         id: "d79-c03",
@@ -28,7 +27,6 @@ export const units: UnitContent[] = [
         title: "강우규 의거",
         keywords: ["1919", "사이토 총독", "노인동맹단", "서울역"],
         content: "1919년 9월 노인(동맹)단 소속의 강우규가 서울역(남대문역)에서 새로 부임하는 사이토 마코토 총독에게 폭탄을 던진 의거이다. 총독 처단에는 실패했으나 60대 노인의 의거로 큰 충격을 주었으며, 강우규는 의열단원이 아니라는 점에 유의해야 한다.",
-        imageSearch: "Kang Woo-kyu",
       },
       {
         id: "d79-c05",
@@ -108,7 +106,6 @@ export const units: UnitContent[] = [
         title: "이봉창 의거",
         keywords: ["1932.1", "도쿄", "일왕 마차", "한인애국단"],
         content: "1932년 1월 한인애국단원 이봉창이 도쿄에서 관병식을 마치고 돌아가던 일왕 히로히토의 마차 행렬에 수류탄을 던진 의거이다. 일왕 처단에는 실패했으나 일제의 수도에서 일왕을 직접 겨냥했다는 점에서 큰 파문을 일으켰다.",
-        imageSearch: "Lee Bong-chang",
       },
       {
         id: "d79-c18",
@@ -121,7 +118,6 @@ export const units: UnitContent[] = [
         title: "윤봉길 의거",
         keywords: ["1932.4.29", "훙커우 공원", "물통 폭탄", "한인애국단"],
         content: "1932년 4월 29일 한인애국단원 윤봉길이 상하이 훙커우 공원에서 열린 일왕 생일(천장절) 및 상하이 사변 전승 기념식장에 물통 모양 폭탄을 던진 의거이다. 상하이 파견군 사령관 시라카와 대장 등 일제 군부와 고관 다수를 처단하였다.",
-        imageSearch: "Yun Bong-gil",
       },
       {
         id: "d79-c20",
@@ -218,7 +214,6 @@ export const units: UnitContent[] = [
         ],
         answer: 3,
         explanation: "윤봉길의 훙커우 공원 의거(1932) 이후 장제스의 국민당 정부가 임시 정부를 적극 지원하였다. 문화 통치 전환은 3·1 운동, 국민 대표 회의는 임시 정부의 노선 갈등에서 비롯된 것이다.",
-        imageSearch: "Yun Bong-gil",
       },
       {
         id: "d79-q09",
@@ -321,7 +316,6 @@ export const units: UnitContent[] = [
         title: "조만식",
         keywords: ["조선의 간디", "평양", "물산 장려 운동", "조선 민주당"],
         content: "'조선의 간디'로 불린 민족 운동가로, 평양에서 물산 장려 운동을 주도하였다. 민립 대학 설립 운동과 신간회에도 참여했으며, 광복 후에는 평안남도 건국 준비 위원회를 이끌고 조선 민주당을 창당하여 북한 지역에서 신탁 통치 반대 운동을 벌였다.",
-        imageSearch: "Cho Man-sik",
       },
       {
         id: "d80-c06",
@@ -614,14 +608,12 @@ export const units: UnitContent[] = [
         title: "황국 신민 서사",
         keywords: ["1937", "암송 강요", "충성 맹세"],
         content: "1937년 일제가 만들어 조선인에게 외우게 한 천황에 대한 충성 맹세문이다. 학교·직장·모임 등에서 성인용과 아동용으로 나누어 암송을 강요하였으며, 황국 신민화 정책의 대표적 수단으로 각종 행사마다 제창하게 하였다.",
-        imageSearch: "Imperial Subjects Oath Korea",
       },
       {
         id: "d81-c07",
         title: "신사 참배 강요",
         keywords: ["조선 신궁", "궁성 요배", "일본 천황"],
         content: "일제가 전국 곳곳에 신사를 세우고 조선인에게 참배를 강요한 정책이다. 매일 일정한 시각에 일본 궁성을 향해 절하는 궁성 요배도 강제했으며, 종교계까지 신사 참배를 거부하지 못하도록 탄압하였다.",
-        imageSearch: "Chosen Shrine Seoul",
       },
       {
         id: "d81-c08",
@@ -857,7 +849,6 @@ export const units: UnitContent[] = [
         title: "양세봉의 조선혁명군",
         keywords: ["남만주", "영릉가·흥경성 전투", "중국 의용군과 연합"],
         content: "양세봉이 이끈 조선혁명군은 남만주에서 중국 의용군과 연합하여 영릉가·흥경성 전투에서 일본군을 물리쳤다. 1930년대 전반 대표적 한중 연합 작전이다.",
-        imageSearch: "Yang Se-bong Korean Revolutionary Army",
       },
       {
         id: "d82-c03",
@@ -888,7 +879,6 @@ export const units: UnitContent[] = [
         title: "한국광복군의 창설",
         keywords: ["1940", "충칭", "지청천 총사령"],
         content: "임시정부는 1940년 충칭에서 정규군인 한국광복군을 창설하였다. 지청천을 총사령으로 하여 대일 항전을 준비하였다.",
-        imageSearch: "Korean Liberation Army 1940",
       },
       {
         id: "d82-c08",
@@ -1119,14 +1109,12 @@ export const units: UnitContent[] = [
         title: "박은식의 역사 연구",
         keywords: ["한국통사", "한국독립운동지혈사", "혼(魂) 강조"],
         content: "박은식은 나라는 형(形)이고 역사는 혼(魂)이라며 민족 정신을 강조하였다. 『한국통사』와 『한국독립운동지혈사』를 지어 일제의 침략과 독립운동을 기록하였다.",
-        imageSearch: "Park Eun-sik Korean historian",
       },
       {
         id: "d83-c07",
         title: "신채호의 민족주의 사학",
         keywords: ["조선상고사", "낭가사상", "역사=아와 비아의 투쟁"],
         content: "신채호는 『조선상고사』에서 역사를 '아(我)와 비아(非我)의 투쟁'으로 정의하였다. 고대사 연구와 낭가 사상을 통해 민족의 자주성을 강조하였다.",
-        imageSearch: "Shin Chaeho historian",
       },
       {
         id: "d83-c08",

@@ -39,7 +39,6 @@ export const units: UnitContent[] = [
         title: "동북 9성",
         keywords: ["1107년", "예종", "윤관·오연총", "여진 축출"],
         content: "예종 때인 1107년 윤관과 오연총이 별무반을 이끌고 여진을 몰아낸 뒤 동북 지방 일대에 쌓은 아홉 개의 성이다. 윤관이 선춘령에 비석을 세워 국경으로 삼은 일을 그린 척경입비도가 전하며, 여진 정벌의 성과를 보여 준다.",
-        imageSearch: "Cheokgyeong ipbi do Yun Gwan Goryeo Jurchen expedition painting",
       },
       {
         id: "d35-c07",
@@ -627,7 +626,6 @@ export const units: UnitContent[] = [
         title: "황룡사 9층 목탑 소실",
         keywords: ["경주", "몽골 침입", "선덕여왕 창건"],
         content: "신라 선덕여왕 때 자장의 건의로 세워졌던 경주 황룡사 9층 목탑이 몽골의 침입 과정에서 불타 없어졌다. 삼국 시대를 대표하는 목조 건축물이 소실된 것으로, 몽골 침입으로 인한 문화재 피해를 보여 주는 대표적 사례이다.",
-        imageSearch: "Hwangnyongsa nine-story wooden pagoda Gyeongju model",
       },
       {
         id: "d37-c10",
@@ -688,7 +686,6 @@ export const units: UnitContent[] = [
         title: "제주 항파두리",
         keywords: ["김통정", "최후 항전", "1273년 진압"],
         content: "진도가 함락된 뒤 삼별초는 김통정의 지휘 아래 제주도로 옮겨 항파두리에 성을 쌓고 최후까지 저항하였다. 그러나 1273년 여몽 연합군의 공격으로 제주가 함락되면서 약 3년에 걸친 삼별초의 항쟁이 끝났다.",
-        imageSearch: "Hangpaduri fortress Jeju Sambyeolcho earthen wall",
       },
       {
         id: "d37-c20",
@@ -701,7 +698,6 @@ export const units: UnitContent[] = [
         title: "강화도의 고려 궁궐",
         keywords: ["강도(江都)", "임시 수도", "대몽 항쟁기"],
         content: "강화 천도 이후 약 40년간 강화도는 고려의 임시 수도인 강도(江都)로서 궁궐과 관청이 세워졌다. 개경을 본떠 도성을 갖추었으며, 이곳을 중심으로 대몽 항쟁이 이어지고 팔만대장경 조판 사업도 추진되었다.",
-        imageSearch: "Goryeo palace site Ganghwado Goryeogungji",
       },
       {
         id: "d37-c22",
@@ -1250,7 +1246,6 @@ export const units: UnitContent[] = [
         title: "공민왕릉",
         keywords: ["현릉·정릉", "노국대장공주 합장", "고려 왕릉"],
         content: "공민왕과 노국대장공주를 함께 모신 무덤으로, 개성 부근에 나란히 조성되었다. 공민왕이 왕비를 잃은 뒤 정성을 들여 만든 왕릉으로 알려져 있으며, 고려 후기 왕릉의 형식을 보여 주는 문화유산이다.",
-        imageSearch: "Tomb of King Gongmin Hyonjongrung Goryeo Kaesong",
       },
     ],
     quizzes: [

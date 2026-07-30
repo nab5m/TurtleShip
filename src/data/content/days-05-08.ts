@@ -132,7 +132,6 @@ export const units: UnitContent[] = [
         title: "참성단",
         keywords: ["강화도 마니산", "하늘 제사", "단군 전승"],
         content: "강화도 마니산에 있는 제단으로, 단군이 하늘에 제사를 지냈다는 전승이 전해진다. 고려와 조선 시대에는 국가 차원에서 이곳에서 하늘에 제사를 지내기도 하였다.",
-        imageSearch: "Chamseongdan altar Manisan Ganghwa",
       },
     ],
     quizzes: [
@@ -715,7 +714,6 @@ export const units: UnitContent[] = [
         title: "동맹",
         keywords: ["10월 제천행사", "국동대혈", "조상신 제사"],
         content: "고구려가 매년 10월에 온 나라 사람이 모여 하늘에 제사하던 제천 행사이다. 왕과 신하들이 수도 동쪽의 큰 동굴인 국동대혈에 모신 신을 모셔 와 제사를 지냈다.",
-        imageSearch: "Gukdongdaehyeol cave Goguryeo Ji'an",
       },
       {
         id: "d07-c18",
@@ -1024,14 +1022,12 @@ export const units: UnitContent[] = [
         title: "삼한의 벼농사",
         keywords: ["벼농사 발달", "저수지", "벽골제·의림지", "두레"],
         content: "삼한은 철제 농기구를 사용하여 벼농사가 크게 발달하였고, 김제 벽골제·제천 의림지 같은 저수지를 만들어 물을 관리하였다. 두레 같은 공동 노동 조직도 발달하였다.",
-        imageSearch: "Byeokgolje reservoir Gimje",
       },
       {
         id: "d08-c19",
         title: "변한의 철",
         keywords: ["덩이쇠", "낙랑·왜에 수출", "화폐처럼 사용"],
         content: "변한은 철이 많이 생산되어 이를 덩이쇠로 만들어 낙랑과 왜 등에 수출하였다. 철을 화폐처럼 사용하기도 하였으며, 이러한 철 생산 기반은 뒷날 가야의 성장으로 이어졌다.",
-        imageSearch: "Iron ingots Gaya Byeonhan",
       },
       {
         id: "d08-c20",

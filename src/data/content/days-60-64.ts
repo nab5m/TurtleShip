@@ -33,7 +33,6 @@ export const units: UnitContent[] = [
         title: "공명첩",
         keywords: ["이름 빈 임명장", "명예 관직", "양반 수 증가"],
         content: "받는 사람의 이름을 비워 둔 명예 관직 임명장으로, 곡식이나 돈을 바친 사람에게 이름을 적어 발급하였다. 임진왜란 이후 재정 보충을 위해 남발되면서 양반 수 증가와 신분제 동요의 주요 원인이 되었다.",
-        imageSearch: "Gongmyeongcheop Joseon appointment document",
       },
       {
         id: "d60-c06",
@@ -136,7 +135,6 @@ export const units: UnitContent[] = [
         title: "부계 중심 가족 제도의 강화",
         keywords: ["족보", "동성 마을", "사당", "종법 질서"],
         content: "조선 후기에는 부계 위주로 족보를 편찬하고, 같은 성씨끼리 모여 사는 동성 마을이 형성되었으며, 문중 중심으로 사당을 세웠다. 성리학적 종법 질서가 향촌 사회에 깊이 뿌리내린 결과이다.",
-        imageSearch: "Korean jokbo genealogy book",
       },
     ],
     quizzes: [

@@ -771,7 +771,6 @@ export const units: UnitContent[] = [
         keywords: ["김시습", "남효온", "절개", "금오신화"],
         content:
           "세조의 즉위를 인정하지 않고 벼슬을 거부한 채 절개를 지킨 김시습·남효온 등 여섯 신하를 가리킨다. 그중 김시습은 우리나라 최초의 한문 소설로 평가되는 금오신화를 남겼다.",
-        imageSearch: "Kim Si-seup portrait",
       },
       {
         id: "d46-c06",
@@ -871,7 +870,6 @@ export const units: UnitContent[] = [
         keywords: ["1485", "성종", "6전 체제", "기본 법전"],
         content:
           "세조 때 시작된 경국대전 편찬이 성종 대에 마무리되어 1485년부터 시행되었다. 이·호·예·병·형·공의 6전 체제로 구성된 조선의 기본 법전으로, 유교적 법치 국가 체제의 완성을 의미한다.",
-        imageSearch: "Gyeongguk daejeon",
       },
       {
         id: "d46-c20",
@@ -900,7 +898,6 @@ export const units: UnitContent[] = [
         keywords: ["성종", "성현", "음악 이론서"],
         content:
           "성종 때 성현 등이 편찬한 음악 이론서로, 궁중 음악의 원리와 악기·의상·무용 절차 등을 그림과 함께 체계적으로 정리하였다. 조선 전기 음악 문화를 집대성한 책으로 평가된다.",
-        imageSearch: "Akhak gwebeom",
       },
       {
         id: "d46-c24",
@@ -1168,7 +1165,6 @@ export const units: UnitContent[] = [
         keywords: ["태조~철종", "편년체", "사초·시정기", "유네스코"],
         content:
           "태조부터 철종까지의 역사를 편년체로 기록한 관찬 사서로, 사관이 작성한 사초와 시정기 등을 바탕으로 국왕 사후 실록청에서 편찬하였다. 국왕도 사초를 함부로 볼 수 없었으며, 유네스코 세계기록유산으로 등재되었다.",
-        imageSearch: "Annals of the Joseon Dynasty",
       },
       {
         id: "d47-c13",
@@ -1367,7 +1363,6 @@ export const units: UnitContent[] = [
         answer: 1,
         explanation:
           "조선왕조실록은 국왕 사후 실록청에서 편찬했으며, 기록의 공정성을 위해 국왕도 사초를 함부로 볼 수 없었다. 사초·시정기 기반 편찬, 사고 분산 보관, 유네스코 등재는 모두 옳은 설명이다.",
-        imageSearch: "Annals of the Joseon Dynasty",
       },
       {
         id: "d47-q11",
@@ -1530,7 +1525,6 @@ export const units: UnitContent[] = [
         keywords: ["부·목·군·현마다 설립", "교수·훈도 파견", "문묘"],
         content:
           "지방의 부·목·군·현마다 하나씩 세운 관립 중등 교육 기관으로, 중앙에서 교수나 훈도를 파견하였다. 문묘를 갖추어 성현 제사와 유학 교육을 함께 담당했으며, 학생인 교생에게는 군역이 면제되었다.",
-        imageSearch: "Jeonju Hyanggyo",
       },
       {
         id: "d48-c17",
@@ -1538,7 +1532,6 @@ export const units: UnitContent[] = [
         keywords: ["1543", "주세붕", "백운동 서원", "선현 제사와 교육"],
         content:
           "선현에 대한 제사와 학문 연구·교육을 담당한 사립 교육 기관이다. 1543년 주세붕이 안향을 기리며 세운 백운동 서원이 시초이며, 이후 사림의 향촌 활동 거점이 되어 전국으로 확산되었다.",
-        imageSearch: "Sosu Seowon",
       },
       {
         id: "d48-c18",
@@ -1618,7 +1611,6 @@ export const units: UnitContent[] = [
         answer: 3,
         explanation:
           "서원은 1543년 주세붕이 세운 백운동 서원이 시초로, 선현 제사와 교육을 담당한 사립 기관이다. 군현마다 설립된 것은 향교, 마을의 초등 교육 기관은 서당이다.",
-        imageSearch: "Sosu Seowon",
       },
       {
         id: "d48-q05",

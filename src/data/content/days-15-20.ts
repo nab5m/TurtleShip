@@ -45,7 +45,6 @@ export const units: UnitContent[] = [
         title: "김해 대성동 고분군",
         keywords: ["금관가야", "덩이쇠", "철제 갑옷", "지배층 무덤"],
         content: "김해에 있는 금관가야 지배층의 무덤으로, 덩이쇠·철제 갑옷·마구 등 다양한 철기와 왜계 유물이 출토되었다. 금관가야의 세력과 대외 교류를 보여 주는 대표 유적이다.",
-        imageSearch: "Daeseong-dong tombs Gimhae Gaya",
       },
       {
         id: "d15-c08",
@@ -76,7 +75,6 @@ export const units: UnitContent[] = [
         title: "고령 지산동 고분군",
         keywords: ["대가야", "순장", "금동관", "봉토분"],
         content: "고령에 있는 대가야 지배층의 무덤으로, 능선을 따라 커다란 봉토분이 늘어서 있다. 순장의 흔적과 금동관·철기·토기 등이 출토되어 대가야의 강성함과 위계질서를 보여 준다.",
-        imageSearch: "Jisan-dong tombs Goryeong Daegaya",
       },
       {
         id: "d15-c13",
@@ -96,7 +94,6 @@ export const units: UnitContent[] = [
         title: "가야의 철제 갑옷과 마구",
         keywords: ["판갑옷", "투구", "말갖춤", "철기 기술"],
         content: "가야 고분에서는 철판을 이어 만든 판갑옷과 투구, 말에 씌우는 갑옷과 각종 마구가 다량 출토된다. 발달한 철기 제작 기술과 강한 군사력을 보여 주는 유물로 시험에 자주 활용된다.",
-        imageSearch: "Gaya iron armor plate helmet",
       },
       {
         id: "d15-c16",
@@ -405,7 +402,6 @@ export const units: UnitContent[] = [
         title: "임신서기석",
         keywords: ["신라 화랑", "유교 경전 학습", "충도 맹세"],
         content: "두 청년이 나라에 충성하고 유교 경전을 공부할 것을 맹세한 내용을 새긴 신라의 비석이다. 화랑도가 유교 경전을 익혔음과 신라에 유학이 보급되었음을 보여 주는 자료로 출제된다.",
-        imageSearch: "Imsin Vow Stone Silla",
       },
       {
         id: "d16-c18",
@@ -1537,7 +1533,6 @@ export const units: UnitContent[] = [
         title: "무령왕릉 출토 유물",
         keywords: ["금제 관식", "석수(진묘수)", "오수전", "무덤 주인"],
         content: "무령왕릉에서는 금으로 만든 관 꾸미개, 무덤을 지키는 돌짐승(석수), 중국 화폐인 오수전 등이 출토되었다. 이 유물들은 백제 문화의 높은 수준과 중국 남조와의 활발한 교류를 보여 준다.",
-        imageSearch: "King Muryeong tomb gold ornaments Baekje",
       },
       {
         id: "d20-c10",

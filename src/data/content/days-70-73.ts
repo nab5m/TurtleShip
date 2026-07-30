@@ -398,7 +398,6 @@ export const units: UnitContent[] = [
         title: "아관파천(1896)",
         keywords: ["고종 러시아 공사관 이어", "김홍집 내각 붕괴", "친러 내각"],
         content: "신변에 위협을 느낀 고종이 1896년 러시아 공사관으로 거처를 옮긴 사건이다. 이로써 김홍집 내각이 무너지고 친러 내각이 들어섰으며 진행 중이던 을미개혁도 중단되었다.",
-        imageSearch: "Old Russian legation Seoul Jeong-dong",
       },
       {
         id: "d71-c17",
@@ -668,7 +667,6 @@ export const units: UnitContent[] = [
         title: "환구단",
         keywords: ["황제 즉위식", "하늘에 제사", "자주독립 표방"],
         content: "고종이 황제 즉위식을 거행하고 하늘에 제사를 지낸 제단이다. 황제가 하늘에 제사를 올림으로써 대한제국이 자주독립 국가임을 상징적으로 드러냈다.",
-        imageSearch: "Hwangudan altar Seoul",
       },
       {
         id: "d72-c14",
@@ -902,7 +900,6 @@ export const units: UnitContent[] = [
         title: "을사늑약(1905)",
         keywords: ["외교권 박탈", "통감부 설치", "을사 5적"],
         content: "일본이 강압으로 체결한 조약으로 대한제국의 외교권을 빼앗고 통감부를 설치하도록 하였다. 이완용 등 이른바 을사 5적이 조약에 찬성하여 나라를 사실상 보호국으로 전락시켰다.",
-        imageSearch: "Eulsa Treaty 1905 document",
       },
       {
         id: "d73-c07",

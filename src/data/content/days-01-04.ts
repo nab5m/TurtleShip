@@ -1018,7 +1018,6 @@ export const units: UnitContent[] = [
         title: "붓",
         keywords: ["창원 다호리", "한자 사용", "문자 생활"],
         content: "경남 창원 다호리 유적에서 붓이 출토되어, 철기 시대에 이미 한반도에서 한자를 사용하여 문자 생활을 하였음을 알려 준다. 중국 화폐와 함께 당시 중국과의 교류와 문자 수용을 보여 주는 결정적 자료이다.",
-        imageSearch: "Daho-ri writing brush Changwon iron age",
       },
       {
         id: "d04-c14",
@@ -1138,7 +1137,6 @@ export const units: UnitContent[] = [
         ],
         answer: 2,
         explanation: "창원 다호리 유적의 붓은 철기 시대에 한자를 사용하여 문자 생활을 하였음을 보여 주는 자료이다.",
-        imageSearch: "Daho-ri writing brush Changwon iron age",
       },
       {
         id: "d04-q06",

@@ -294,7 +294,6 @@ export const units: UnitContent[] = [
         title: "신라 촌락 문서",
         keywords: ["민정 문서", "쇼소인 발견", "서원경 부근 4개 촌"],
         content: "일본 도다이사 쇼소인에서 발견된 통일 신라의 문서로, 서원경(청주) 부근 4개 촌의 사정을 기록하였다. 조세와 부역을 효율적으로 거두기 위해 촌의 인구와 재산을 상세히 파악한 자료로 민정 문서라고도 한다.",
-        imageSearch: "Silla village register document Shosoin",
       },
       {
         id: "d22-c05",

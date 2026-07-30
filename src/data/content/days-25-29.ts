@@ -551,7 +551,6 @@ export const units: UnitContent[] = [
         title: "상경성",
         keywords: ["상경 용천부", "당 장안성 모방", "계획도시"],
         content: "발해의 수도 상경 용천부에 건설된 도성으로, 당의 장안성을 본떠 만들어졌다. 외성을 쌓고 그 안에 궁성을 두었으며 도로를 바둑판 모양으로 정비한 계획도시로, 발해가 당의 도성 제도를 수용하였음을 보여 준다.",
-        imageSearch: "Shangjing Longquanfu Bohai palace site",
       },
       {
         id: "d27-c02",
@@ -1106,7 +1105,6 @@ export const units: UnitContent[] = [
         title: "왕건의 즉위",
         keywords: ["918년", "궁예 축출", "홍유·배현경·신숭겸·복지겸"],
         content: "궁예의 폭정에 반발한 홍유·배현경·신숭겸·복지겸 등의 추대로 918년 왕건이 새 왕으로 즉위하였다. 태봉의 2인자였던 왕건이 왕위에 오르면서 궁예 정권을 대신하는 새 왕조가 열렸다.",
-        imageSearch: "Bronze statue of Taejo Wang Geon Goryeo",
       },
       {
         id: "d29-c02",
@@ -1137,7 +1135,6 @@ export const units: UnitContent[] = [
         title: "견훤의 경주 습격",
         keywords: ["927년", "포석정", "경애왕", "경순왕 옹립"],
         content: "927년 견훤은 신라의 수도 경주를 기습하여, 포석정에서 연회를 즐기던 경애왕을 죽게 하고 김부(경순왕)를 새 왕으로 세웠다. 이 사건은 왕건이 신라를 구원하러 나서면서 공산 전투가 벌어지는 직접적 계기가 되었다.",
-        imageSearch: "Poseokjeong Gyeongju Silla",
       },
       {
         id: "d29-c07",
@@ -1204,7 +1201,6 @@ export const units: UnitContent[] = [
         title: "신라 경순왕의 항복",
         keywords: ["935년", "경순왕 김부", "무혈 귀순"],
         content: "935년 신라 경순왕은 기울어진 국운을 보고 신하들과 논의한 끝에 나라를 고려에 넘기기로 하고 스스로 항복하였다. 태자(마의태자)의 반대에도 불구하고 이루어진 이 평화적 귀순으로 천 년 사직의 신라가 막을 내렸다.",
-        imageSearch: "Tomb of King Gyeongsun of Silla",
       },
       {
         id: "d29-c18",
@@ -1229,7 +1225,6 @@ export const units: UnitContent[] = [
         title: "후삼국 통일",
         keywords: ["936년", "고려", "재통일"],
         content: "935년 신라의 항복에 이어 936년 후백제까지 멸망시킨 고려는 마침내 후삼국을 통일하였다. 신라 말 이래 분열되었던 한반도가 다시 하나의 나라로 통합되어, 고려가 새로운 통일 왕조로 출발하게 되었다.",
-        imageSearch: "Later Three Kingdoms of Korea unified by Goryeo map",
       },
       {
         id: "d29-c22",

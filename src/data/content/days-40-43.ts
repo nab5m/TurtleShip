@@ -320,7 +320,6 @@ export const units: UnitContent[] = [
         title: "고려의 화폐",
         keywords: ["건원중보", "삼한통보·해동통보", "성종·숙종"],
         content: "성종 때 우리나라 최초의 금속 화폐인 건원중보를 주조하였고, 숙종 때 삼한통보·해동통보·해동중보 등을 발행하였다. 그러나 자급자족 경제로 인해 널리 유통되지는 못하였다.",
-        imageSearch: "Goryeo coin Haedong Tongbo",
       },
       {
         id: "d41-c09",
@@ -825,14 +824,12 @@ export const units: UnitContent[] = [
         title: "부석사 무량수전",
         keywords: ["영주", "주심포·배흘림기둥", "고려 목조 건축"],
         content: "경북 영주 부석사의 대표 건물로, 주심포 양식과 배흘림기둥이 특징인 고려 후기 목조 건축의 걸작이다. 안정감 있는 비례로 유명하다.",
-        imageSearch: "Buseoksa Muryangsujeon hall",
       },
       {
         id: "d43-c07",
         title: "수덕사 대웅전",
         keywords: ["예산", "주심포", "1308"],
         content: "충남 예산 수덕사의 건물로, 건립 연대(1308)가 확실한 고려 후기 주심포 양식 건축이다. 맞배지붕과 간결한 구조가 특징이다.",
-        imageSearch: "Sudeoksa Daeungjeon",
       },
       {
         id: "d43-c08",

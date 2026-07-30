@@ -33,7 +33,6 @@ export const units: UnitContent[] = [
         title: "동의보감",
         keywords: ["허준", "광해군 때 완성", "유네스코 세계기록유산"],
         content: "허준이 선조의 명으로 편찬을 시작하여 광해군 때 완성한 의학 서적으로, 우리나라와 중국의 의학 지식을 집대성하였다. 2009년 유네스코 세계기록유산으로 등재되었으며, 광해군 대의 대표 업적으로 자주 출제된다.",
-        imageSearch: "Donguibogam Korean medical book",
       },
       {
         id: "d55-c06",
@@ -88,14 +87,12 @@ export const units: UnitContent[] = [
         title: "병자호란과 남한산성",
         keywords: ["1636", "45일 항전", "유네스코 세계유산"],
         content: "1636년 청 태종이 침입하자 인조는 강화도 길이 막혀 남한산성으로 피신해 약 45일간 항전하였다. 그러나 강화도가 함락되고 식량이 바닥나자 결국 성문을 열고 항복하였다. 남한산성은 2014년 유네스코 세계유산으로 등재되었다.",
-        imageSearch: "Namhansanseong fortress wall",
       },
       {
         id: "d55-c15",
         title: "삼전도의 굴욕",
         keywords: ["삼배구고두례", "군신 관계", "대청황제공덕비"],
         content: "병자호란에서 항복한 인조가 삼전도(서울 송파)에서 청 태종에게 세 번 절하고 아홉 번 머리를 조아리는 항복 의식을 행한 사건이다. 이후 조선은 명과 단교하고 청과 군신 관계를 맺었으며, 청의 강요로 삼전도비(대청황제공덕비)가 세워졌다.",
-        imageSearch: "Samjeondo monument stele Seoul",
       },
       {
         id: "d55-c16",
@@ -224,7 +221,6 @@ export const units: UnitContent[] = [
         ],
         answer: 2,
         explanation: "삼전도비는 병자호란 항복 이후 청의 강요로 세워진 대청황제공덕비이다. 병자호란 결과 조선은 청과 군신 관계를 맺고 두 왕자가 인질로 끌려갔으며, 형제 관계는 정묘호란의 결과이다.",
-        imageSearch: "Samjeondo monument stele Seoul",
       },
       {
         id: "d55-q08",
@@ -639,7 +635,6 @@ export const units: UnitContent[] = [
         title: "탕평비",
         keywords: ["영조", "1742", "성균관"],
         content: "영조가 1742년 성균관 입구에 세운 비석으로, 붕당을 초월해 인재를 고루 등용하겠다는 탕평의 의지를 담았다. 두루 사귀되 편당하지 않는다는 유교 정치의 이상을 표방하였다.",
-        imageSearch: "Tangpyeongbi stele Sungkyunkwan Seoul",
       },
       {
         id: "d57-c04",
@@ -694,7 +689,6 @@ export const units: UnitContent[] = [
         title: "규장각",
         keywords: ["정조", "왕실 도서관", "검서관", "서얼 등용"],
         content: "정조가 창덕궁에 설치한 왕실 도서관 겸 학술·정책 연구 기관이다. 서얼 출신인 이덕무·유득공·박제가 등을 검서관으로 등용하였으며, 정조의 개혁을 뒷받침하는 핵심 기구가 되었다.",
-        imageSearch: "Gyujanggak Changdeokgung Seoul",
       },
       {
         id: "d57-c13",
@@ -745,7 +739,6 @@ export const units: UnitContent[] = [
         title: "정조의 편찬 사업",
         keywords: ["탁지지", "무예도보통지", "규장각"],
         content: "정조 대에는 대전통편 외에 국가 재정을 정리한 탁지지, 무예 훈련서인 무예도보통지 등이 편찬되었다. 이는 규장각을 중심으로 한 문화 정책의 결실이었다.",
-        imageSearch: "Muyedobotongji martial arts manual",
       },
       {
         id: "d57-c21",
@@ -784,7 +777,6 @@ export const units: UnitContent[] = [
         ],
         answer: 0,
         explanation: "탕평비를 세운 왕은 영조이며, 균역법·청계천 준설·속대전 편찬 등이 그의 업적이다. 장용영은 정조, 대동법 최초 시행은 광해군, 나선 정벌은 효종의 일이다.",
-        imageSearch: "Tangpyeongbi stele Sungkyunkwan Seoul",
       },
       {
         id: "d57-q03",
@@ -845,7 +837,6 @@ export const units: UnitContent[] = [
         ],
         answer: 0,
         explanation: "수원 화성 건설에 쓰인 거중기는 정약용이 기기도설을 참고해 고안하였다. 김정호는 대동여지도, 최무선은 화약, 장영실은 자격루와 관련된다.",
-        imageSearch: "Suwon Hwaseong Fortress",
       },
       {
         id: "d57-q08",
@@ -1344,7 +1335,6 @@ export const units: UnitContent[] = [
         title: "상평통보",
         keywords: ["인조 시험 발행", "숙종 전국 유통", "금납화"],
         content: "인조 때 시험 발행되었다가 숙종 때 전국적으로 유통된 조선 후기의 대표 화폐이다. 상업이 발달하고 대동법으로 조세의 금납화가 진전되면서 전국에서 널리 쓰였다.",
-        imageSearch: "Sangpyeong Tongbo coin Joseon",
       },
       {
         id: "d59-c18",
@@ -1497,7 +1487,6 @@ export const units: UnitContent[] = [
         ],
         answer: 1,
         explanation: "숙종 때 전국에 유통된 화폐는 상평통보로, 대동법 등에 따른 조세 금납화와 함께 널리 쓰였다. 건원중보는 고려, 백동화는 개항기의 화폐이다.",
-        imageSearch: "Sangpyeong Tongbo coin Joseon",
       },
       {
         id: "d59-q11",

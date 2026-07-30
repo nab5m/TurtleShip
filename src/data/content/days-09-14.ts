@@ -15,14 +15,12 @@ export const units: UnitContent[] = [
         title: "국내성 천도",
         keywords: ["유리왕", "지안", "압록강 중류"],
         content: "주몽의 아들 유리왕 때 도읍을 졸본에서 국내성(중국 지린성 지안)으로 옮겼다. 국내성은 이후 장수왕이 평양으로 천도할 때까지 오랫동안 고구려의 정치적 중심지 역할을 하였다.",
-        imageSearch: "Gungnaeseong Goguryeo fortress Ji'an",
       },
       {
         id: "d09-c03",
         title: "오녀산성(졸본성)",
         keywords: ["환런", "산성", "첫 도읍"],
         content: "고구려의 첫 도읍 졸본으로 비정되는 산성으로, 중국 랴오닝성 환런의 험준한 산 위에 자리한다. 방어에 유리한 산성 중심의 도읍 형태에서 고구려 초기의 정복적 성격을 엿볼 수 있다.",
-        imageSearch: "Wunü Mountain City Jolbon Goguryeo",
       },
       {
         id: "d09-c04",
@@ -609,7 +607,6 @@ export const units: UnitContent[] = [
         title: "풍납토성",
         keywords: ["몽촌토성", "한성 백제 왕성", "서울 한강 변"],
         content: "서울 한강 변에 있는 대규모 토성으로, 몽촌토성과 함께 한성 백제의 왕성으로 추정된다. 많은 유물이 출토되어 초기 백제의 도읍이 한강 유역에 있었음을 뒷받침한다.",
-        imageSearch: "Pungnaptoseong earthen fortress Baekje",
       },
       {
         id: "d11-c04",
@@ -622,7 +619,6 @@ export const units: UnitContent[] = [
         title: "석촌동 고분군",
         keywords: ["서울 송파", "계단식 돌무지무덤", "고구려 영향"],
         content: "서울 송파구에 있는 백제 초기 무덤들로, 고구려의 것과 같은 계단식 돌무지무덤이 남아 있다. 백제 지배층이 고구려·부여 계통임을 보여 주는 대표 유적으로 출제된다.",
-        imageSearch: "Seokchon-dong tombs Baekje stepped pyramid",
       },
       {
         id: "d11-c06",
@@ -1443,14 +1439,12 @@ export const units: UnitContent[] = [
         title: "단양 신라 적성비",
         keywords: ["551경", "한강 상류 진출", "적성 지역 회유"],
         content: "단양 적성비는 진흥왕이 한강 상류(단양) 지역을 차지한 뒤 세운 비석이다. 새로 편입한 주민을 위로하고 공을 세운 이를 포상한 내용이 담겨 있다.",
-        imageSearch: "Danyang Silla Jeokseong stele",
       },
       {
         id: "d14-c08",
         title: "북한산 순수비",
         keywords: ["한강 하류", "진흥왕 순행", "김정희 고증"],
         content: "북한산 순수비는 진흥왕이 한강 하류를 차지한 뒤 순행하며 세운 비석이다. 조선 후기 김정희가 금석문 연구로 그 정체를 밝혀냈다.",
-        imageSearch: "Bukhansan Silla Jinheung monument",
       },
       {
         id: "d14-c09",

@@ -23,7 +23,6 @@ export const units: UnitContent[] = [
         title: "운현궁",
         keywords: ["흥선대원군 사저", "고종 잠저", "서울 종로"],
         content: "서울 종로에 있는 흥선대원군의 사저로, 고종이 태어나 왕위에 오르기 전까지 자란 잠저이다. 대원군 집권기에 크게 확장되어 사실상 정치의 중심 무대 역할을 하였다.",
-        imageSearch: "Unhyeongung Palace Seoul",
       },
       {
         id: "d65-c04",
@@ -61,7 +60,6 @@ export const units: UnitContent[] = [
         title: "당백전",
         keywords: ["1866년 발행", "고액 화폐", "물가 폭등", "경복궁 중건 비용"],
         content: "경복궁 중건 비용을 마련하기 위해 1866년 발행한 고액 화폐로, 명목 가치는 상평통보의 100배였으나 실질 가치는 이에 크게 못 미쳤다. 당백전의 남발은 물가 폭등을 일으켜 경제 혼란과 민심 이반을 불러왔다.",
-        imageSearch: "Dangbaekjeon Korean coin",
       },
       {
         id: "d65-c10",
@@ -362,7 +360,6 @@ export const units: UnitContent[] = [
         title: "외규장각 의궤 약탈과 반환",
         keywords: ["의궤 340여 책", "프랑스 국립도서관", "2011년 반환"],
         content: "병인양요 때 프랑스군이 약탈해 간 외규장각 도서에는 왕실 행사를 기록한 의궤 340여 책이 포함되어 있었다. 프랑스 국립도서관에 보관되어 있다가 2011년 5년마다 갱신하는 대여 형식으로 국내에 돌아왔다.",
-        imageSearch: "Uigwe royal protocols Joseon dynasty",
       },
       {
         id: "d66-c12",
@@ -393,7 +390,6 @@ export const units: UnitContent[] = [
         title: "어재연과 광성보 전투",
         keywords: ["신미양요", "결사 항전", "어재연 전사"],
         content: "신미양요 최대의 격전지인 광성보에서 어재연이 이끄는 조선 수비대가 미군에 맞서 결사 항전하였다. 어재연을 비롯한 조선군 대부분이 전사하였으나, 미군도 더 이상의 진출이 어렵다고 판단하고 물러났다.",
-        imageSearch: "Gwangseongbo fortress Ganghwa",
       },
       {
         id: "d66-c17",
@@ -504,7 +500,6 @@ export const units: UnitContent[] = [
         options: ["병인양요", "갑신정변", "임오군란", "신미양요"],
         answer: 3,
         explanation: "척화비는 1871년 신미양요 직후 통상 수교 거부 의지를 천명하며 전국에 세워졌다. 병인양요(1866)와는 5년의 시차가 있으며, 직접적 계기는 신미양요이다.",
-        imageSearch: "Cheokhwabi stele Korea",
       },
       {
         id: "d66-q09",
@@ -598,7 +593,6 @@ export const units: UnitContent[] = [
         title: "강화도 조약(1876)",
         keywords: ["조일 수호 조규", "최초의 근대적 조약", "불평등 조약", "신헌"],
         content: "운요호 사건을 계기로 조선이 일본과 맺은 조일 수호 조규로, 우리나라 최초의 근대적 조약이자 불평등 조약이다. 조선의 신헌과 일본의 구로다가 강화도에서 체결하였으며, 이후 열강과 조약을 맺는 출발점이 되었다.",
-        imageSearch: "Treaty of Ganghwa 1876",
       },
       {
         id: "d67-c06",
@@ -647,7 +641,6 @@ export const units: UnitContent[] = [
         title: "『조선책략』",
         keywords: ["황준헌", "친중국·결일본·연미국", "러시아 견제", "김홍집"],
         content: "주일 청국 외교관 황준헌(황쭌셴)이 지은 책으로, 러시아의 남하를 막으려면 '친중국·결일본·연미국'해야 한다고 주장하였다. 1880년 2차 수신사 김홍집이 일본에서 가지고 들어와 국내에 유포되었다.",
-        imageSearch: "Huang Zunxian portrait",
       },
       {
         id: "d67-c14",
@@ -843,7 +836,6 @@ export const units: UnitContent[] = [
         ],
         answer: 3,
         explanation: "자료의 조약은 강화도 조약(1876)으로, 최혜국 대우 조항은 없었다. 최혜국 대우는 1882년 조미 수호 통상 조약에서 처음 규정되었다.",
-        imageSearch: "Treaty of Ganghwa 1876",
       },
     ],
   },
@@ -881,7 +873,6 @@ export const units: UnitContent[] = [
         title: "2차 수신사 김홍집(1880)",
         keywords: ["1880년", "조선책략 유입", "황준헌"],
         content: "1880년 일본에 파견된 2차 수신사 김홍집은 주일 청국 공사관의 황준헌에게서 『조선책략』을 받아 귀국하였다. 이 책의 유포는 미국과의 수교 여론과 위정척사파의 반발을 동시에 불러일으켰다.",
-        imageSearch: "Kim Hong-jip",
       },
       {
         id: "d68-c06",
@@ -906,7 +897,6 @@ export const units: UnitContent[] = [
         title: "보빙사(1883)",
         keywords: ["미국 파견", "민영익", "홍영식·서광범", "최초의 구미 사절단"],
         content: "조미 수호 통상 조약 체결 후 미국 공사의 부임에 대한 답례로 파견된 우리나라 최초의 구미 사절단이다. 전권대신 민영익과 홍영식·서광범 등이 미국 대통령을 만나고 근대 문물을 시찰하였으며, 수행원 유길준은 미국에 남아 유학하였다.",
-        imageSearch: "Bobingsa Korean mission to United States 1883",
       },
       {
         id: "d68-c10",
@@ -925,7 +915,6 @@ export const units: UnitContent[] = [
         title: "최익현의 왜양일체론",
         keywords: ["1876년", "개항 반대", "지부복궐척화의소", "흑산도 유배"],
         content: "1876년 강화도 조약 체결 논의에 반대하여 최익현은 도끼를 지고 궐 앞에 엎드려 상소하였다(지부복궐척화의소). 일본도 서양 오랑캐와 다를 바 없다는 왜양일체론을 내세워 개항에 반대하다가 흑산도로 유배되었다.",
-        imageSearch: "Choe Ik-hyeon portrait",
       },
       {
         id: "d68-c13",
@@ -992,7 +981,6 @@ export const units: UnitContent[] = [
         title: "청의 내정 간섭",
         keywords: ["위안스카이 군대 주둔", "마젠창", "묄렌도르프", "갑신정변의 배경"],
         content: "임오군란 이후 청은 위안스카이가 지휘하는 군대를 서울에 주둔시키고, 마젠창을 내정 고문으로, 독일인 묄렌도르프를 외교 고문으로 파견하였다. 청의 심한 간섭은 급진 개화파가 갑신정변을 일으키는 배경이 되었다.",
-        imageSearch: "Paul Georg von Mollendorff",
       },
     ],
     quizzes: [
@@ -1184,7 +1172,6 @@ export const units: UnitContent[] = [
         title: "김옥균",
         keywords: ["급진 개화파 지도자", "차관 교섭 실패", "갑신정변 주도"],
         content: "급진 개화파의 지도자로, 개화 정책 추진 자금을 마련하기 위해 일본에서 300만 엔의 차관 도입을 교섭하였으나 실패하여 정치적 입지가 크게 좁아졌다. 이러한 위기 속에서 갑신정변을 주도하였다.",
-        imageSearch: "Kim Ok-gyun portrait",
       },
       {
         id: "d69-c05",
@@ -1203,7 +1190,6 @@ export const units: UnitContent[] = [
         title: "우정총국",
         keywords: ["최초의 근대식 우편 기관", "1884년", "개국 축하연"],
         content: "1884년 설립된 우리나라 최초의 근대식 우편 업무 기관이다. 급진 개화파는 우정총국 개국 축하연을 기회로 삼아 갑신정변을 일으켰으며, 정변의 여파로 우편 업무는 곧 중단되었다.",
-        imageSearch: "Ujeongchongguk post office Seoul",
       },
       {
         id: "d69-c08",
@@ -1270,7 +1256,6 @@ export const units: UnitContent[] = [
         title: "거문도 사건(1885~1887)",
         keywords: ["영국", "러시아 남하 견제", "해밀턴항", "청의 중재"],
         content: "조선과 러시아의 접근을 경계한 영국이 러시아의 남하를 견제한다는 구실로 거문도를 불법 점령하고 해밀턴항이라 불렀다. 청의 중재로 러시아가 조선 영토를 점령하지 않겠다고 약속하자 영국군은 1887년 철수하였다.",
-        imageSearch: "Geomundo Port Hamilton",
       },
       {
         id: "d69-c19",
@@ -1283,7 +1268,6 @@ export const units: UnitContent[] = [
         title: "유길준의 중립화론",
         keywords: ["보빙사 수행원", "미국 유학", "서유견문"],
         content: "보빙사 수행원으로 미국에 유학한 유길준은 귀국 후 열강이 함께 보장하는 한반도 중립화 방안을 구상하였다. 그는 서양 견문록인 『서유견문』을 지어 근대 문물과 개화 사상을 소개한 인물이기도 하다.",
-        imageSearch: "Yu Kil-chun portrait",
       },
       {
         id: "d69-c21",
@@ -1299,7 +1283,6 @@ export const units: UnitContent[] = [
         options: ["임오군란", "갑신정변", "아관파천", "을미사변"],
         answer: 1,
         explanation: "우정총국 개국 축하연에서 급진 개화파가 일으킨 사건은 갑신정변(1884)이다. 임오군란(1882)은 구식 군인들의 봉기로 우정총국과 관련이 없다.",
-        imageSearch: "Ujeongchongguk post office Seoul",
       },
       {
         id: "d69-q02",

@@ -23,7 +23,6 @@ export const units: UnitContent[] = [
         title: "조선 총독의 지위와 권한",
         keywords: ["현역 육해군 대장", "천황 직속", "데라우치 마사타케"],
         content: "총독은 일본 현역 육·해군 대장 중에서 임명되었고, 일본 내각이 아닌 천황에 직속되어 입법·사법·행정권과 군 통수권까지 장악하였다. 초대 총독은 한일 병합을 주도한 데라우치 마사타케였다.",
-        imageSearch: "Terauchi Masatake",
       },
       {
         id: "d74-c04",
@@ -102,7 +101,6 @@ export const units: UnitContent[] = [
         title: "동양척식주식회사",
         keywords: ["1908", "토지 약탈", "일본인 이주"],
         content: "1908년 일제가 대한제국의 토지와 자원을 수탈하기 위해 세운 국책 회사이다. 토지 조사 사업으로 총독부에 귀속된 토지를 넘겨받아 일본인 이주 농민에게 헐값에 팔았으며, 최대 지주로서 높은 소작료를 거두어 농민을 수탈하였다.",
-        imageSearch: "Oriental Development Company building Seoul",
       },
       {
         id: "d74-c17",
@@ -139,7 +137,6 @@ export const units: UnitContent[] = [
         title: "조선물산공진회(1915)",
         keywords: ["경복궁", "식민 통치 선전", "전각 철거"],
         content: "일제가 시정 5년을 기념한다며 경복궁에서 개최한 대규모 박람회이다. 식민 통치의 성과를 선전하려는 행사였으며, 개최를 구실로 경복궁의 많은 전각이 철거되어 궁궐이 크게 훼손되었다.",
-        imageSearch: "Joseon Industrial Exhibition 1915 Gyeongbokgung",
       },
     ],
     quizzes: [
@@ -361,7 +358,6 @@ export const units: UnitContent[] = [
         title: "흥사단(1913)",
         keywords: ["안창호", "샌프란시스코", "실력 양성"],
         content: "안창호가 미국 샌프란시스코에서 조직한 민족 운동 단체이다. 무실역행을 내세우며 민족의 실력 양성과 인격 수양을 강조하였고, 국내외에 조직을 두어 장기적인 독립운동의 기반을 마련하고자 하였다.",
-        imageSearch: "Ahn Changho",
       },
       {
         id: "d75-c13",
@@ -417,7 +413,6 @@ export const units: UnitContent[] = [
         title: "기미 독립 선언서",
         keywords: ["최남선", "공약 3장", "비폭력", "보성사"],
         content: "3·1 운동 때 발표된 독립 선언서로, 최남선이 본문을 기초하였다. 인도주의에 입각해 한국 독립의 정당성을 밝히고 공약 3장에서 질서 있는 시위를 당부하였으며, 천도교 계열 인쇄소인 보성사에서 인쇄되었다.",
-        imageSearch: "Korean Declaration of Independence 1919",
       },
       {
         id: "d75-c22",
@@ -626,7 +621,6 @@ export const units: UnitContent[] = [
         title: "통합 대한민국 임시 정부(1919.9)",
         keywords: ["상하이", "한성 정부 법통 계승", "정부 통합"],
         content: "1919년 9월 여러 임시 정부가 하나로 통합되었다. 정부의 위치는 외교 활동에 유리한 상하이로 정하고, 국내에서 세워진 한성 정부의 법통을 계승하는 형식을 취하였다.",
-        imageSearch: "Provisional Government of the Republic of Korea building Shanghai",
       },
       {
         id: "d76-c06",
@@ -663,7 +657,6 @@ export const units: UnitContent[] = [
         title: "독립 공채",
         keywords: ["애국 공채", "군자금", "백산상회"],
         content: "임시 정부가 독립운동 자금을 마련하기 위해 발행한 채권이다. 국내외 동포들에게 판매하여 자금을 모았으며, 부산의 백산상회(안희제) 등이 자금 조달과 전달의 통로 역할을 하였다.",
-        imageSearch: "Korean independence bond Provisional Government 1919",
       },
       {
         id: "d76-c12",
@@ -725,7 +718,6 @@ export const units: UnitContent[] = [
         title: "제2대 대통령 박은식",
         keywords: ["한국통사", "한국독립운동지혈사", "국무령제 개헌"],
         content: "이승만 탄핵 후 제2대 대통령으로 선출된 박은식은 개헌을 통해 대통령제를 국무령 중심의 내각 책임제로 바꾸었다. 그는 『한국통사』와 『한국독립운동지혈사』를 저술한 민족 사학자이기도 하다.",
-        imageSearch: "Park Eun-sik",
       },
       {
         id: "d76-c22",
@@ -888,7 +880,6 @@ export const units: UnitContent[] = [
         title: "문화 통치의 배경",
         keywords: ["3·1 운동", "사이토 마코토", "통치 방식 전환"],
         content: "3·1 운동으로 무단 통치의 한계를 절감한 일제는 통치 방식을 이른바 '문화 통치'로 바꾸었다. 새로 부임한 사이토 마코토 총독은 한국인의 문화와 관습을 존중한다는 명분을 내세웠다.",
-        imageSearch: "Saito Makoto",
       },
       {
         id: "d77-c02",
@@ -913,7 +904,6 @@ export const units: UnitContent[] = [
         title: "조선일보·동아일보 창간",
         keywords: ["1920", "민족 신문 허용", "한글 신문"],
         content: "일제는 1920년 조선일보와 동아일보 등 한국인이 발행하는 신문의 창간을 허용하였다. 그러나 이는 여론을 파악하고 통제하기 위한 것이었으며, 민족지에 대해서는 엄격한 검열이 뒤따랐다.",
-        imageSearch: "Dong-A Ilbo first issue 1920",
       },
       {
         id: "d77-c06",
@@ -926,7 +916,6 @@ export const units: UnitContent[] = [
         title: "제2차 조선 교육령(1922)",
         keywords: ["보통학교 6년", "조선어 필수", "대학 설립 규정"],
         content: "문화 통치기에 개정된 교육령으로, 보통학교 수업 연한을 일본과 같은 6년으로 늘리고 조선어를 필수 과목으로 두었다. 대학 설립 규정을 마련하였는데, 이는 뒤에 경성 제국 대학이 세워지는 근거가 되었다.",
-        imageSearch: "Keijo Imperial University",
       },
       {
         id: "d77-c08",
@@ -1179,7 +1168,6 @@ export const units: UnitContent[] = [
         title: "대한독립군과 홍범도",
         keywords: ["홍범도", "의병 출신", "국내 진공"],
         content: "홍범도가 이끈 대한독립군은 1920년대 초 만주에서 활동한 대표적 독립군 부대이다. 두만강을 건너 국내 진공 작전을 펴 일제의 국경 지역 시설을 공격하였으며, 봉오동·청산리 전투에서 큰 활약을 하였다.",
-        imageSearch: "Hong Beom-do",
       },
       {
         id: "d78-c03",

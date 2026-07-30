@@ -111,7 +111,6 @@ export const units: UnitContent[] = [
         title: "개태사",
         keywords: ["후백제 격파 기념", "논산", "숭불 정책"],
         content: "태조가 후백제를 멸망시킨 것을 기념하여 지금의 충남 논산에 세운 사찰이다. 후삼국 통일을 부처의 도움으로 이룬 것으로 여긴 태조의 숭불 정책을 잘 보여 주는 절이다.",
-        imageSearch: "Gaetaesa temple Nonsan Goryeo",
       },
       {
         id: "d30-c19",
@@ -397,7 +396,6 @@ export const units: UnitContent[] = [
         title: "국자감 정비",
         keywords: ["최고 교육 기관", "유학 진흥", "경학박사"],
         content: "성종은 개경에 최고 교육 기관인 국자감을 정비하여 유학을 진흥하였다. 또 지방 12목에 경학박사와 의학박사를 파견하여 인재를 기르는 등 유교적 교육 제도의 기틀을 세웠다.",
-        imageSearch: "Goryeo Songgyungwan Kaesong",
       },
       {
         id: "d31-c18",
@@ -716,7 +714,6 @@ export const units: UnitContent[] = [
         title: "5도와 양계의 비교",
         keywords: ["5도(안찰사·행정)", "양계(병마사·군사)", "주현군·주진군"],
         content: "5도는 안찰사를 파견한 일반 행정 구역이고, 양계(북계·동계)는 병마사를 둔 군사 행정 구역이다. 국경 방어를 맡은 양계에는 상비군인 주진군을, 5도에는 주현군을 두어 성격을 달리하였다.",
-        imageSearch: "Goryeo administrative divisions map five provinces two frontiers",
       },
     ],
     quizzes: [
@@ -1151,7 +1148,6 @@ export const units: UnitContent[] = [
         title: "서희의 외교 담판",
         keywords: ["소손녕", "고구려 계승 주장", "송 단교 조건"],
         content: "1차 침입 때 서희는 소손녕과 담판하여 고려가 고구려를 계승한 나라임을 내세우고, 거란과 교류하지 못하는 것은 그 사이에 여진이 있기 때문이라고 설득하였다. 그 결과 거란군을 물리치고 강동 6주를 확보하는 성과를 거두었다.",
-        imageSearch: "Seo Hui Goryeo diplomat statue Icheon",
       },
       {
         id: "d34-c06",
@@ -1279,7 +1275,6 @@ export const units: UnitContent[] = [
         ],
         answer: 0,
         explanation: "서희는 거란의 1차 침입 때 담판으로 강동 6주를 확보하였다. 철령 이북 수복은 공민왕, 동북 9성 축조는 예종 대의 일이고, 쌍성총관부는 원이 설치한 기구이다.",
-        imageSearch: "Seo Hui Goryeo diplomat statue",
       },
       {
         id: "d34-q02",

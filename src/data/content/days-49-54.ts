@@ -320,7 +320,6 @@ export const units: UnitContent[] = [
         title: "이황(퇴계)",
         keywords: ["주리론", "영남학파", "동방의 주자", "성학십도"],
         content: "'동방의 주자'로 불린 성리학자로, 이(理)를 중시하는 주리론을 정립하여 영남학파의 종장이 되었다. 성학십도·주자서절요를 저술하고 예안 향약을 시행하였다.",
-        imageSearch: "Yi Hwang Toegye portrait",
       },
       {
         id: "d50-c08",
@@ -351,14 +350,12 @@ export const units: UnitContent[] = [
         title: "도산서원",
         keywords: ["이황", "안동", "사액 서원", "영남학파의 중심"],
         content: "이황 사후 제자들이 그가 학문을 닦던 도산서당 자리에 세운 서원으로, 선조로부터 사액을 받았다. 영남학파의 중심지였으며 유네스코 세계유산 '한국의 서원'에 포함되었다.",
-        imageSearch: "Dosan Seowon Confucian Academy Andong",
       },
       {
         id: "d50-c13",
         title: "이이(율곡)",
         keywords: ["주기론", "기호학파", "성학집요", "수미법"],
         content: "기(氣)의 역할을 강조하는 주기론을 발전시킨 성리학자로, 기호학파의 종장이 되었다. 성학집요·동호문답·격몽요결을 저술하고 수미법 등 현실 개혁안을 제시하였다.",
-        imageSearch: "Yi I Yulgok portrait",
       },
       {
         id: "d50-c14",
@@ -395,7 +392,6 @@ export const units: UnitContent[] = [
         title: "소수서원",
         keywords: ["이황의 건의", "명종", "최초의 사액 서원", "면세 특권"],
         content: "백운동 서원이 이황의 건의로 명종 때 '소수서원'이라는 현판을 하사받아 최초의 사액 서원이 되었다. 사액 서원은 국가로부터 서적·토지·노비를 지급받고 면세의 혜택을 누렸다.",
-        imageSearch: "Sosu Seowon Confucian Academy Yeongju",
       },
       {
         id: "d50-c20",
@@ -1056,7 +1052,6 @@ export const units: UnitContent[] = [
         title: "『조선왕조실록』",
         keywords: ["편년체", "사초·시정기", "유네스코 기록유산"],
         content: "태조부터 철종까지의 역사를 편년체로 기록한 방대한 역사서이다. 사관이 작성한 사초와 각 관청의 시정기를 바탕으로 왕 사후에 편찬하였다.",
-        imageSearch: "Annals of the Joseon Dynasty Sillok",
       },
       {
         id: "d53-c02",
@@ -1318,7 +1313,6 @@ export const units: UnitContent[] = [
         title: "한산도 대첩",
         keywords: ["학익진", "1592", "3대 대첩"],
         content: "이순신이 한산도 앞바다에서 학익진 전법으로 왜 수군을 크게 무찌른 전투이다. 임진왜란 3대 대첩의 하나로 남해의 제해권을 확실히 굳혔다.",
-        imageSearch: "Battle of Hansando turtle ship",
       },
       {
         id: "d54-c07",
