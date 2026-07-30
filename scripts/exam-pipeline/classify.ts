@@ -137,6 +137,7 @@ export interface ClassifiedQuestion {
   score: number; // 최고점 시대의 점수 (0 = 분류 실패)
   margin: number; // 1등 - 2등 시대 점수차 (신뢰도 참고)
   answerChoice?: string; // 정답 선택지 텍스트 (로컬 전용 — 커밋 금지)
+  text: string; // 문항 전체 텍스트 (로컬 전용 — 커밋 금지). 선택지 귀속·개념 추출 단계가 다시 쪼갠다
 }
 
 function scoreUnits(parts: { text: string; weight: number }[]): Map<number, number> {
@@ -193,6 +194,7 @@ export function classifyQuestion(
     score: top?.[1] ?? 0,
     margin: (top?.[1] ?? 0) - (second?.[1] ?? 0),
     answerChoice,
+    text: question.text,
   };
 }
 
