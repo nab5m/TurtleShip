@@ -29,10 +29,11 @@ function pct(n: number, total: number): number {
 // ---------------------------------------------------------------- 카드별 출제 횟수
 
 // 카드를 정답 선택지에서 찾아내기 위한 검색어. 너무 짧거나 흔한 말은 오탐만 늘리므로 제외한다.
-function cardTerms(title: string, keywords: string[]): string[] {
-  const raw = [title, ...keywords];
-  const terms = new Set<string>();
-  for (const item of raw) {
+// 제목에서 나온 검색어는 그 카드의 주제 자체라서, 같은 낱말 길이면 keywords 보다 우선한다.
+function cardTerms(title: string, keywords: string[]): { text: string; fromTitle: boolean }[] {
+  const terms = new Map<string, boolean>();
+  for (const [index, item] of [title, ...keywords].entries()) {
+    const fromTitle = index === 0;
     const flat = item.replace(/\s+/g, "");
     // 괄호 안 보충 설명은 떼고 본체만 쓴다 ("주먹도끼(만능 석기)" → "주먹도끼")
     const head = flat.split(/[(（]/)[0];
@@ -40,10 +41,10 @@ function cardTerms(title: string, keywords: string[]): string[] {
       const term = candidate.replace(/[^가-힣一-龥A-Za-z0-9]/g, "");
       if (term.length < 3) continue; // 2글자 이하는 다른 맥락에 너무 흔하게 걸린다
       if (/^[0-9]+$/.test(term)) continue;
-      terms.add(term);
+      terms.set(term, (terms.get(term) ?? false) || fromTitle);
     }
   }
-  return [...terms];
+  return [...terms].map(([text, fromTitle]) => ({ text, fromTitle }));
 }
 
 interface FreqEntry {
@@ -52,15 +53,30 @@ interface FreqEntry {
   rounds: { label: string; hoe: number; count: number }[];
 }
 
+// 여러 카드가 함께 달고 있는 태그성 낱말은 주제 판별에 쓰지 않는다.
+// 예: "진흥왕" 은 화랑도·황룡사·『국사』 편찬·대가야 멸망 등 여러 장이 공유한다 →
+// 정답 선택지에 "진흥왕" 이 나왔다고 그 카드를 모두 출제로 세면 별점이 부풀려진다.
+const MAX_CARDS_PER_TERM = 3;
+
 function buildFrequency(rounds: ClassifiedRound[]): Record<string, FreqEntry> {
-  const index: { id: string; terms: string[] }[] = [];
+  const raw = [];
   for (const meta of UNITS) {
     const content = UNIT_CONTENT_MAP[meta.unit];
     if (!content) continue;
     for (const card of content.cards) {
-      index.push({ id: card.id, terms: cardTerms(card.title, card.keywords) });
+      raw.push({ id: card.id, terms: cardTerms(card.title, card.keywords) });
     }
   }
+  const cardsPerTerm = new Map<string, number>();
+  for (const card of raw) {
+    for (const term of card.terms) {
+      cardsPerTerm.set(term.text, (cardsPerTerm.get(term.text) ?? 0) + 1);
+    }
+  }
+  const index = raw.map((card) => ({
+    id: card.id,
+    terms: card.terms.filter((t) => (cardsPerTerm.get(t.text) ?? 0) <= MAX_CARDS_PER_TERM),
+  }));
 
   // 카드 id -> 회차 -> 걸린 문항 수
   const hits = new Map<string, Map<number, number>>();
@@ -69,12 +85,20 @@ function buildFrequency(rounds: ClassifiedRound[]): Record<string, FreqEntry> {
       if (!q.answerChoice) continue;
       const flat = q.answerChoice.replace(/\s+/g, "");
       if (flat.length < 6) continue; // OCR 이 선택지를 제대로 못 읽은 경우
+      // 선택지 하나는 카드 한 장에만 센다 — 가장 길게(= 구체적으로) 걸린 카드를 고르고,
+      // 길이가 같으면 제목에서 나온 검색어가 이긴다.
+      let best: { id: string; rank: number } | undefined;
       for (const card of index) {
-        if (!card.terms.some((t) => flat.includes(t))) continue;
-        let byRound = hits.get(card.id);
-        if (!byRound) hits.set(card.id, (byRound = new Map()));
-        byRound.set(round.hoe, (byRound.get(round.hoe) ?? 0) + 1);
+        for (const term of card.terms) {
+          if (!flat.includes(term.text)) continue;
+          const rank = term.text.length * 2 + (term.fromTitle ? 1 : 0);
+          if (!best || rank > best.rank) best = { id: card.id, rank };
+        }
       }
+      if (!best) continue;
+      let byRound = hits.get(best.id);
+      if (!byRound) hits.set(best.id, (byRound = new Map()));
+      byRound.set(round.hoe, (byRound.get(round.hoe) ?? 0) + 1);
     }
   }
 
@@ -105,6 +129,11 @@ function writeFrequency(rounds: ClassifiedRound[]) {
     "// 자동 생성 파일 — scripts/gen-exam-frequency.ts 가 생성합니다. 직접 수정하지 마세요.",
     "// 한국사능력검정시험 '심화' 기출의 '정답 선택지'에 각 학습 카드 주제가 출제된 횟수.",
     "// stars = 총 출제횟수(최대 5). rounds 는 최신순. (정답이 아닌 오답 선택지는 제외)",
+    "//",
+    "// 매칭 방식: 정답 선택지 텍스트에 카드 제목·keywords 가 그대로 나오는지 본다. 선택지 하나는",
+    "//   카드 한 장에만 세고(가장 구체적으로 걸린 카드), 여러 카드가 공유하는 태그성 낱말",
+    "//   (예: '진흥왕')은 검색어에서 뺀다 → 별점 부풀림 방지. 대신 표현이 다르면 놓치므로",
+    "//   '출제 0회'가 '시험에 안 나온다'는 뜻은 아니다(보수적으로 센 값이다).",
     "//",
     `// 커버리지: 자료실이 공개 중인 심화 ${rounds.length}개 회차 전부 (${hoes[hoes.length - 1]}~${hoes[0]}회).`,
     "// 문제지 텍스트는 회차별 형식 차이를 없애기 위해 전 회차를 OCR(macOS Vision, ko-KR)로 읽는다.",

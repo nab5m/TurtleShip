@@ -11,7 +11,8 @@
     "resolve:images": "node scripts/resolve-images.mjs",
     "gen:icons": "node scripts/gen-icons.mjs",
     "gen:og": "node scripts/gen-og.mjs",
-    "gen:audio": "tsx scripts/gen-audio.ts"
+    "gen:audio": "tsx scripts/gen-audio.ts",
+    "gen:exam": "tsx scripts/gen-exam-frequency.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.1",
