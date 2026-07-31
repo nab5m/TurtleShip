@@ -14,7 +14,7 @@
 //
 // 커버리지: 자료실이 공개 중인 심화 22개 회차 전부 (57~78회).
 //   문항 1093개에서 선택지 4699개를 복원해
-//   2824개(60.1%)를 카드에 귀속시켰다 → 카드 694/1900장에 기록.
+//   2826개(60.1%)를 카드에 귀속시켰다 → 카드 694/1889장에 기록.
 //
 // '출제 0회'의 뜻(정답만 셀 때보다 훨씬 좁아졌다): 표본이 문항당 1개(1,093개)에서
 //   선택지 4699개로 늘어, 앱에 카드가 있는 주제라면 대체로 한 번은 걸린다.
@@ -57,8 +57,6 @@ export const EXAM_FREQUENCY: Record<string, ExamFreq> = {
   "d01-c22": {"stars":4,"total":6,"correct":0,"distractor":6,"unknown":0,"rounds":[{"label":"26년 2회","hoe":78,"count":1,"correct":0},{"label":"25년 2회","hoe":74,"count":1,"correct":0},{"label":"24년 3회","hoe":71,"count":1,"correct":0},{"label":"23년 2회","hoe":64,"count":1,"correct":0},{"label":"23년 1회","hoe":63,"count":1,"correct":0},{"label":"22년 2회","hoe":58,"count":1,"correct":0}]},
   "d01-c23": {"stars":5,"total":8,"correct":0,"distractor":8,"unknown":0,"rounds":[{"label":"25년 4회","hoe":76,"count":1,"correct":0},{"label":"24년 2회","hoe":70,"count":1,"correct":0},{"label":"23년 6회","hoe":68,"count":1,"correct":0},{"label":"23년 4회","hoe":66,"count":1,"correct":0},{"label":"23년 2회","hoe":64,"count":1,"correct":0},{"label":"22년 5회","hoe":61,"count":1,"correct":0},{"label":"22년 3회","hoe":59,"count":1,"correct":0},{"label":"22년 2회","hoe":58,"count":1,"correct":0}]},
   "d05-c01": {"stars":1,"total":1,"correct":1,"distractor":0,"unknown":0,"rounds":[{"label":"22년 3회","hoe":59,"count":1,"correct":1}]},
-  "d05-c05": {"stars":2,"total":2,"correct":1,"distractor":0,"unknown":1,"rounds":[{"label":"25년 1회","hoe":73,"count":1,"correct":1},{"label":"22년 2회","hoe":58,"count":1,"correct":0}]},
-  "d05-c14": {"stars":1,"total":1,"correct":0,"distractor":1,"unknown":0,"rounds":[{"label":"22년 6회","hoe":62,"count":1,"correct":0}]},
   "d05-c19": {"stars":1,"total":1,"correct":0,"distractor":1,"unknown":0,"rounds":[{"label":"23년 4회","hoe":66,"count":1,"correct":0}]},
   "d06-c10": {"stars":2,"total":2,"correct":0,"distractor":2,"unknown":0,"rounds":[{"label":"23년 2회","hoe":64,"count":1,"correct":0},{"label":"22년 6회","hoe":62,"count":1,"correct":0}]},
   "d06-c17": {"stars":5,"total":8,"correct":0,"distractor":8,"unknown":0,"rounds":[{"label":"26년 1회","hoe":77,"count":1,"correct":0},{"label":"24년 2회","hoe":70,"count":1,"correct":0},{"label":"23년 4회","hoe":66,"count":1,"correct":0},{"label":"23년 3회","hoe":65,"count":1,"correct":0},{"label":"23년 1회","hoe":63,"count":1,"correct":0},{"label":"22년 5회","hoe":61,"count":1,"correct":0},{"label":"22년 4회","hoe":60,"count":1,"correct":0},{"label":"22년 2회","hoe":58,"count":1,"correct":0}]},
@@ -104,6 +102,7 @@ export const EXAM_FREQUENCY: Record<string, ExamFreq> = {
   "d14-c16": {"stars":4,"total":7,"correct":1,"distractor":6,"unknown":0,"rounds":[{"label":"25년 4회","hoe":76,"count":1,"correct":0},{"label":"24년 3회","hoe":71,"count":1,"correct":1},{"label":"24년 2회","hoe":70,"count":1,"correct":0},{"label":"23년 6회","hoe":68,"count":1,"correct":0},{"label":"23년 3회","hoe":65,"count":1,"correct":0},{"label":"23년 2회","hoe":64,"count":1,"correct":0},{"label":"22년 4회","hoe":60,"count":1,"correct":0}]},
   "d14-c19": {"stars":1,"total":1,"correct":0,"distractor":1,"unknown":0,"rounds":[{"label":"23년 6회","hoe":68,"count":1,"correct":0}]},
   "d15-c02": {"stars":3,"total":3,"correct":0,"distractor":3,"unknown":0,"rounds":[{"label":"25년 4회","hoe":76,"count":1,"correct":0},{"label":"22년 2회","hoe":58,"count":1,"correct":0},{"label":"22년 1회","hoe":57,"count":1,"correct":0}]},
+  "d15-c03": {"stars":2,"total":2,"correct":1,"distractor":0,"unknown":1,"rounds":[{"label":"25년 1회","hoe":73,"count":1,"correct":1},{"label":"22년 2회","hoe":58,"count":1,"correct":0}]},
   "d15-c06": {"stars":2,"total":2,"correct":0,"distractor":2,"unknown":0,"rounds":[{"label":"26년 2회","hoe":78,"count":1,"correct":0},{"label":"24년 4회","hoe":72,"count":1,"correct":0}]},
   "d15-c10": {"stars":4,"total":5,"correct":1,"distractor":4,"unknown":0,"rounds":[{"label":"26년 2회","hoe":78,"count":1,"correct":0},{"label":"25년 2회","hoe":74,"count":1,"correct":1},{"label":"23년 6회","hoe":68,"count":1,"correct":0},{"label":"23년 4회","hoe":66,"count":1,"correct":0},{"label":"23년 2회","hoe":64,"count":1,"correct":0}]},
   "d15-c16": {"stars":5,"total":11,"correct":4,"distractor":7,"unknown":0,"rounds":[{"label":"26년 2회","hoe":78,"count":1,"correct":0},{"label":"25년 1회","hoe":73,"count":1,"correct":0},{"label":"24년 2회","hoe":70,"count":1,"correct":1},{"label":"24년 1회","hoe":69,"count":1,"correct":0},{"label":"23년 6회","hoe":68,"count":2,"correct":1},{"label":"23년 2회","hoe":64,"count":1,"correct":0},{"label":"22년 6회","hoe":62,"count":1,"correct":1},{"label":"22년 4회","hoe":60,"count":1,"correct":0},{"label":"22년 3회","hoe":59,"count":1,"correct":1},{"label":"22년 1회","hoe":57,"count":1,"correct":0}]},
@@ -274,6 +273,7 @@ export const EXAM_FREQUENCY: Record<string, ExamFreq> = {
   "d42-c05": {"stars":2,"total":2,"correct":0,"distractor":2,"unknown":0,"rounds":[{"label":"23년 3회","hoe":65,"count":1,"correct":0},{"label":"22년 6회","hoe":62,"count":1,"correct":0}]},
   "d42-c06": {"stars":1,"total":1,"correct":0,"distractor":1,"unknown":0,"rounds":[{"label":"22년 1회","hoe":57,"count":1,"correct":0}]},
   "d42-c09": {"stars":3,"total":3,"correct":0,"distractor":3,"unknown":0,"rounds":[{"label":"26년 2회","hoe":78,"count":1,"correct":0},{"label":"26년 1회","hoe":77,"count":1,"correct":0},{"label":"25년 2회","hoe":74,"count":1,"correct":0}]},
+  "d42-c17": {"stars":3,"total":3,"correct":0,"distractor":3,"unknown":0,"rounds":[{"label":"26년 2회","hoe":78,"count":1,"correct":0},{"label":"23년 3회","hoe":65,"count":1,"correct":0},{"label":"23년 1회","hoe":63,"count":1,"correct":0}]},
   "d42-c18": {"stars":1,"total":1,"correct":1,"distractor":0,"unknown":0,"rounds":[{"label":"26년 1회","hoe":77,"count":1,"correct":1}]},
   "d42-c19": {"stars":4,"total":5,"correct":0,"distractor":5,"unknown":0,"rounds":[{"label":"25년 2회","hoe":74,"count":1,"correct":0},{"label":"23년 5회","hoe":67,"count":1,"correct":0},{"label":"23년 1회","hoe":63,"count":1,"correct":0},{"label":"22년 5회","hoe":61,"count":1,"correct":0},{"label":"22년 4회","hoe":60,"count":1,"correct":0}]},
   "d42-c20": {"stars":1,"total":1,"correct":1,"distractor":0,"unknown":0,"rounds":[{"label":"24년 1회","hoe":69,"count":1,"correct":1}]},

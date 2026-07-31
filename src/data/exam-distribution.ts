@@ -96,8 +96,8 @@ export const EXAM_DISTRIBUTION: ExamDistribution = {
     {
       "eraId": "gojoseon",
       "name": "고조선",
-      "questions": 11,
-      "percent": 1
+      "questions": 10,
+      "percent": 0.9
     },
     {
       "eraId": "confederacy",
@@ -108,8 +108,8 @@ export const EXAM_DISTRIBUTION: ExamDistribution = {
     {
       "eraId": "three-kingdoms",
       "name": "삼국시대",
-      "questions": 85,
-      "percent": 7.8
+      "questions": 84,
+      "percent": 7.7
     },
     {
       "eraId": "north-south",
@@ -132,14 +132,14 @@ export const EXAM_DISTRIBUTION: ExamDistribution = {
     {
       "eraId": "early-joseon",
       "name": "조선전기",
-      "questions": 106,
-      "percent": 9.7
+      "questions": 107,
+      "percent": 9.8
     },
     {
       "eraId": "late-joseon",
       "name": "조선후기",
-      "questions": 114,
-      "percent": 10.4
+      "questions": 115,
+      "percent": 10.5
     },
     {
       "eraId": "open-port",
@@ -170,14 +170,14 @@ export const EXAM_DISTRIBUTION: ExamDistribution = {
     {
       "stageId": "gojoseon-confederacy",
       "name": "고조선과 연맹 왕국",
-      "questions": 34,
-      "percent": 3.1
+      "questions": 33,
+      "percent": 3
     },
     {
       "stageId": "three-kingdoms",
       "name": "삼국 시대",
-      "questions": 85,
-      "percent": 7.8
+      "questions": 84,
+      "percent": 7.7
     },
     {
       "stageId": "north-south",
@@ -194,14 +194,14 @@ export const EXAM_DISTRIBUTION: ExamDistribution = {
     {
       "stageId": "early-joseon",
       "name": "조선 전기",
-      "questions": 106,
-      "percent": 9.7
+      "questions": 107,
+      "percent": 9.8
     },
     {
       "stageId": "late-joseon",
       "name": "조선 후기",
-      "questions": 114,
-      "percent": 10.4
+      "questions": 115,
+      "percent": 10.5
     },
     {
       "stageId": "open-port",
@@ -232,7 +232,7 @@ export const EXAM_DISTRIBUTION: ExamDistribution = {
   },
   "byUnit": {
     "1": 28,
-    "5": 6,
+    "5": 3,
     "6": 7,
     "7": 13,
     "8": 16,
@@ -242,7 +242,7 @@ export const EXAM_DISTRIBUTION: ExamDistribution = {
     "12": 8,
     "13": 2,
     "14": 6,
-    "15": 4,
+    "15": 3,
     "16": 7,
     "17": 3,
     "18": 17,
@@ -258,7 +258,7 @@ export const EXAM_DISTRIBUTION: ExamDistribution = {
     "28": 9,
     "29": 14,
     "30": 6,
-    "31": 10,
+    "31": 11,
     "32": 7,
     "33": 4,
     "34": 12,
@@ -268,12 +268,12 @@ export const EXAM_DISTRIBUTION: ExamDistribution = {
     "38": 11,
     "39": 4,
     "40": 8,
-    "41": 15,
-    "42": 18,
+    "41": 16,
+    "42": 19,
     "43": 29,
     "44": 9,
     "45": 8,
-    "46": 14,
+    "46": 15,
     "47": 15,
     "48": 4,
     "49": 20,
