@@ -7,7 +7,7 @@ import type { DayMeta, Era, EraId, Stage, StageId, UnitMeta } from "@/lib/types"
 // 신석기·청동기·철기 카드가 모두 '구석기'로 표시된다. 그래서 시대도 단원과 1:1 로 맞춘다.
 export const ERAS: Era[] = [
   { id: "prehistory", name: "선사", period: "약 70만 년 전 ~ 기원전 1세기", color: "#8d6e63", unitRange: [1, 1] },
-  { id: "gojoseon", name: "고조선", period: "기원전 2333 ~ 기원전 108", color: "#7e57c2", unitRange: [5, 6] },
+  { id: "gojoseon", name: "고조선", period: "기원전 2333 ~ 기원전 108", color: "#7e57c2", unitRange: [5, 5] },
   { id: "confederacy", name: "연맹왕국", period: "부여·고구려·옥저·동예·삼한", color: "#5c6bc0", unitRange: [7, 8] },
   { id: "three-kingdoms", name: "삼국시대", period: "기원전 1세기 ~ 676", color: "#43a047", unitRange: [9, 20] },
   { id: "north-south", name: "남북국시대", period: "698 ~ 935", color: "#26a69a", unitRange: [21, 27] },
@@ -24,12 +24,13 @@ export const ERA_MAP: Record<EraId, Era> = Object.fromEntries(
   ERAS.map((e) => [e.id, e])
 ) as Record<EraId, Era>;
 
-// 학습 단원 87개 (한국사능력검정시험 심화 기준) — 콘텐츠(카드/퀴즈)의 최소 단위.
+// 학습 단원 86개 (한국사능력검정시험 심화 기준) — 콘텐츠(카드/퀴즈)의 최소 단위.
 // 카드 id 의 dNN 이 단원 번호이며, 아래 DAY_PLAN 이 이 단원들을 28일로 묶는다.
 //
-// 단원 번호는 1 과 5~90 이다(연속이 아님). 2026-07-31 에 옛 단원 2~4(신석기·청동기·철기)를
-// 단원 1 로 통합했고, 남은 단원의 번호는 카드 id·오디오 파일명·즐겨찾기를 지키기 위해 그대로 뒀다.
-// → 단원 "개수"(TOTAL_UNITS=87)와 "가장 큰 번호"(90)가 다르므로, 번호 범위를 훑는 코드는
+// 단원 번호는 1 · 5 · 7~90 이다(연속이 아님). 2026-07-31 에 옛 단원 2~4(신석기·청동기·철기)를
+// 단원 1 로, 옛 단원 6(위만 조선과 고조선의 멸망)을 단원 5 로 통합했고, 남은 단원의 번호는
+// 카드 id·오디오 파일명·즐겨찾기를 지키기 위해 그대로 뒀다.
+// → 단원 "개수"(TOTAL_UNITS=86)와 "가장 큰 번호"(90)가 다르므로, 번호 범위를 훑는 코드는
 //   1~TOTAL_UNITS 로 반복하지 말고 UNIT_NUMBERS 를 쓴다.
 export const UNITS: UnitMeta[] = [
   // ---------- 선사시대 ----------
@@ -39,12 +40,8 @@ export const UNITS: UnitMeta[] = [
   },
   // ---------- 고조선 ----------
   {
-    unit: 5, eraId: "gojoseon", title: "고조선의 성립과 발전",
-    topics: ["단군왕검과 건국 이야기(삼국유사)", "홍익인간", "요령 지방 중심 발전", "8조법(범금 8조)", "부왕·준왕과 왕위 세습", "연나라 진개의 침입"],
-  },
-  {
-    unit: 6, eraId: "gojoseon", title: "위만 조선과 고조선의 멸망",
-    topics: ["위만의 집권(기원전 194)", "철기 문화의 본격 수용", "예·진과 한 사이의 중계 무역", "한 무제의 침입과 왕검성 함락(기원전 108)", "한 군현 설치"],
+    unit: 5, eraId: "gojoseon", title: "고조선의 성립과 멸망",
+    topics: ["단군왕검과 건국 이야기(삼국유사)", "홍익인간", "요령 지방 중심 발전", "8조법(범금 8조)", "부왕·준왕과 왕위 세습", "연나라 진개의 침입", "위만의 집권(기원전 194)", "철기 문화의 본격 수용", "예·진과 한 사이의 중계 무역", "한 무제의 침입과 왕검성 함락(기원전 108)", "한 군현 설치"],
   },
   // ---------- 연맹왕국 ----------
   {
@@ -398,7 +395,7 @@ export const UNIT_MAP: Record<number, UnitMeta> = Object.fromEntries(
   UNITS.map((u) => [u.unit, u])
 );
 
-export const TOTAL_UNITS = UNITS.length; // 87 (번호는 1·5~90 — 옛 단원 2~4 는 단원 1 로 통합됨)
+export const TOTAL_UNITS = UNITS.length; // 86 (번호는 1·5·7~90 — 옛 단원 2~4 는 1 로, 옛 단원 6 은 5 로 통합됨)
 
 // 실제로 존재하는 단원 번호 목록. 번호가 연속이 아니므로 1~TOTAL_UNITS 반복은 틀린다.
 export const UNIT_NUMBERS: readonly number[] = UNITS.map((u) => u.unit);
@@ -438,7 +435,7 @@ export const STAGE_MAP: Record<StageId, Stage> = Object.fromEntries(
   STAGES.map((s) => [s.id, s])
 ) as Record<StageId, Stage>;
 
-// 하루치 묶음 — 단원 87개를 28일로 나눈 설계(하루 1~4단원).
+// 하루치 묶음 — 단원 86개를 28일로 나눈 설계(하루 1~4단원).
 // 실제 수험생 준비 기간(3~4주)에 맞춘 배분이며, 시대 흐름이 끊기지 않도록 단원 순서를 유지한다.
 //
 // 2026-07-30 재배분: 실제 출제 비중(전근대 : 근·현대 = 60 : 40)에 맞춰
@@ -448,10 +445,14 @@ export const STAGE_MAP: Record<StageId, Stage> = Object.fromEntries(
 //
 // 2026-07-31: 1일차의 단원 1~4 를 단원 1 하나로 통합했다(카드 23장 / 퀴즈 55문항).
 // 1일차만 단원이 1개이므로 학습 화면의 '단원 단위 끊어 학습'은 이 날 한 덩어리가 된다.
+//
+// 2026-07-31(2): 2일차의 단원 6(위만 조선과 고조선의 멸망)을 단원 5 로 통합했다
+// (카드 21장 / 퀴즈 28문항). 고조선은 건국~멸망이 한 흐름이라 단원 5·6 의 경계가
+// 학습 단위로서 의미가 없었다 → 2일차는 단원 3개(5·7·8)가 된다.
 const DAY_PLAN: { stageId: StageId; title: string; units: number[] }[] = [
   // ---------- 전근대 17일 ----------
   { stageId: "prehistory", title: "선사 시대의 생활", units: [1] },
-  { stageId: "gojoseon-confederacy", title: "고조선과 연맹 왕국", units: [5, 6, 7, 8] },
+  { stageId: "gojoseon-confederacy", title: "고조선과 연맹 왕국", units: [5, 7, 8] },
   { stageId: "three-kingdoms", title: "고구려의 성장과 백제의 중흥", units: [9, 10, 11, 12] },
   { stageId: "three-kingdoms", title: "신라의 발전과 가야, 삼국의 통치 체제", units: [13, 14, 15, 16] },
   { stageId: "three-kingdoms", title: "대외 항쟁과 삼국 통일, 삼국의 문화", units: [17, 18, 19, 20] },

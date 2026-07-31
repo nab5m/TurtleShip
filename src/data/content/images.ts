@@ -1,7 +1,7 @@
 import type { ItemImage } from "@/lib/types";
 
 // scripts/resolve-images.mjs 가 자동 생성하는 파일 (직접 수정하지 말 것)
-// 위키백과 대표이미지 우선 · Wikimedia Commons(자유 라이선스)만 · 생성 항목: 249/270
+// 위키백과 대표이미지 우선 · Wikimedia Commons(자유 라이선스)만 · 생성 항목: 246/270
 export const IMAGE_MAP: Record<string, ItemImage> = {
   "d01-c03": { src: "https://upload.wikimedia.org/wikipedia/commons/f/f8/Flint_hand_axe.JPG", alt: "주먹도끼", width: 935, height: 1368 },
   "d01-c04": { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Obsidian_leaf-shaped_and_tanged_point_MET_DP322102.jpg/960px-Obsidian_leaf-shaped_and_tanged_point_MET_DP322102.jpg", alt: "슴베찌르개", width: 640, height: 535 },
@@ -26,12 +26,9 @@ export const IMAGE_MAP: Record<string, ItemImage> = {
   "d01-q42": { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Mat_weight_in_the_shape_of_a_tiger_Tomb_1_Dayun_Mountain_Xuyi_Jiangsu_Western_Han_2nd_century_BCE_Bronze_inlaid_with_gold_and_silver_%28cleaned_up%29.jpg/960px-Mat_weight_in_the_shape_of_a_tiger_Tomb_1_Dayun_Mountain_Xuyi_Jiangsu_Western_Han_2nd_century_BCE_Bronze_inlaid_with_gold_and_silver_%28cleaned_up%29.jpg", alt: "bronze casting mold stone Korea", width: 640, height: 581 },
   "d01-q44": { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Yan_State_Coins.jpg/960px-Yan_State_Coins.jpg", alt: "Ming knife money coin", width: 640, height: 853 },
   "d01-q45": { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Hallstatt_culture_man_and_woman%2C_iron_age%2C_bronze_age_celtic_proto-celtic.jpg/960px-Hallstatt_culture_man_and_woman%2C_iron_age%2C_bronze_age_celtic_proto-celtic.jpg", alt: "Daho-ri writing brush Changwon iron age", width: 640, height: 864 },
-  "d05-c09": { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Bronze_dagger.jpg/960px-Bronze_dagger.jpg", alt: "비파형 동검", width: 640, height: 480 },
-  "d05-c11": { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Horinouchi-type_pottery_and_Shomyoji-type_pottery_2024-12-12.jpg/960px-Horinouchi-type_pottery_and_Shomyoji-type_pottery_2024-12-12.jpg", alt: "미송리식 토기", width: 640, height: 480 },
-  "d05-c21": { src: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Mt_mani_2.jpg", alt: "참성단", width: 801, height: 324 },
+  "d05-c07": { src: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Mt_mani_2.jpg", alt: "참성단", width: 801, height: 324 },
+  "d05-c18": { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Four_Commanderies_of_Han%2C_with_English_Names.png/960px-Four_Commanderies_of_Han%2C_with_English_Names.png", alt: "한 군현 설치", width: 640, height: 480 },
   "d05-q13": { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Horinouchi-type_pottery_and_Shomyoji-type_pottery_2024-12-12.jpg/960px-Horinouchi-type_pottery_and_Shomyoji-type_pottery_2024-12-12.jpg", alt: "Misong-ri type pottery Korea", width: 640, height: 480 },
-  "d06-c16": { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Four_Commanderies_of_Han%2C_with_English_Names.png/960px-Four_Commanderies_of_Han%2C_with_English_Names.png", alt: "한 군현 설치", width: 640, height: 480 },
-  "d06-c19": { src: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Early_4th_century_Lelang_Commandery.png", alt: "낙랑의 문화", width: 958, height: 1500 },
   "d07-c01": { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Buyeo.svg/960px-Buyeo.svg.png", alt: "부여", width: 640, height: 960 },
   "d07-c17": { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/South_of_Tomb_of_the_General.jpg/960px-South_of_Tomb_of_the_General.jpg", alt: "동맹", width: 640, height: 360 },
   "d08-c11": { src: "https://upload.wikimedia.org/wikipedia/commons/0/05/Samhan.PNG", alt: "삼한", width: 896, height: 849 },

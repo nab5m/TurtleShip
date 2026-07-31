@@ -5,8 +5,7 @@
 // UNIT_QUIZ_COUNT   : 단원 퀴즈 문항 수. 문제 풀이 시간을 문항 수에 비례해 잡기 위한 값.
 export const UNIT_AUDIO_SECONDS: Record<number, number> = {
   1: 540,
-  5: 183,
-  6: 296,
+  5: 479,
   7: 350,
   8: 386,
   9: 352,
@@ -95,8 +94,7 @@ export const UNIT_AUDIO_SECONDS: Record<number, number> = {
 
 export const UNIT_QUIZ_COUNT: Record<number, number> = {
   1: 22,
-  5: 14,
-  6: 14,
+  5: 28,
   7: 14,
   8: 15,
   9: 13,

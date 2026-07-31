@@ -96,8 +96,8 @@ export const EXAM_DISTRIBUTION: ExamDistribution = {
     {
       "eraId": "gojoseon",
       "name": "고조선",
-      "questions": 10,
-      "percent": 0.9
+      "questions": 11,
+      "percent": 1
     },
     {
       "eraId": "confederacy",
@@ -132,8 +132,8 @@ export const EXAM_DISTRIBUTION: ExamDistribution = {
     {
       "eraId": "early-joseon",
       "name": "조선전기",
-      "questions": 107,
-      "percent": 9.8
+      "questions": 106,
+      "percent": 9.7
     },
     {
       "eraId": "late-joseon",
@@ -170,8 +170,8 @@ export const EXAM_DISTRIBUTION: ExamDistribution = {
     {
       "stageId": "gojoseon-confederacy",
       "name": "고조선과 연맹 왕국",
-      "questions": 33,
-      "percent": 3
+      "questions": 34,
+      "percent": 3.1
     },
     {
       "stageId": "three-kingdoms",
@@ -194,8 +194,8 @@ export const EXAM_DISTRIBUTION: ExamDistribution = {
     {
       "stageId": "early-joseon",
       "name": "조선 전기",
-      "questions": 107,
-      "percent": 9.8
+      "questions": 106,
+      "percent": 9.7
     },
     {
       "stageId": "late-joseon",
@@ -232,8 +232,7 @@ export const EXAM_DISTRIBUTION: ExamDistribution = {
   },
   "byUnit": {
     "1": 28,
-    "5": 3,
-    "6": 7,
+    "5": 11,
     "7": 13,
     "8": 16,
     "9": 5,
@@ -274,7 +273,7 @@ export const EXAM_DISTRIBUTION: ExamDistribution = {
     "44": 9,
     "45": 8,
     "46": 15,
-    "47": 15,
+    "47": 14,
     "48": 4,
     "49": 20,
     "50": 12,

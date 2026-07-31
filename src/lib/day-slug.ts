@@ -23,13 +23,17 @@ for (const u of UNITS) {
   if (day !== undefined && !SLUG_TO_DAY.has(slug)) SLUG_TO_DAY.set(slug, day);
 }
 
-// 2026-07-31 단원 통합(옛 단원 1~4 → 단원 1 "선사 시대의 생활") 이전의 단원 제목 슬러그.
+// 2026-07-31 단원 통합(옛 단원 1~4 → 단원 1 "선사 시대의 생활", 옛 단원 6 → 단원 5
+// "고조선의 성립과 멸망") 이전의 단원 제목 슬러그.
 // 그 단원들이 UNITS 에서 사라져 위 루프로는 더 이상 등록되지 않으므로 여기서 직접 잇는다.
+// 단원 5 는 통합 때 제목까지 바뀌었으므로(성립과 발전 → 성립과 멸망) 옛 제목도 함께 남긴다.
 const LEGACY_UNIT_TITLES: { title: string; unit: number }[] = [
   { title: "구석기 시대의 생활", unit: 1 },
   { title: "신석기 시대의 생활", unit: 1 },
   { title: "청동기 시대의 생활", unit: 1 },
   { title: "철기 시대의 생활", unit: 1 },
+  { title: "고조선의 성립과 발전", unit: 5 },
+  { title: "위만 조선과 고조선의 멸망", unit: 5 },
 ];
 
 for (const { title, unit } of LEGACY_UNIT_TITLES) {

@@ -32,9 +32,7 @@ export const IMAGE_OVERRIDES: Record<string, ItemImage> = {
   // 거푸집(용범)
   "d01-q42": { src: "https://devin.aks.ac.kr/image/b44beebf-d061-4f5f-b3a3-8e5a0fc17b97?preset=page", alt: "거푸집", width: 226, height: 350, credit: "출처: 한국학중앙연구원" },
   // 한 군현 설치 (한글 지명판)
-  "d06-c16": { src: "https://upload.wikimedia.org/wikipedia/commons/5/52/Four_Commanderies_of_Han%2C_with_Korean_Names.png", alt: "한 군현 설치", width: 2000, height: 1500 },
-  // 낙랑의 문화
-  "d06-c19": { src: "https://upload.wikimedia.org/wikipedia/commons/5/52/Four_Commanderies_of_Han%2C_with_Korean_Names.png", alt: "낙랑의 문화", width: 2000, height: 1500 },
+  "d05-c18": { src: "https://upload.wikimedia.org/wikipedia/commons/5/52/Four_Commanderies_of_Han%2C_with_Korean_Names.png", alt: "한 군현 설치", width: 2000, height: 1500 },
   // 무령왕릉
   "d12-c05": { src: "https://img.khan.co.kr/news/2021/03/19/l_2021031901002320300198132.jpg", alt: "무령왕릉", width: 700, height: 694, credit: "출처: 경향신문" },
   // 무령왕릉 (d12-c05 와 동일)
