@@ -46,7 +46,7 @@ export interface ExamTopic {
   cardIds: string[];
 }
 
-export const EXAM_TOPIC_SUMMARY = {"examCount":22,"hoe":[78,77,76,75,74,73,72,71,70,69,68,67,66,65,64,63,62,61,60,59,58,57],"choices":4699,"topics":1958,"minAppearances":3,"topicsWithCard":1048,"cardTotal":1889,"cardsWithoutTopic":940} as const;
+export const EXAM_TOPIC_SUMMARY = {"examCount":22,"hoe":[78,77,76,75,74,73,72,71,70,69,68,67,66,65,64,63,62,61,60,59,58,57],"choices":4699,"topics":1958,"minAppearances":3,"topicsWithCard":1048,"cardTotal":1885,"cardsWithoutTopic":937} as const;
 
 export const EXAM_TOPICS: ExamTopic[] = [
   {"label":"배경","total":38,"correct":12,"distractor":26,"unknown":0,"questions":37,"rounds":["26년 2회","26년 1회","25년 4회","25년 3회","25년 2회","25년 1회","24년 4회","24년 3회","24년 2회","24년 1회","23년 6회","23년 5회","23년 3회","23년 2회","23년 1회","22년 5회","22년 4회","22년 3회","22년 1회"],"hoe":[78,77,76,75,74,73,72,71,70,69,68,67,65,64,63,61,60,59,57],"eraId":"late-joseon","eraSource":"correct","stageId":"late-joseon","cardIds":[]},
@@ -737,7 +737,7 @@ export const EXAM_TOPICS: ExamTopic[] = [
   {"label":"차지","total":6,"correct":2,"distractor":4,"unknown":0,"questions":6,"rounds":["25년 2회","23년 3회","23년 1회","22년 2회"],"hoe":[74,65,63,58],"eraId":"early-joseon","eraSource":"correct","stageId":"early-joseon","unit":49,"cardIds":[]},
   {"label":"척화비","total":6,"correct":2,"distractor":4,"unknown":0,"questions":6,"rounds":["25년 2회","25년 1회","24년 3회","24년 1회","22년 5회","22년 1회"],"hoe":[74,73,71,69,61,57],"eraId":"open-port","eraSource":"correct","stageId":"open-port","unit":66,"cardIds":["d66-c18","d65-c24","d66-c22"]},
   {"label":"천주교 포교 허용","total":6,"correct":0,"distractor":6,"unknown":0,"questions":6,"rounds":["26년 2회","26년 1회","25년 1회","24년 2회","23년 6회","22년 3회"],"hoe":[78,77,73,70,68,59],"eraId":"open-port","eraSource":"any","stageId":"open-port","unit":67,"cardIds":["d67-c19","d63-c01"]},
-  {"label":"철제 농기구","total":6,"correct":0,"distractor":6,"unknown":0,"questions":6,"rounds":["26년 2회","25년 4회","24년 4회","23년 3회","22년 6회","22년 2회"],"hoe":[78,76,72,65,62,58],"eraId":"prehistory","eraSource":"any","stageId":"prehistory","unit":1,"cardIds":["d01-c21","d06-c05"]},
+  {"label":"철제 농기구","total":6,"correct":0,"distractor":6,"unknown":0,"questions":6,"rounds":["26년 2회","25년 4회","24년 4회","23년 3회","22년 6회","22년 2회"],"hoe":[78,76,72,65,62,58],"eraId":"prehistory","eraSource":"any","stageId":"prehistory","unit":1,"cardIds":["d01-c21"]},
   {"label":"청과","total":6,"correct":1,"distractor":5,"unknown":0,"questions":6,"rounds":["26년 2회","25년 4회","24년 4회","24년 2회","23년 3회","22년 4회"],"hoe":[78,76,72,70,65,60],"eraId":"open-port","eraSource":"correct","stageId":"open-port","cardIds":[]},
   {"label":"청군","total":6,"correct":0,"distractor":6,"unknown":0,"questions":6,"rounds":["25년 2회","23년 5회","22년 4회","22년 3회","22년 2회"],"hoe":[74,67,60,59,58],"eraId":"late-joseon","eraSource":"any","stageId":"late-joseon","cardIds":[]},
   {"label":"청년","total":6,"correct":2,"distractor":3,"unknown":1,"questions":6,"rounds":["25년 2회","24년 4회","23년 2회","23년 1회"],"hoe":[74,72,64,63],"eraId":"three-kingdoms","eraSource":"correct","stageId":"three-kingdoms","unit":20,"cardIds":[]},
@@ -1911,7 +1911,7 @@ export const EXAM_TOPICS: ExamTopic[] = [
   {"label":"천문","total":3,"correct":0,"distractor":3,"unknown":0,"questions":3,"rounds":["26년 2회","22년 6회","22년 4회"],"hoe":[78,62,60],"eraId":"early-joseon","eraSource":"any","stageId":"early-joseon","unit":47,"cardIds":[]},
   {"label":"천일 은행","total":3,"correct":0,"distractor":3,"unknown":0,"questions":3,"rounds":["24년 3회","23년 2회","22년 4회"],"hoe":[71,64,60],"eraId":"colonial","eraSource":"any","stageId":"colonial","unit":80,"cardIds":[]},
   {"label":"철수 작전 전개","total":3,"correct":2,"distractor":1,"unknown":0,"questions":3,"rounds":["26년 2회","24년 1회","22년 5회"],"hoe":[78,69,61],"eraId":"modern","eraSource":"correct","stageId":"modern","unit":86,"cardIds":[]},
-  {"label":"철제 농기구 사용","total":3,"correct":0,"distractor":3,"unknown":0,"questions":3,"rounds":["26년 2회","25년 4회","22년 2회"],"hoe":[78,76,58],"eraId":"prehistory","eraSource":"any","stageId":"prehistory","unit":1,"cardIds":["d01-c21","d06-c05"]},
+  {"label":"철제 농기구 사용","total":3,"correct":0,"distractor":3,"unknown":0,"questions":3,"rounds":["26년 2회","25년 4회","22년 2회"],"hoe":[78,76,58],"eraId":"prehistory","eraSource":"any","stageId":"prehistory","unit":1,"cardIds":["d01-c21"]},
   {"label":"철페","total":3,"correct":1,"distractor":2,"unknown":0,"questions":3,"rounds":["24년 1회","23년 1회","22년 5회"],"hoe":[69,63,61],"eraId":"late-joseon","eraSource":"correct","stageId":"late-joseon","cardIds":[]},
   {"label":"청동 방울","total":3,"correct":0,"distractor":3,"unknown":0,"questions":3,"rounds":["26년 2회","24년 3회","23년 2회"],"hoe":[78,71,64],"eraId":"prehistory","eraSource":"any","stageId":"prehistory","unit":1,"cardIds":[]},
   {"label":"청연각 보문각","total":3,"correct":0,"distractor":3,"unknown":0,"questions":3,"rounds":["25년 3회","25년 1회","23년 5회"],"hoe":[75,73,67],"eraId":"goryeo","eraSource":"any","stageId":"goryeo","unit":31,"cardIds":["d42-c22"]},

@@ -6,7 +6,7 @@
 export const UNIT_AUDIO_SECONDS: Record<number, number> = {
   1: 540,
   5: 183,
-  6: 329,
+  6: 296,
   7: 350,
   8: 386,
   9: 352,
