@@ -142,8 +142,9 @@ Day 단위 작업의 대상이 확정된다.
 
 - 파이프라인: `scripts/gen-audio.ts` → `edge-tts`(무료·로컬, API 키 불필요),
   보이스 `ko-KR-SunHiNeural`, rate `-8%` → `public/audio/cards/<카드id>.mp3` + `src/data/audio-manifest.ts`
-- 현재 mp3 1,952개 = 카드 수와 동일.
-- ⚠️ **선행조건: `edge-tts`가 현재 미설치다.** 설치 후에만 음성 갱신이 가능하다.
+- 2026-07-31 전량 재생성 완료 — mp3 1,900개 = 카드 수와 동일 (`FORCE=1` 로 전 단원).
+- `edge-tts` 는 `.venv-tts`(gitignore)에 설치돼 있다: `EDGE_TTS=./.venv-tts/bin/edge-tts`.
+- 음성을 다시 만들면 **예상 소요시간 근거도 함께 갱신**한다(`npm run gen:day-time`).
 - 카드 **내용이 바뀌면 반드시 재생성**한다(낭독 텍스트가 카드 본문이므로).
   카드를 삭제하면 해당 mp3와 매니페스트 엔트리도 정리한다.
 - 스크립트는 기존 파일을 건너뛰므로, 내용이 바뀐 카드만 `FORCE=1`로 개별 재생성한다.

@@ -2,8 +2,8 @@
 
 하루 30분씩 28일(4주) 동안 한국사능력검정시험 **심화**를 대비하는 카드 학습 앱입니다.
 
-- **28일 커리큘럼**: 구석기 → 신석기 → 청동기 → 철기 → 고조선 → 연맹왕국 → 삼국 → 남북국 → 후삼국 → 고려 → 조선전기 → 조선후기 → 개항기 → 일제강점기 → 현대
-- **단원 90개 → 28일**: 콘텐츠 최소 단위는 소주제(단원) 90개이고, 하루에 단원 2~4개를 묶어 28일에 한 바퀴 돈다 (`DAY_PLAN`)
+- **28일 커리큘럼**: 선사 → 고조선 → 연맹왕국 → 삼국 → 남북국 → 후삼국 → 고려 → 조선전기 → 조선후기 → 개항기 → 일제강점기 → 현대
+- **단원 87개 → 28일**: 콘텐츠 최소 단위는 소주제(단원) 87개이고, 하루에 단원 1~4개를 묶어 28일에 한 바퀴 돈다 (`DAY_PLAN`). 단원 번호는 1·5~90 으로 연속이 아니다(옛 단원 2~4 는 단원 1 로 통합)
 - **1일 학습 세트**: 키워드 카드 40~90장 + 4지선다 퀴즈 25~55문항 (일차별 예상 16~41분, 평균 31분)
 - **망각곡선 복습**: 학습 완료 후 1·3·7·14·30일 간격으로 복습 세트 자동 등록 (틀린 문제 우선 출제)
 - **학습 캘린더**: 학습/복습 이력을 달력으로 확인
@@ -42,6 +42,9 @@ npm run dev
 | --- | --- |
 | `npm run validate:content` | 카드/퀴즈 무결성 검증 (id 중복, 정답 범위, 분량 등) |
 | `npm run resolve:images` | `imageSearch` 검색어를 Wikimedia Commons 이미지 URL로 변환해 `src/data/content/images.ts` 생성 |
+| `npm run gen:audio` | 카드 낭독 mp3(`public/audio/cards/`) + `src/data/audio-manifest.ts` 생성. `EDGE_TTS=./.venv-tts/bin/edge-tts` 필요, `FORCE=1`로 기존 파일 덮어쓰기, 인자로 단원 번호 지정 가능 |
+| `npm run gen:day-time` | 위 mp3 의 **실제 재생 시간**(MPEG 프레임 계수)과 단원별 문항 수로 `src/data/day-time-data.ts` 생성 → 일차별 예상 소요시간의 근거. 음성을 다시 만들었으면 함께 실행 |
+| `npm run gen:exam` | 기출 실측 데이터(`exam-frequency`·`exam-topics`·`exam-distribution`) 생성. 원본 PDF 없이 재집계만 하려면 `-- --emit` |
 | `npm run gen:icons` | 거북선 PWA 아이콘(파비콘·192·512·마스커블·애플) 생성 |
 | `npm run gen:og` | 링크 미리보기용 OG 이미지 `public/og.png`(1200×630) 생성 |
 
@@ -67,7 +70,7 @@ src/
   app/                # 라우트 (홈, learn/[day], review/[day], curriculum, calendar, favorites, login)
   components/         # AppShell, CardView, QuizRunner, 세션 UI
   data/
-    curriculum.ts     # 15개 시대 · 단원 90개 → 28일 학습 설계
+    curriculum.ts     # 12개 시대 · 단원 87개 → 28일 학습 설계
     content/          # 단원별 카드/퀴즈 데이터 + 이미지 맵
   lib/
     types.ts          # 도메인 타입 + 망각곡선 계산

@@ -12,6 +12,7 @@
     "gen:icons": "node scripts/gen-icons.mjs",
     "gen:og": "node scripts/gen-og.mjs",
     "gen:audio": "tsx scripts/gen-audio.ts",
+    "gen:day-time": "tsx scripts/gen-day-time.ts",
     "gen:exam": "tsx scripts/gen-exam-frequency.ts"
   },
   "dependencies": {
