@@ -30,7 +30,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       {/* 헤더: 모든 화면(학습 세션 포함)에 항상 표시 */}
       <header className="sticky top-0 z-30 border-b border-border bg-background/90 backdrop-blur">
         {/* max-w-3xl(768px)은 md 브레이크포인트와 같은 값이라, 데스크톱 메뉴가 펼쳐지는
-            지점부터는 폭 제한을 풀어 화면을 꽉 채운다 (헤더·본문·푸터 정렬을 함께 맞춘다) */}
+            지점부터 헤더가 좁게 갇혔다 → 폭 제한을 풀어 화면을 꽉 채운다.
+            본문(main)은 읽기 폭을 위해 max-w-3xl 을 유지한다. */}
         <div className="mx-auto flex h-14 w-full max-w-3xl items-center justify-between px-4 md:max-w-none">
           <Link href="/" onClick={closeMenu} className="flex items-center gap-2 font-bold">
             <Logo className="h-7 w-7" />
@@ -105,7 +106,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         />
       )}
 
-      <main className="mx-auto w-full max-w-3xl flex-1 px-4 pt-5 pb-16 md:max-w-none">{children}</main>
+      {/* 헤더/푸터는 화면을 꽉 채우되, 본문은 읽기 폭을 유지한다.
+          md:max-w-none 을 본문까지 적용했더니 넓은 화면에서 한 줄이 너무 길어져 읽기 어려웠다. */}
+      <main className="mx-auto w-full max-w-3xl flex-1 px-4 pt-5 pb-16">{children}</main>
 
       <Footer />
     </div>
